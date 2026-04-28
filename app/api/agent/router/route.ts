@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/src/app/ai/providers/fal";
+import { fal } from "@/app/ai/providers/fal";
 import { prisma } from "@/src/core/db/client";
 
 export async function POST(req: Request) {
