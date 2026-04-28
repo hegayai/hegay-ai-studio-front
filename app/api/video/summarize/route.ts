@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/src/app/ai/providers/fal";
+import { fal } from "@/app/ai/providers/fal"; // ✅ FIXED PATH
 
 export const runtime = "nodejs";
 
@@ -9,13 +9,14 @@ export async function POST(req: Request) {
     const form = await req.formData();
 
     const file = form.get("file") as File | null;
-    const mode = (form.get("mode") as string) || "summary"; 
+    const mode = (form.get("mode") as string) || "summary";
     // "summary" | "bullet-points" | "actions" | "chapters"
+
     const language = (form.get("language") as string) || "auto";
 
     if (!file) {
       return NextResponse.json(
-        { error: "No video file uploaded" },
+        { error: "No file uploaded" },
         { status: 400 }
       );
     }
