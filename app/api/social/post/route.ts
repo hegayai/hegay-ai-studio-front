@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/app/ai/providers/fal";
+import { fal } from "@/src/app/ai/providers/fal";
 
 export const runtime = "nodejs";
 
