@@ -12,7 +12,7 @@ export async function callFal(options: any = {}) {
   };
 }
 
-// Modern router-style export (used by many API routes)
+// ⭐ Modern router-style export (required by your API routes)
 export const fal = {
   async generate(options: any = {}) {
     return await callFal(options);
