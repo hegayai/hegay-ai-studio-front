@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 // Provider architecture
-import { fal } from "@/src/app/ai/providers/fal";
+import { fal } from "@/app/ai/providers/fal";
 
 // Unified model router
 import { modelRouter } from "@/src/core/model-router";
