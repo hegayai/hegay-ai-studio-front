@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-// ⭐ Import your provider
-// ⭐ Import your unified model router
 import { modelRouter } from "@/src/core/model-router";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -12,28 +11,35 @@ export async function POST(req: Request) {
       seed,
       mode
     } = body;
-    // ⭐ Unified provider-based text-to-audio generation
-    const result = await modelRouter({
-      model: "audio-text-to-audio",
-      input: {
-        prompt,
-        model,
-        voice,
-        seed,
-        mode
-      },
-      provider: fal,
-      type: "audio"
+
+    // Combine all text-to-audio parameters into a single prompt string
+    const combinedPrompt = JSON.stringify({
+      prompt,
+      model,
+      voice,
+      seed,
+      mode
     });
-    if (!result?.url) {
+
+    // Unified provider-based text-to-audio generation
+    const result = await modelRouter({
+      provider: "fal",
+      model: "audio-text-to-audio",
+      prompt: combinedPrompt
+    });
+
+    // ModelCallResult returns: { output, provider, model }
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Audio generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url
+      url: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
