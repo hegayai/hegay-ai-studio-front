@@ -1,49 +1,57 @@
-// app/api/image/color-grading/route.ts
 import { NextResponse } from "next/server";
-// ⭐ Correct provider import path
-// ⭐ Unified model router
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
+
     const file = form.get("file") as File | null;
-    const style = (form.get("style") as string) || "cinematic";
-    const intensity = Number(form.get("intensity") || 0.7);
+    const style = form.get("style") as string;
+    const intensity = form.get("intensity") as string;
+    const mode = (form.get("mode") as string) || "default";
+
     if (!file) {
       return NextResponse.json(
         { error: "No image file uploaded" },
         { status: 400 }
       );
     }
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const result = await modelRouter({
-      model: "image-color-grading",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        style,
-        intensity,
-      },
-      provider: fal,
-      type: "image",
+
+    // Convert structured image color grading input into a single prompt string
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      style,
+      intensity,
+      mode
     });
-    if (!result) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-color-grading",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Color grading failed" },
+        { error: "Image color grading failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      success: true,
-      output: result.output || null,
-      metadata: result.metadata || null,
+      url: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Color grading error",
-        details: String(error),
+        error: "Image color grading error",
+        details: String(error)
       },
       { status: 500 }
     );
