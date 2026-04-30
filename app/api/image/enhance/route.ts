@@ -1,35 +1,46 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { image } = body;
+
     if (!image) {
       return NextResponse.json(
         { error: "Missing image" },
         { status: 400 }
       );
     }
-    const result = await modelRouter({
-      model: "image-enhance",
-      input: { image },
-      provider: fal,
-      type: "image"
+
+    // Convert enhance parameters into a single prompt string
+    const combinedPrompt = JSON.stringify({
+      image
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-enhance",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Enhance failed", raw: result },
+        { error: "Image enhance failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url
+      url: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Enhance error",
+        error: "Image enhance error",
         details: String(error)
       },
       { status: 500 }
