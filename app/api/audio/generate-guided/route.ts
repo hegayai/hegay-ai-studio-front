@@ -15,7 +15,6 @@ export async function POST(req: Request) {
       mode
     } = body;
 
-    // Combine all guided-audio parameters into a single prompt string
     const combinedPrompt = JSON.stringify({
       prompt,
       audio,
@@ -27,14 +26,13 @@ export async function POST(req: Request) {
       mode
     });
 
-    // Unified provider-based guided audio generation
     const result = await modelRouter({
       provider: "fal",
       model: "audio-generate-guided",
       prompt: combinedPrompt
     });
 
-    if (!result?.url) {
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Guided audio generation failed", raw: result },
         { status: 500 }
@@ -42,7 +40,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      url: result.url
+      url: result.output
     });
 
   } catch (error) {
