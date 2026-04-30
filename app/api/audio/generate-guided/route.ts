@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-// ⭐ Import your provider
-// ⭐ Import your unified model router
 import { modelRouter } from "@/src/core/model-router";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -15,31 +14,37 @@ export async function POST(req: Request) {
       seed,
       mode
     } = body;
-    // ⭐ Unified provider-based guided audio generation
-    const result = await modelRouter({
-      model: "audio-generate-guided",
-      input: {
-        prompt,
-        audio,
-        strength,
-        preserveTone,
-        style,
-        model,
-        seed,
-        mode
-      },
-      provider: fal,
-      type: "audio"
+
+    // Combine all guided-audio parameters into a single prompt string
+    const combinedPrompt = JSON.stringify({
+      prompt,
+      audio,
+      strength,
+      preserveTone,
+      style,
+      model,
+      seed,
+      mode
     });
+
+    // Unified provider-based guided audio generation
+    const result = await modelRouter({
+      provider: "fal",
+      model: "audio-generate-guided",
+      prompt: combinedPrompt
+    });
+
     if (!result?.url) {
       return NextResponse.json(
         { error: "Guided audio generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
       url: result.url
     });
+
   } catch (error) {
     return NextResponse.json(
       {
