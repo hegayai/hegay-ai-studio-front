@@ -435,10 +435,13 @@ model PresetGeneration {
 model Job {
   id          String   @id @default(uuid())
   workflowId  String
+  task        String
   payload     Json
   status      String   @default("queued")
   result      Json?
   error       String?
+  logs        Json?
+  attempts    Int      @default(0)
   runAt       DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
