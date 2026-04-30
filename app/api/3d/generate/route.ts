@@ -1,22 +1,21 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { prompt, seed } = body;
+
     const result = await modelRouter({
+      provider: "fal",
       model: "3d-generator",
-      input: {
-        prompt,
-        seed,
-      },
-      provider: fal,
-      type: "3d",
+      prompt: `${prompt}\nSeed: ${seed}`,
     });
+
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(
-      { error: "3D generation error", details: String(error) },
+      { error: "3D generation failed." },
       { status: 500 }
     );
   }
