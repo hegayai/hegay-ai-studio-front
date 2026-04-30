@@ -1,7 +1,7 @@
 "use client";
 
 export default function AddonsPage() {
-  async function subscribe(plan) {
+  async function subscribe(plan: string) {
     const res = await fetch("/api/stripe/create-checkout-session", {
       method: "POST",
       headers: {
@@ -12,24 +12,16 @@ export default function AddonsPage() {
 
     const data = await res.json();
 
-    if (data.url) {
+    if (data?.url) {
       window.location.href = data.url;
-    } else {
-      console.error("Checkout error:", data);
-      alert("Checkout failed. Check console.");
     }
   }
 
   return (
-    <div style={{ padding: 40 }}>
-      <h1>Test AI Motion Checkout</h1>
-
-      <button
-        style={{ padding: "10px 20px", marginTop: 20 }}
-        onClick={() => subscribe("motion_basic")}
-      >
-        Subscribe to AI Motion Basic
-      </button>
+    <div>
+      <button onClick={() => subscribe("basic")}>Subscribe Basic</button>
+      <button onClick={() => subscribe("pro")}>Subscribe Pro</button>
+      <button onClick={() => subscribe("ultimate")}>Subscribe Ultimate</button>
     </div>
   );
 }
