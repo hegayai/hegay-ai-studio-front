@@ -1,7 +1,7 @@
 // app/api/audio/summarize/route.ts
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/src/app/ai/providers/fal";
+import { fal } from "@/app/ai/providers/fal";
 
 export const runtime = "nodejs";
 

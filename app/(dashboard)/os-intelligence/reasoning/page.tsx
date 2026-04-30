@@ -1,38 +1,37 @@
-export default function LongRangeReasoningEngine() {
+export default function ReasoningIntelligencePage() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
 
       {/* HEADER */}
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight">
-          Long‑Range Reasoning Engine
+        <h1 className="text-4xl font-semibold tracking-tight">
+          Reasoning Intelligence
         </h1>
-        <p className="opacity-70 mt-2 leading-relaxed max-w-3xl">
-          The deep reasoning layer of Hegay OS Supreme. Handles multi‑step,
-          multi‑agent, multi‑context reasoning across universes, realms,
-          characters, cultures, timelines, and assets. Enables complex creative
-          problem‑solving and long‑range task execution.
+        <p className="opacity-70 mt-3 leading-relaxed max-w-3xl">
+          Core reasoning layer of Hegay OS Supreme. Handles multi‑step logic,
+          narrative reasoning, world‑logic reasoning, character reasoning, and
+          cultural reasoning across all engines and agents.
         </p>
       </div>
 
-      {/* REASONING MODES */}
+      {/* REASONING DOMAINS */}
       <section>
-        <h2 className="text-xl font-medium mb-4">Reasoning Modes</h2>
+        <h2 className="text-xl font-medium mb-4">Reasoning Domains</h2>
         <div className="grid grid-cols-3 gap-6">
           {[
-            "Sequential Reasoning",
-            "Parallel Reasoning",
-            "Multi‑Agent Reasoning",
-            "Context‑Aware Reasoning",
-            "Long‑Thread Reasoning",
-            "Deep Mythic Reasoning",
-          ].map((mode) => (
+            "Core Reasoning",
+            "Multi‑Step Reasoning",
+            "Narrative Reasoning",
+            "World‑Logic Reasoning",
+            "Character Reasoning",
+            "Cultural Reasoning",
+          ].map((domain) => (
             <div
-              key={mode}
-              className="p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+              key={domain}
+              className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer"
             >
-              <h3 className="font-medium">{mode}</h3>
-              <p className="opacity-70 text-sm mt-1">Activate</p>
+              <h3 className="font-medium text-lg">{domain}</h3>
+              <p className="opacity-70 text-sm mt-1">Open domain</p>
             </div>
           ))}
         </div>
@@ -43,19 +42,19 @@ export default function LongRangeReasoningEngine() {
         <h2 className="text-xl font-medium mb-4">Reasoning Operations</h2>
         <div className="grid grid-cols-3 gap-6">
           {[
-            "Analyze Task",
-            "Break Down Task",
-            "Assign Agents",
-            "Chain Steps",
-            "Merge Outputs",
-            "Optimize Reasoning",
+            "Run Reasoning Pass",
+            "Run Multi‑Step Reasoning",
+            "Run Narrative Logic",
+            "Run World‑Logic",
+            "Run Character Logic",
+            "Run Cultural Logic",
           ].map((op) => (
             <div
               key={op}
-              className="p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+              className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer"
             >
               <h3 className="font-medium">{op}</h3>
-              <p className="opacity-70 text-sm mt-1">Open operation</p>
+              <p className="opacity-70 text-sm mt-1">Execute</p>
             </div>
           ))}
         </div>
@@ -66,24 +65,24 @@ export default function LongRangeReasoningEngine() {
         <h2 className="text-xl font-medium mb-4">Reasoning Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
 
-          {/* LEFT: REASONING PANEL */}
+          {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
-              Reasoning panel (connect to backend). Displays reasoning chains,
-              agent assignments, step breakdowns, and merged outputs.
+              Reasoning command panel (connect to backend). Executes reasoning
+              passes, multi‑step logic, narrative logic, and world‑logic tasks.
             </div>
 
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
-              placeholder="Describe a complex task — the Reasoning Engine will break it down and coordinate agents..."
+              placeholder="Describe a reasoning operation..."
             />
 
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
-                Analyze
+                Execute
               </button>
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
-                Chain Steps
+                Analyze
               </button>
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Optimize
@@ -91,34 +90,34 @@ export default function LongRangeReasoningEngine() {
             </div>
 
             <p className="opacity-50 text-[11px] mt-2">
-              The Long‑Range Reasoning Engine coordinates deep, multi‑layer
-              reasoning across all agents and engines.
+              The Reasoning Intelligence layer governs all logic‑based operations.
             </p>
           </div>
 
-          {/* RIGHT: ACTIVE REASONING STATE */}
+          {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Reasoning State</h3>
             <ul className="text-sm opacity-80 space-y-1">
-              <li>• Reasoning Thread: Active</li>
-              <li>• Agents Assigned: Story, World, Character</li>
-              <li>• Context Layers: Fused</li>
-              <li>• Memory Access: Enabled</li>
-              <li>• Optimization: Running</li>
-              <li>• Output Routing: Pipeline</li>
-            </ul>
-
-            <h3 className="font-medium text-sm mt-4">Reasoning Sync Targets</h3>
-            <ul className="text-sm opacity-80 space-y-1">
-              <li>• Hegay Core AI</li>
-              <li>• Agent Orchestrator</li>
-              <li>• All AI Agents</li>
-              <li>• All Pro Engines</li>
-              <li>• Asset Pipeline Engine</li>
-              <li>• Creator Mode</li>
+              <li>• Core Reasoning: Active</li>
+              <li>• Multi‑Step: Enabled</li>
+              <li>• Narrative Logic: Synced</li>
+              <li>• World‑Logic: Stable</li>
+              <li>• Character Logic: Online</li>
+              <li>• Cultural Logic: Online</li>
             </ul>
 
             <h3 className="font-medium text-sm mt-4">Reasoning Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
-              <li>• High‑mythic reasoning
+              <li>• High‑mythic reasoning</li>
+              <li>• Culture‑driven reasoning</li>
+              <li>• Character‑centric reasoning</li>
+              <li>• System‑design reasoning</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  );
+}
