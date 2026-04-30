@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function ScriptEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [format, setFormat] = useState("Screenplay");
@@ -12,35 +10,25 @@ export default function ScriptEnginePage() {
   const [length, setLength] = useState("Scene");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real script generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Script (Mock)
-
 Format: ${format}
 Tone: ${tone}
 Length: ${length}
-
 INT. SAMPLE LOCATION – NIGHT
-
 This is placeholder screenplay text representing the generated script output.
-
 CHARACTER
 Dialogue line goes here.
-
 ACTION LINE
 More placeholder script content.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Script Engine"
@@ -60,7 +48,6 @@ More placeholder script content.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Format */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -78,7 +65,6 @@ More placeholder script content.`
               <option>Audio Drama</option>
             </select>
           </div>
-
           {/* Tone */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -97,7 +83,6 @@ More placeholder script content.`
               <option>Minimalist</option>
             </select>
           </div>
-
           {/* Length */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -114,7 +99,6 @@ More placeholder script content.`
               <option>Act</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -134,14 +118,12 @@ More placeholder script content.`
               <p>Formatting screenplay structure…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

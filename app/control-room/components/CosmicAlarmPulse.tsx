@@ -1,8 +1,6 @@
 "use client";
-
 export default function CosmicAlarmPulse({ active }: { active: boolean }) {
   if (!active) return null;
-
   return (
     <div className="fixed inset-0 z-[9998] pointer-events-none">
       <div className="absolute inset-0 animate-cosmicPulse border-[6px] rounded-xl" />
@@ -15,7 +13,6 @@ export default function CosmicAlarmPulse({ active }: { active: boolean }) {
             0 0 120px rgba(168, 85, 247, 0.2);
           animation: cosmicPulse 2.2s ease-in-out infinite;
         }
-
         @keyframes cosmicPulse {
           0% {
             opacity: 0.4;

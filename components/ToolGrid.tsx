@@ -1,8 +1,6 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { FiImage, FiFeather, FiRadio, FiCpu, FiLayers, FiTool } from "react-icons/fi";
-
 const tools = [
   {
     title: "Image Generator",
@@ -35,14 +33,12 @@ const tools = [
     icon: <FiTool className="h-5 w-5 text-purple-300" />,
   },
 ];
-
 export default function ToolGrid() {
   return (
     <section className="w-full mt-10">
       <h2 className="mb-4 text-lg font-semibold text-slate-100">
         Tools & Modules
       </h2>
-
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {tools.map((tool, index) => (
           <motion.div
@@ -57,17 +53,13 @@ export default function ToolGrid() {
                 {tool.icon}
               </div>
             </div>
-
             <h3 className="text-base font-semibold text-slate-100">
               {tool.title}
             </h3>
-
             <p className="mt-2 text-sm text-slate-300/80">
               {tool.description}
             </p>
-
             <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
             <p className="mt-3 text-xs text-purple-200/70">
               Open tool →
             </p>

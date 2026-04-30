@@ -1,15 +1,12 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
-
 type UploadedVideo = {
   id: string;
   name: string;
   duration: string;
   status: "processing" | "ready";
 };
-
 type Reel = {
   id: string;
   title: string;
@@ -17,7 +14,6 @@ type Reel = {
   hook: string;
   platform: "TikTok" | "IG Reels" | "YouTube Shorts";
 };
-
 export default function AdsEnginePage() {
   const [videos, setVideos] = useState<UploadedVideo[]>([
     {
@@ -27,7 +23,6 @@ export default function AdsEnginePage() {
       status: "ready",
     },
   ]);
-
   const [reels, setReels] = useState<Reel[]>([
     {
       id: "r1",
@@ -51,9 +46,7 @@ export default function AdsEnginePage() {
       platform: "YouTube Shorts",
     },
   ]);
-
   const [isAdmin] = useState(true); // UI-only flag; later wired to real auth
-
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Background */}
@@ -61,7 +54,6 @@ export default function AdsEnginePage() {
       <div className="fixed inset-0 -z-10 opacity-40 pointer-events-none">
         <div className="w-[160%] h-[160%] bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.3),_transparent_60%),_radial-gradient(circle_at_bottom,_rgba(236,72,153,0.22),_transparent_55%)] translate-x-[-15%] translate-y-[-10%]" />
       </div>
-
       <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col gap-8">
         {/* TOP BAR */}
         <header className="flex items-center justify-between">
@@ -91,7 +83,6 @@ export default function AdsEnginePage() {
             </span>
           </nav>
         </header>
-
         {/* TITLE STRIP */}
         <section className="space-y-2">
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-fuchsia-300/80">
@@ -108,7 +99,6 @@ export default function AdsEnginePage() {
             </p>
           </div>
         </section>
-
         {!isAdmin && (
           <div className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4 text-[11px] text-slate-300">
             <p className="font-semibold mb-1">Access restricted</p>
@@ -120,7 +110,6 @@ export default function AdsEnginePage() {
             </p>
           </div>
         )}
-
         {isAdmin && (
           <>
             {/* MAIN GRID */}
@@ -143,7 +132,6 @@ export default function AdsEnginePage() {
                       Step 1 · Source
                     </span>
                   </div>
-
                   <div className="mt-2 flex flex-col gap-3 text-[11px]">
                     <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-700/80 bg-black/40 px-4 py-6 text-slate-400">
                       <p className="mb-1 text-slate-300">
@@ -162,7 +150,6 @@ export default function AdsEnginePage() {
                     </p>
                   </div>
                 </div>
-
                 {/* Uploaded videos list */}
                 <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-5 space-y-3">
                   <div className="flex items-center justify-between">
@@ -174,7 +161,6 @@ export default function AdsEnginePage() {
                       {videos.length !== 1 ? "s" : ""} in library
                     </span>
                   </div>
-
                   <div className="space-y-2 text-[11px]">
                     {videos.map((video) => (
                       <div
@@ -208,7 +194,6 @@ export default function AdsEnginePage() {
                   </div>
                 </div>
               </div>
-
               {/* RIGHT: REEL PREVIEW GRID */}
               <div className="space-y-4">
                 <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-5 space-y-3">
@@ -225,14 +210,12 @@ export default function AdsEnginePage() {
                       Step 2 · Reels
                     </span>
                   </div>
-
                   <div className="grid gap-3 md:grid-cols-1">
                     {reels.map((reel) => (
                       <ReelCard key={reel.id} reel={reel} />
                     ))}
                   </div>
                 </div>
-
                 {/* Export / Social strip */}
                 <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-4 space-y-2 text-[11px]">
                   <p className="text-slate-300 font-semibold">
@@ -260,7 +243,6 @@ export default function AdsEnginePage() {
                 </div>
               </div>
             </section>
-
             {/* FUTURE: PUBLIC ADS STUDIO NOTE */}
             <section className="mt-4 rounded-3xl border border-slate-800/80 bg-slate-950/80 px-6 py-5 text-[11px] text-slate-300 space-y-2">
               <p className="font-semibold">
@@ -275,7 +257,6 @@ export default function AdsEnginePage() {
             </section>
           </>
         )}
-
         {/* FOOTER */}
         <footer className="mt-8 border-t border-slate-800/70 pt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
           <span>
@@ -290,7 +271,6 @@ export default function AdsEnginePage() {
     </main>
   );
 }
-
 function ReelCard({ reel }: { reel: Reel }) {
   const platformColor =
     reel.platform === "TikTok"
@@ -298,7 +278,6 @@ function ReelCard({ reel }: { reel: Reel }) {
       : reel.platform === "IG Reels"
       ? "text-rose-300 border-rose-400/60 bg-rose-400/10"
       : "text-sky-300 border-sky-400/60 bg-sky-400/10";
-
   return (
     <div className="rounded-2xl border border-slate-800/80 bg-black/60 p-3 flex flex-col gap-2">
       <div className="flex items-center justify-between">

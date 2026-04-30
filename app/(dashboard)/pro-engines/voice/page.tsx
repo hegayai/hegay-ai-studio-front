@@ -1,7 +1,6 @@
 export default function VoiceEnginePro() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function VoiceEnginePro() {
           pipeline.
         </p>
       </div>
-
       {/* PRIMARY MODES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Primary Modes</h2>
@@ -37,7 +35,6 @@ export default function VoiceEnginePro() {
           ))}
         </div>
       </section>
-
       {/* CONTEXT LOADERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Context Loaders</h2>
@@ -60,12 +57,10 @@ export default function VoiceEnginePro() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Voice Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT: VOICE PANEL */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[320px]">
             <div className="opacity-70 text-sm">
@@ -73,13 +68,11 @@ export default function VoiceEnginePro() {
               panel will play generated voices, emotional variations, accents, and
               scene‑specific vocal performances.
             </div>
-
             <div className="mt-auto">
               <textarea
                 className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-32"
                 placeholder="Describe the voice, tone, or performance you want to generate..."
               />
-
               <div className="flex gap-3 mt-3">
                 <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                   Generate Voice
@@ -91,7 +84,6 @@ export default function VoiceEnginePro() {
                   Save to Pipeline
                 </button>
               </div>
-
               <p className="opacity-50 text-[11px] mt-2">
                 Voice Engine Pro supports multi‑layer vocal workflows, character
                 voice DNA, cultural accents, emotional tone shaping, and routing
@@ -99,10 +91,8 @@ export default function VoiceEnginePro() {
               </p>
             </div>
           </div>
-
           {/* RIGHT: CONTEXT + ROUTING */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Attached Context</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Character: Aruwa — Dawn Incarnate</li>
@@ -111,7 +101,6 @@ export default function VoiceEnginePro() {
               <li>• Scene: Dawn Arrival Sequence</li>
               <li>• Emotional Tone: Mythic‑Resolve</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Output Routing</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Save to: Asset Pipeline</li>
@@ -119,7 +108,6 @@ export default function VoiceEnginePro() {
               <li>• Save to: Script Engine Pro</li>
               <li>• Save to: Culture Grid Engine</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Mythic narrator voice</li>
@@ -127,11 +115,9 @@ export default function VoiceEnginePro() {
               <li>• Character emotional variants</li>
               <li>• Realm environmental vocal tone</li>
             </ul>
-
           </div>
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Voice Engine Systems</h2>
@@ -154,7 +140,6 @@ export default function VoiceEnginePro() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

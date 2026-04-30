@@ -1,7 +1,6 @@
 export default function CharacterGenomeEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function CharacterGenomeEngine() {
           fields.
         </p>
       </div>
-
       {/* PRIMARY ACTIONS */}
       <div className="grid grid-cols-2 gap-4">
         <button className="p-5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition">
@@ -24,7 +22,6 @@ export default function CharacterGenomeEngine() {
           Open Character Library
         </button>
       </div>
-
       {/* GENOME MODULES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Core Modules</h2>
@@ -47,7 +44,6 @@ export default function CharacterGenomeEngine() {
           ))}
         </div>
       </section>
-
       {/* ACTIVE CHARACTERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Active Characters</h2>
@@ -68,7 +64,6 @@ export default function CharacterGenomeEngine() {
           ))}
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Character Systems</h2>
@@ -91,7 +86,6 @@ export default function CharacterGenomeEngine() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

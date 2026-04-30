@@ -3,19 +3,16 @@ export type GraphNode = {
   label: string;
   realmType: string;
 };
-
 export type GraphEdge = {
   source: string;
   target: string;
   weight: number; // 0–1
   influenceType: string;
 };
-
 export type CivilizationGraph = {
   nodes: GraphNode[];
   edges: GraphEdge[];
 };
-
 export function buildGraphV9(
   presetIds: string[],
   values: Record<string, string>
@@ -25,13 +22,10 @@ export function buildGraphV9(
     label: id.replace(/-/g, " "),
     realmType: inferRealmType(id),
   }));
-
   const edges: GraphEdge[] = [];
-
   for (let i = 0; i < nodes.length; i++) {
     for (let j = 0; j < nodes.length; j++) {
       if (i === j) continue;
-
       edges.push({
         source: nodes[i].id,
         target: nodes[j].id,
@@ -40,10 +34,8 @@ export function buildGraphV9(
       });
     }
   }
-
   return { nodes, edges };
 }
-
 function inferRealmType(id: string) {
   if (id.includes("world")) return "World";
   if (id.includes("culture")) return "Culture";
@@ -53,7 +45,6 @@ function inferRealmType(id: string) {
   if (id.includes("realm") || id.includes("hybrid")) return "Hybrid";
   return "General";
 }
-
 function inferInfluence(values: Record<string, string>) {
   if (values["cultural_tone"]) return "Cultural";
   if (values["economic_flow"]) return "Economic";

@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function DreamRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function DreamRealmPage() {
         description="The subconscious engine of your Creative OS — dream writing, surreal generation, emotional physics, and narrative atmospheres."
         aura="from-indigo-500/40 to-blue-500/40"
       />
-
       <RealmToolPanel
         title="Dream Tools"
         description="Tools for imagination, dream‑state simulation, subconscious modeling, emotional physics, and surreal world‑building."

@@ -1,5 +1,4 @@
 // app/(dashboard)/simulation/multiverse-navigator/page.tsx
-
 import React from "react";
 import {
   Globe2,
@@ -10,7 +9,6 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-
 export default function MultiverseNavigatorPage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -26,14 +24,12 @@ export default function MultiverseNavigatorPage() {
           relationships.
         </p>
       </header>
-
       {/* Navigation Filters */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Filters
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <FilterBlock
             label="Universe Type"
@@ -49,20 +45,17 @@ export default function MultiverseNavigatorPage() {
           />
         </div>
       </section>
-
       {/* Multiverse Map */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2 mb-4">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Multiverse Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of all universes and their interconnections.
           Each node represents a universe; each line represents a mythic,
           cultural, or structural link.
         </p>
-
         <div className="relative h-[500px] rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <MapDots />
@@ -72,14 +65,12 @@ export default function MultiverseNavigatorPage() {
           </div>
         </div>
       </section>
-
       {/* Universe List */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2 mb-4">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Universes
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           <UniverseCard
             name="Prime Universe"
@@ -111,7 +102,6 @@ export default function MultiverseNavigatorPage() {
           />
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -124,14 +114,11 @@ export default function MultiverseNavigatorPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 type FilterBlockProps = {
   label: string;
   options: string[];
 };
-
 function FilterBlock({ label, options }: FilterBlockProps) {
   return (
     <div className="space-y-2">
@@ -146,7 +133,6 @@ function FilterBlock({ label, options }: FilterBlockProps) {
     </div>
   );
 }
-
 type UniverseCardProps = {
   name: string;
   type: string;
@@ -154,7 +140,6 @@ type UniverseCardProps = {
   branches: string;
   color: string;
 };
-
 function UniverseCard({
   name,
   type,
@@ -165,7 +150,6 @@ function UniverseCard({
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/70 p-5 flex flex-col gap-3">
       <div className={`absolute inset-0 opacity-40 bg-gradient-to-br ${color} blur-3xl`} />
-
       <div className="relative flex items-center justify-between">
         <div>
           <div className="text-[11px] uppercase tracking-[0.2em] text-slate-400">
@@ -177,14 +161,12 @@ function UniverseCard({
           <Globe2 className="h-4 w-4 text-[#F5D48A]" />
         </div>
       </div>
-
       <div className="relative text-[11px] text-slate-300">
         Realms: <span className="text-[#F5D48A]">{realms}</span>
       </div>
       <div className="relative text-[11px] text-slate-300">
         Branches: <span className="text-[#F5D48A]">{branches}</span>
       </div>
-
       <div className="relative text-[11px] text-[#F5D48A] flex items-center gap-1 hover:text-[#FFB85C] transition-colors">
         <span>Open Universe</span>
         <ArrowRight className="h-3 w-3" />
@@ -192,9 +174,7 @@ function UniverseCard({
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function MapDots() {
   const dots = Array.from({ length: 150 });
   return (
@@ -211,9 +191,7 @@ function MapDots() {
     </svg>
   );
 }
-
 type NodeProps = { className: string };
-
 function MapNodes() {
   return (
     <div className="relative w-full h-full">
@@ -225,7 +203,6 @@ function MapNodes() {
     </div>
   );
 }
-
 function Node({ className }: NodeProps) {
   return (
     <div

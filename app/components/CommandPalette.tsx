@@ -1,16 +1,12 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 type Command = {
   name: string;
   action: () => void;
 };
-
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-
   const commands: Command[] = [
     { name: "Go to Dashboard", action: () => (window.location.href = "/") },
     { name: "Go to Studio", action: () => (window.location.href = "/studio") },
@@ -19,7 +15,6 @@ export default function CommandPalette() {
     { name: "Toggle Screen Dimmer", action: () => toggleClass("screen-dimmed") },
     { name: "Toggle Minimal Motion", action: () => toggleClass("minimal-motion") },
   ];
-
   /* ---------------------------------------------------------
      KEYBOARD SHORTCUT: ⌘K / Ctrl+K
      --------------------------------------------------------- */
@@ -27,17 +22,14 @@ export default function CommandPalette() {
     const handler = (e: KeyboardEvent) => {
       const isMac = navigator.platform.toUpperCase().includes("MAC");
       const mod = isMac ? e.metaKey : e.ctrlKey;
-
       if (mod && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setOpen((prev) => !prev);
       }
     };
-
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
-
   /* ---------------------------------------------------------
      COMMAND CENTER TRIGGER
      --------------------------------------------------------- */
@@ -50,23 +42,19 @@ export default function CommandPalette() {
     });
     window.dispatchEvent(event);
   };
-
   /* ---------------------------------------------------------
      TOGGLE CLASS HELPERS
      --------------------------------------------------------- */
   const toggleClass = (cls: string) => {
     document.documentElement.classList.toggle(cls);
   };
-
   /* ---------------------------------------------------------
      FILTERED COMMANDS
      --------------------------------------------------------- */
   const filtered = commands.filter((cmd) =>
     cmd.name.toLowerCase().includes(query.toLowerCase())
   );
-
   if (!open) return null;
-
   return (
     <div
       className="
@@ -101,7 +89,6 @@ export default function CommandPalette() {
             mb-4
           "
         />
-
         {/* COMMAND LIST */}
         <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1">
           {filtered.length === 0 && (
@@ -109,7 +96,6 @@ export default function CommandPalette() {
               No matching commands
             </div>
           )}
-
           {filtered.map((cmd, i) => (
             <button
               key={i}

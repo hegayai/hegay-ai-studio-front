@@ -1,5 +1,4 @@
 // app/(dashboard)/engines/origin-law-engine/page.tsx
-
 import React from "react";
 import {
   Infinity,
@@ -10,7 +9,6 @@ import {
   Scale,
   Atom,
 } from "lucide-react";
-
 export default function OriginLawEnginePage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -25,37 +23,31 @@ export default function OriginLawEnginePage() {
           govern all universes, realms, civilizations, and mythic systems.
         </p>
       </header>
-
       {/* Law Creation Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Create New Origin Law
         </h2>
-
         <input
           placeholder="Name of the law (e.g., Law of Harmonic Memory)"
           className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-[#F5D48A66] outline-none"
         />
-
         <textarea
           placeholder="Describe the law, its purpose, and how it shapes the universe..."
           className="w-full h-40 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-500 focus:border-[#F5D48A66] outline-none"
         />
-
         <button className="px-4 py-2 rounded-full border border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] text-sm hover:bg-[#F5D48A33] transition-all inline-flex items-center gap-2">
           <Sparkles className="h-4 w-4" />
           Forge Law
         </button>
       </section>
-
       {/* Law Output */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Forged Law
         </h2>
-
         <div className="space-y-4 text-sm text-slate-300">
           <OutputBlock title="Law Definition" />
           <OutputBlock title="Cosmic Purpose" />
@@ -64,14 +56,12 @@ export default function OriginLawEnginePage() {
           <OutputBlock title="Pantheon Interaction" />
         </div>
       </section>
-
       {/* Law Categories */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Law Categories
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <CategoryCard
             icon={Atom}
@@ -90,19 +80,16 @@ export default function OriginLawEnginePage() {
           />
         </div>
       </section>
-
       {/* Visualization */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Law Resonance Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of how the forged law radiates influence across
           realms, civilizations, and mythic layers.
         </p>
-
         <div className="relative h-80 rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <LawDots />
@@ -112,7 +99,6 @@ export default function OriginLawEnginePage() {
           </div>
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -125,9 +111,7 @@ export default function OriginLawEnginePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function OutputBlock({ title }: { title: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 space-y-1">
@@ -140,13 +124,11 @@ function OutputBlock({ title }: { title: string }) {
     </div>
   );
 }
-
 type CategoryCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
 };
-
 function CategoryCard({ icon: Icon, title, description }: CategoryCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-4 space-y-2">
@@ -158,9 +140,7 @@ function CategoryCard({ icon: Icon, title, description }: CategoryCardProps) {
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function LawDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -177,7 +157,6 @@ function LawDots() {
     </svg>
   );
 }
-
 function LawNodes() {
   return (
     <div className="relative w-full h-full">
@@ -189,7 +168,6 @@ function LawNodes() {
     </div>
   );
 }
-
 function Node({ className }: { className: string }) {
   return (
     <div

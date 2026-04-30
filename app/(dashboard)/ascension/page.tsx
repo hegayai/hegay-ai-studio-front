@@ -1,5 +1,4 @@
 // app/(dashboard)/ascension/page.tsx
-
 import React from "react";
 import {
   Sparkles,
@@ -11,7 +10,6 @@ import {
   Infinity,
   ArrowRight,
 } from "lucide-react";
-
 export default function AscensionPage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -27,7 +25,6 @@ export default function AscensionPage() {
           architecture.
         </p>
       </header>
-
       {/* Ascension Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         <AscensionCard
@@ -67,7 +64,6 @@ export default function AscensionPage() {
           color="from-[#5A3E2B] to-[#8C5F3A]"
         />
       </section>
-
       {/* Meta‑Layer Overview */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
@@ -79,21 +75,18 @@ export default function AscensionPage() {
           orchestration of realms, civilizations, pantheon forces, and origin
           laws. This is where creators operate at the scale of universes.
         </p>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
           <StatCard label="Meta Engines" value="6" icon={Aperture} />
           <StatCard label="Active Universes" value="14" icon={Globe2} />
           <StatCard label="Origin Laws" value="27" icon={Infinity} />
         </div>
       </section>
-
       {/* Ascension Pathways */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Ascension Pathways
         </h2>
-
         <div className="space-y-4">
           <PathwayRow
             label="Enter Ascension Console"
@@ -116,9 +109,7 @@ export default function AscensionPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function AscensionCard({
   title,
   description,
@@ -149,7 +140,6 @@ function AscensionCard({
     </div>
   );
 }
-
 function StatCard({
   label,
   value,
@@ -171,7 +161,6 @@ function StatCard({
     </div>
   );
 }
-
 function PathwayRow({
   label,
   description,

@@ -1,30 +1,23 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function AtmosphereGeneratorPage() {
   const [theme, setTheme] = useState("Ethereal");
   const [density, setDensity] = useState(40);
   const [temperature, setTemperature] = useState("Cool");
   const [loading, setLoading] = useState(false);
   const [resultUrl, setResultUrl] = useState("");
-
   async function handleGenerate() {
     setLoading(true);
-
     // 🔮 Placeholder for real atmosphere generation API
     await new Promise((r) => setTimeout(r, 1200));
-
     setResultUrl(
       "https://via.placeholder.com/768x512.png?text=Atmosphere+Generator"
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Atmosphere Generator"
@@ -50,7 +43,6 @@ export default function AtmosphereGeneratorPage() {
               <option>Noir Haze</option>
             </select>
           </div>
-
           {/* Density */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -65,7 +57,6 @@ export default function AtmosphereGeneratorPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Temperature */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -83,7 +74,6 @@ export default function AtmosphereGeneratorPage() {
               <option>Humid</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -102,7 +92,6 @@ export default function AtmosphereGeneratorPage() {
               <p>Forming dream atmosphere…</p>
             </div>
           )}
-
           {!loading && resultUrl && (
             <div className="w-full space-y-2">
               <div className="overflow-hidden rounded-lg border border-white/10 bg-slate-900/60">
@@ -113,7 +102,6 @@ export default function AtmosphereGeneratorPage() {
                   className="h-64 w-full object-cover"
                 />
               </div>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -127,7 +115,6 @@ export default function AtmosphereGeneratorPage() {
               </div>
             </div>
           )}
-
           {!loading && !resultUrl && (
             <p className="text-xs text-slate-500 text-center px-4">
               Choose a theme, density, and temperature to generate a dream

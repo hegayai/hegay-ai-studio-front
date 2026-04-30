@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function EducationRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function EducationRealmPage() {
         description="The knowledge‑shaping engine of your Creative OS — learning systems, skill pathways, and curriculum intelligence."
         aura="from-indigo-500/40 to-violet-500/40"
       />
-
       <RealmToolPanel
         title="Education Tools"
         description="Tools for building learning paths, knowledge systems, and educational structures."

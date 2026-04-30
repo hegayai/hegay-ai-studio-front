@@ -1,5 +1,4 @@
 "use client";
-
 import {
   createContext,
   useContext,
@@ -7,35 +6,28 @@ import {
   useCallback,
   ReactNode,
 } from "react";
-
 type RitualContextType = {
   startRitual: (name: string) => void;
   activeRitual: string | null;
 };
-
 const RitualContext = createContext<RitualContextType>({
   startRitual: () => {},
   activeRitual: null,
 });
-
 export function useRitual() {
   return useContext(RitualContext);
 }
-
 export function RitualProvider({ children }: { children: ReactNode }) {
   const [activeRitual, setActiveRitual] = useState<string | null>(null);
-
   /* ---------------------------------------------------------
      START A RITUAL
      --------------------------------------------------------- */
   const startRitual = useCallback((name: string) => {
     setActiveRitual(name);
-
     setTimeout(() => {
       setActiveRitual(null);
     }, 2000);
   }, []);
-
   return (
     <RitualContext.Provider value={{ startRitual, activeRitual }}>
       {children}
@@ -43,13 +35,11 @@ export function RitualProvider({ children }: { children: ReactNode }) {
     </RitualContext.Provider>
   );
 }
-
 /* ---------------------------------------------------------
    RITUAL OVERLAY
    --------------------------------------------------------- */
 function RitualOverlay({ active }: { active: string | null }) {
   if (!active) return null;
-
   return (
     <div
       className="

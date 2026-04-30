@@ -1,5 +1,4 @@
 // app/(dashboard)/engines/cross-realm/page.tsx
-
 import React from "react";
 import {
   Layers,
@@ -9,7 +8,6 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-
 export default function CrossRealmEnginePage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -24,32 +22,27 @@ export default function CrossRealmEnginePage() {
           civilizations. This engine reveals how worlds influence each other.
         </p>
       </header>
-
       {/* Realm Selection */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Select Realms
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <SelectBox label="Primary Realm" />
           <SelectBox label="Secondary Realm" />
         </div>
-
         <button className="px-4 py-2 rounded-full border border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] text-sm hover:bg-[#F5D48A33] transition-all inline-flex items-center gap-2">
           <Sparkles className="h-4 w-4" />
           Analyze Interaction
         </button>
       </section>
-
       {/* Interaction Output */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Interaction Analysis
         </h2>
-
         <div className="space-y-4 text-sm text-slate-300">
           <OutputBlock title="Cultural Overlap" />
           <OutputBlock title="Mythic Resonance" />
@@ -58,19 +51,16 @@ export default function CrossRealmEnginePage() {
           <OutputBlock title="Narrative Gravity" />
         </div>
       </section>
-
       {/* Visualization */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Realm Interaction Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of how the selected realms influence each
           other across mythic, cultural, and systemic dimensions.
         </p>
-
         <div className="relative h-80 rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <InteractionDots />
@@ -80,7 +70,6 @@ export default function CrossRealmEnginePage() {
           </div>
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -93,9 +82,7 @@ export default function CrossRealmEnginePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function SelectBox({ label }: { label: string }) {
   return (
     <div className="space-y-2">
@@ -114,7 +101,6 @@ function SelectBox({ label }: { label: string }) {
     </div>
   );
 }
-
 function OutputBlock({ title }: { title: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 space-y-1">
@@ -127,9 +113,7 @@ function OutputBlock({ title }: { title: string }) {
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function InteractionDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -146,7 +130,6 @@ function InteractionDots() {
     </svg>
   );
 }
-
 function InteractionNodes() {
   return (
     <div className="relative w-full h-full">
@@ -158,7 +141,6 @@ function InteractionNodes() {
     </div>
   );
 }
-
 function Node({ className }: { className: string }) {
   return (
     <div

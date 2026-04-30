@@ -1,15 +1,12 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSearch } from "react-icons/fi";
 import Link from "next/link";
-
 type GlobalSearchProps = {
   open: boolean;
   onClose: () => void;
 };
-
 const quickLinks = [
   { label: "Go to Dashboard", path: "/dashboard", type: "Page" },
   { label: "Open Studio", path: "/studio", type: "Page" },
@@ -18,10 +15,8 @@ const quickLinks = [
   { label: "Dream Realm", path: "/realms/dream", type: "Realm" },
   { label: "Radio Realm", path: "/realms/radio", type: "Realm" },
 ];
-
 export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
   const [query, setQuery] = useState("");
-
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       // ⌘K / Ctrl+K
@@ -29,19 +24,15 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
         e.preventDefault();
         if (!open) return;
       }
-
       // Escape closes
       if (e.key === "Escape" && open) onClose();
     }
-
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
-
   const filtered = quickLinks.filter((item) =>
     item.label.toLowerCase().includes(query.toLowerCase())
   );
-
   return (
     <AnimatePresence>
       {open && (
@@ -73,7 +64,6 @@ export default function GlobalSearch({ open, onClose }: GlobalSearchProps) {
                 ⌘K
               </span>
             </div>
-
             {/* Results */}
             <div className="mt-3 max-h-72 overflow-y-auto rounded-xl bg-white/3">
               {filtered.length === 0 ? (

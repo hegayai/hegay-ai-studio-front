@@ -1,7 +1,5 @@
 "use client";
-
 import RealmIntro from "../components/RealmIntro";
-
 export default function AvatarPage() {
   return (
     <div className="p-6">

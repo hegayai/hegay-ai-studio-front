@@ -1,39 +1,31 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useNotify } from "./NotificationProvider";
-
 export default function EventTriggerPanel() {
   const [workflows, setWorkflows] = useState<any[]>([]);
   const [triggers, setTriggers] = useState<any[]>([]);
   const [workflowId, setWorkflowId] = useState("");
   const [eventType, setEventType] = useState("");
   const [threshold, setThreshold] = useState("");
-
   // ✅ FIXED — destructure notify from the context
   const { notify } = useNotify();
-
   const loadData = async () => {
     try {
       const wfRes = await fetch("/api/system/workflow");
       const trRes = await fetch("/api/system/triggers");
-
       const wfData = await wfRes.json();
       const trData = await trRes.json();
-
       setWorkflows(wfData.workflows || []);
       setTriggers(trData.triggers || []);
     } catch {
       notify("Failed to load trigger data", "error");
     }
   };
-
   const addTrigger = async () => {
     if (!workflowId || !eventType) {
       notify("Select workflow and event type", "info");
       return;
     }
-
     try {
       await fetch("/api/system/triggers", {
         method: "POST",
@@ -43,7 +35,6 @@ export default function EventTriggerPanel() {
           threshold: Number(threshold),
         }),
       });
-
       notify("Trigger created", "success");
       setWorkflowId("");
       setEventType("");
@@ -53,29 +44,24 @@ export default function EventTriggerPanel() {
       notify("Failed to create trigger", "error");
     }
   };
-
   const deleteTrigger = async (id: number) => {
     try {
       await fetch("/api/system/triggers", {
         method: "DELETE",
         body: JSON.stringify({ id }),
       });
-
       notify("Trigger deleted", "success");
       loadData();
     } catch {
       notify("Failed to delete trigger", "error");
     }
   };
-
   useEffect(() => {
     loadData();
   }, []);
-
   return (
     <div className="p-6 rounded-xl bg-gray-900/60 border border-gray-700 shadow-xl mt-10">
       <h2 className="text-2xl font-semibold mb-4">Event Trigger Engine</h2>
-
       {/* CREATE TRIGGER */}
       <div className="mb-6">
         <select
@@ -90,7 +76,6 @@ export default function EventTriggerPanel() {
             </option>
           ))}
         </select>
-
         <select
           value={eventType}
           onChange={(e) => setEventType(e.target.value)}
@@ -103,14 +88,12 @@ export default function EventTriggerPanel() {
           <option value="ai-overload">AI Core Overload</option>
           <option value="model-failover">Model Router Failover</option>
         </select>
-
         <input
           value={threshold}
           onChange={(e) => setThreshold(e.target.value)}
           className="w-full p-3 rounded bg-black/40 border border-gray-700 text-gray-200 mb-3"
           placeholder="Threshold (e.g., 80)"
         />
-
         <button
           onClick={addTrigger}
           className="px-6 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold"
@@ -118,10 +101,8 @@ export default function EventTriggerPanel() {
           Add Trigger
         </button>
       </div>
-
       {/* TRIGGER LIST */}
       <h3 className="text-xl font-semibold mb-3">Active Triggers</h3>
-
       <div className="space-y-3">
         {triggers.map((tr) => (
           <div
@@ -139,7 +120,6 @@ export default function EventTriggerPanel() {
                 delete
               </button>
             </div>
-
             <div className="text-sm text-gray-400">
               Threshold: {tr.threshold || "none"}
             </div>

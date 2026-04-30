@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function EconomyRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function EconomyRealmPage() {
         description="The value‑flow engine of your Creative OS — currencies, markets, resources, and production systems."
         aura="from-green-500/40 to-emerald-500/40"
       />
-
       <RealmToolPanel
         title="Economy Tools"
         description="Tools for modeling currencies, markets, resource flows, and economic behavior."

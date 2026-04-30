@@ -1,8 +1,6 @@
 "use client";
-
 import { GlowShell } from "@/components/MotionProvider";
 import { motion } from "framer-motion";
-
 const worldPresets = [
   {
     title: "Mythic Desert World",
@@ -21,7 +19,6 @@ const worldPresets = [
     description: "Floating lands, celestial cultures, and wind‑governed cities.",
   },
 ];
-
 export default function WorldPresetsPage() {
   return (
     <div className="min-h-screen w-full">
@@ -38,7 +35,6 @@ export default function WorldPresetsPage() {
             One‑click world blueprints for creators
           </p>
         </motion.div>
-
         {/* PANEL */}
         <GlowShell>
           <div className="space-y-8">
@@ -51,7 +47,6 @@ export default function WorldPresetsPage() {
     </div>
   );
 }
-
 function PresetCard({
   title,
   description,

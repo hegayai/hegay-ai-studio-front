@@ -1,20 +1,16 @@
 "use client";
-
 import React from "react";
 import { useNotification } from "@/app/context/NotificationContext";
-
 export default function BackupButton({
   onComplete,
 }: {
   onComplete: () => void;
 }) {
   const { notify } = useNotification(); // ✅ FIXED — destructure the function
-
   const handleBackup = async () => {
     try {
       const res = await fetch("/api/backup", { method: "POST" });
       const data = await res.json();
-
       if (data.success) {
         notify("Backup completed successfully", "success");
         onComplete();
@@ -25,7 +21,6 @@ export default function BackupButton({
       notify("Backup error: " + err.message, "error");
     }
   };
-
   return (
     <button
       onClick={handleBackup}

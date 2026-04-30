@@ -1,8 +1,6 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { FiZap, FiImage, FiRadio, FiLayers } from "react-icons/fi";
-
 const actions = [
   {
     title: "Launch Image Realm",
@@ -25,14 +23,12 @@ const actions = [
     icon: <FiZap className="h-5 w-5 text-purple-300" />,
   },
 ];
-
 export default function QuickActions() {
   return (
     <section className="w-full mt-10">
       <h2 className="mb-4 text-lg font-semibold text-slate-100">
         Quick Actions
       </h2>
-
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {actions.map((action, index) => (
           <motion.div
@@ -47,11 +43,9 @@ export default function QuickActions() {
                 {action.icon}
               </div>
             </div>
-
             <h3 className="text-sm font-semibold text-slate-100">
               {action.title}
             </h3>
-
             <p className="mt-1 text-xs text-slate-400">
               {action.description}
             </p>

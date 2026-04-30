@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function MythGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [mythType, setMythType] = useState("Origin Myth");
@@ -12,30 +10,22 @@ export default function MythGeneratorPage() {
   const [structure, setStructure] = useState("Three-Act Myth");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real myth generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Myth (Mock)
-
 Myth Type: ${mythType}
 Tone: ${tone}
 Structure: ${structure}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated myth, legend, or epic narrative.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Myth Generator"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated myth, legend, or epic na
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Myth Type */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -74,7 +63,6 @@ This is placeholder metadata representing the generated myth, legend, or epic na
               <option>Cycle of Ages</option>
             </select>
           </div>
-
           {/* Tone */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -93,7 +81,6 @@ This is placeholder metadata representing the generated myth, legend, or epic na
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Structure */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -112,7 +99,6 @@ This is placeholder metadata representing the generated myth, legend, or epic na
               <option>Codex Entry</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -132,14 +118,12 @@ This is placeholder metadata representing the generated myth, legend, or epic na
               <p>Forging cultural legend…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -1,14 +1,11 @@
 "use client";
-
 import { useRef, useState } from "react";
-
 type FloatingWindowProps = {
   id: string;
   title: string;
   children: React.ReactNode;
   onClose: () => void;
 };
-
 export default function FloatingWindow({
   id,
   title,
@@ -19,7 +16,6 @@ export default function FloatingWindow({
   const [pos, setPos] = useState({ x: 200, y: 150 });
   const [dragging, setDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-
   function startDrag(e: React.MouseEvent<HTMLDivElement>) {
     setDragging(true);
     setOffset({
@@ -27,11 +23,9 @@ export default function FloatingWindow({
       y: e.clientY - pos.y,
     });
   }
-
   function stopDrag() {
     setDragging(false);
   }
-
   function onDrag(e: React.MouseEvent<HTMLDivElement>) {
     if (!dragging) return;
     setPos({
@@ -39,7 +33,6 @@ export default function FloatingWindow({
       y: e.clientY - offset.y,
     });
   }
-
   return (
     <div
       ref={ref}
@@ -64,7 +57,6 @@ export default function FloatingWindow({
             ×
           </button>
         </div>
-
         <div className="p-4 max-h-[400px] overflow-auto">
           {children}
         </div>

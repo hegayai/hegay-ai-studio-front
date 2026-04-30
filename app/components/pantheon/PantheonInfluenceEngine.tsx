@@ -1,8 +1,6 @@
 "use client";
-
 import React from "react";
 import { useApplyInfluence } from "./useApplyInfluence";
-
 export default function PantheonInfluenceEngine({
   realm,
   children,
@@ -11,7 +9,6 @@ export default function PantheonInfluenceEngine({
   children: React.ReactNode;
 }) {
   const influence = useApplyInfluence(realm);
-
   return (
     <div
       className={`

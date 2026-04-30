@@ -1,13 +1,10 @@
 "use client";
-
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
-
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
   children: ReactNode;
 };
-
 export function Button({ className = "", children, ...props }: ButtonProps) {
   return (
     <button
@@ -21,5 +18,4 @@ export function Button({ className = "", children, ...props }: ButtonProps) {
     </button>
   );
 }
-
 export default Button;

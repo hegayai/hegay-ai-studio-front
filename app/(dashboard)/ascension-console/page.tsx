@@ -1,5 +1,4 @@
 // app/(dashboard)/ascension-console/page.tsx
-
 import React from "react";
 import {
   Aperture,
@@ -13,33 +12,26 @@ import {
   GitBranch,
   Cpu,
 } from "lucide-react";
-
 /* ───────────────── TYPES ───────────────── */
-
 type ConsoleCardProps = {
   title: string;
   description: string;
   icon: React.ComponentType<any>;
   color: string;
 };
-
 type StatusCardProps = {
   label: string;
   value: string;
   icon: React.ComponentType<any>;
 };
-
 type DirectiveRowProps = {
   label: string;
   description: string;
 };
-
 type NodeProps = {
   className?: string;
 };
-
 /* ───────────────── PAGE ───────────────── */
-
 export default function AscensionConsolePage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -54,7 +46,6 @@ export default function AscensionConsolePage() {
           orchestrate engines, and shape universe‑scale evolution.
         </p>
       </header>
-
       {/* Meta Systems Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         <ConsoleCard
@@ -94,28 +85,24 @@ export default function AscensionConsolePage() {
           color="from-[#C9A24F] to-[#FFB85C]"
         />
       </section>
-
       {/* Live System Status */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           System Status
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <StatusCard label="Active Engines" value="6" icon={Aperture} />
           <StatusCard label="Universe Threads" value="14" icon={GitBranch} />
           <StatusCard label="Origin Laws Loaded" value="27" icon={Infinity} />
         </div>
       </section>
-
       {/* Command Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Cosmic Directives
         </h2>
-
         <div className="space-y-4">
           <DirectiveRow
             label="Generate New Universe"
@@ -135,19 +122,16 @@ export default function AscensionConsolePage() {
           />
         </div>
       </section>
-
       {/* Meta‑Layer Visualization */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Meta‑Layer Visualization
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A high‑level visualization of universe‑scale interactions, engine
           activity, and mythic flows.
         </p>
-
         <div className="relative h-80 rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <MetaDots />
@@ -160,9 +144,7 @@ export default function AscensionConsolePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function ConsoleCard({ title, description, icon: Icon, color }: ConsoleCardProps) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-black/70 p-5 flex flex-col gap-3">
@@ -181,7 +163,6 @@ function ConsoleCard({ title, description, icon: Icon, color }: ConsoleCardProps
     </div>
   );
 }
-
 function StatusCard({ label, value, icon: Icon }: StatusCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/60 px-4 py-4 flex items-center gap-3">
@@ -195,7 +176,6 @@ function StatusCard({ label, value, icon: Icon }: StatusCardProps) {
     </div>
   );
 }
-
 function DirectiveRow({ label, description }: DirectiveRowProps) {
   return (
     <div className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-black/60 px-4 py-3">
@@ -207,9 +187,7 @@ function DirectiveRow({ label, description }: DirectiveRowProps) {
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function MetaDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -226,7 +204,6 @@ function MetaDots() {
     </svg>
   );
 }
-
 function MetaNodes() {
   return (
     <div className="relative w-full h-full">
@@ -238,7 +215,6 @@ function MetaNodes() {
     </div>
   );
 }
-
 function Node({ className }: NodeProps) {
   return (
     <div

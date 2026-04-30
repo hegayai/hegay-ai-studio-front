@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function DatabaseModelPage() {
   const [modelName, setModelName] = useState("");
   const [fields, setFields] = useState("");
@@ -12,32 +10,23 @@ export default function DatabaseModelPage() {
   const [dbType, setDbType] = useState("Prisma");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!modelName.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real model generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Database Model (Mock)
-
 Database Type: ${dbType}
 Model: ${modelName}
-
 Fields:
 ${fields || "(none)"}
-
 Relations:
 ${relations || "(none)"}
-
 This is placeholder schema code representing the generated model.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Database Model Engine"
@@ -58,7 +47,6 @@ This is placeholder schema code representing the generated model.`
               onChange={(e) => setModelName(e.target.value)}
             />
           </div>
-
           {/* Fields */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -71,7 +59,6 @@ This is placeholder schema code representing the generated model.`
               onChange={(e) => setFields(e.target.value)}
             />
           </div>
-
           {/* Relations */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -84,7 +71,6 @@ This is placeholder schema code representing the generated model.`
               onChange={(e) => setRelations(e.target.value)}
             />
           </div>
-
           {/* DB Type */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -101,7 +87,6 @@ This is placeholder schema code representing the generated model.`
               <option>Drizzle</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -121,14 +106,12 @@ This is placeholder schema code representing the generated model.`
               <p>Building schema…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

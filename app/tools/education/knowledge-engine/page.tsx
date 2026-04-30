@@ -1,38 +1,28 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function KnowledgeEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [domain, setDomain] = useState("General Knowledge");
   const [tone, setTone] = useState("Scholarly");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Knowledge System (Mock)
-
 Domain: ${domain}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing knowledge structures and intellectual domains.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Knowledge Engine"
@@ -46,7 +36,6 @@ This is placeholder metadata representing knowledge structures and intellectual 
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={domain}
@@ -58,7 +47,6 @@ This is placeholder metadata representing knowledge structures and intellectual 
             <option>Technological Knowledge</option>
             <option>Historical Knowledge</option>
           </select>
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tone}
@@ -69,7 +57,6 @@ This is placeholder metadata representing knowledge structures and intellectual 
             <option>Heroic</option>
             <option>Ancient</option>
           </select>
-
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}

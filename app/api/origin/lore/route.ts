@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const { lore } = await req.json();
-
   const res = await fetch(process.env.ORIGIN_LORE_API_URL!, {
     method: "POST",
     headers: {
@@ -11,7 +9,6 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify({ lore }),
   });
-
   const data = await res.json();
   return NextResponse.json(data);
 }

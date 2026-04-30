@@ -1,14 +1,11 @@
 "use client";
-
 import Link from "next/link";
-
 type RealmToolCardProps = {
   title: string;
   description: string;
   aura: string;
   href: string; // ✅ FIXED — add href support
 };
-
 export default function RealmToolCard({
   title,
   description,

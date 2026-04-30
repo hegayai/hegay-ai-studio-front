@@ -1,11 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
 export default function ProfileMenu() {
   const [open, setOpen] = useState(false);
-
   /* ---------------------------------------------------------
      KEYBOARD SHORTCUT: ⌘P / Ctrl+P
      --------------------------------------------------------- */
@@ -13,19 +10,15 @@ export default function ProfileMenu() {
     const handler = (e: KeyboardEvent) => {
       const isMac = navigator.platform.toUpperCase().includes("MAC");
       const mod = isMac ? e.metaKey : e.ctrlKey;
-
       if (mod && e.key.toLowerCase() === "p") {
         e.preventDefault();
         setOpen((prev) => !prev);
       }
     };
-
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
-
   if (!open) return null;
-
   return (
     <div
       className="
@@ -62,7 +55,6 @@ export default function ProfileMenu() {
             <span className="text-[11px] text-[var(--diamond-white)]/50">Creator</span>
           </div>
         </div>
-
         {/* MENU ITEMS */}
         <div className="flex flex-col gap-1">
           <Link
@@ -77,7 +69,6 @@ export default function ProfileMenu() {
           >
             Profile
           </Link>
-
           <Link
             href="/account"
             className="
@@ -90,7 +81,6 @@ export default function ProfileMenu() {
           >
             Account
           </Link>
-
           <Link
             href="/settings"
             className="
@@ -103,7 +93,6 @@ export default function ProfileMenu() {
           >
             Settings
           </Link>
-
           <Link
             href="/system"
             className="
@@ -117,10 +106,8 @@ export default function ProfileMenu() {
             System Info
           </Link>
         </div>
-
         {/* DIVIDER */}
         <div className="h-px bg-[rgba(255,255,255,0.08)] my-3" />
-
         {/* LOGOUT */}
         <button
           onClick={() => alert("Logged out")}

@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function ImageRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function ImageRealmPage() {
         description="The visual imagination engine of your Creative OS — image generation, style crafting, visual atmospheres, and aesthetic intelligence."
         aura="from-blue-500/40 to-cyan-500/40"
       />
-
       <RealmToolPanel
         title="Image Tools"
         description="Tools for generating images, crafting styles, building visual atmospheres, and shaping aesthetic intelligence."

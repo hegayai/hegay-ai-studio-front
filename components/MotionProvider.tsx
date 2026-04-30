@@ -1,15 +1,11 @@
 // /components/MotionProvider.tsx
-
 "use client";
-
 import React, { ReactNode, useMemo } from "react";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import { usePathname } from "next/navigation";
-
 type MotionProviderProps = {
   children: ReactNode;
 };
-
 /**
  * Global motion settings:
  * - Apple-level subtle motion
@@ -20,7 +16,6 @@ const TRANSITION = {
   duration: 0.45,
   ease: [0.25, 0.1, 0.25, 1.0] as [number, number, number, number], // ✅ FIXED TYPING
 };
-
 const FADE_SCALE_VARIANTS = {
   initial: {
     opacity: 0,
@@ -48,7 +43,6 @@ const FADE_SCALE_VARIANTS = {
     },
   },
 };
-
 /**
  * Cosmic background:
  * - Subtle starfield
@@ -60,7 +54,6 @@ const CosmicBackground: React.FC = () => {
     <div className="pointer-events-none fixed inset-0 -z-50 overflow-hidden bg-black">
       {/* Base gradient wash */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_#1f2937_0,_#020617_55%,_#000000_100%)]" />
-
       {/* Soft color nebula */}
       <motion.div
         aria-hidden
@@ -76,7 +69,6 @@ const CosmicBackground: React.FC = () => {
           ease: "easeInOut",
         }}
       />
-
       {/* Secondary nebula */}
       <motion.div
         aria-hidden
@@ -92,12 +84,10 @@ const CosmicBackground: React.FC = () => {
           ease: "easeInOut",
         }}
       />
-
       {/* Starfield layer */}
       <div className="absolute inset-0 opacity-[0.35]">
         <div className="h-full w-full bg-[radial-gradient(circle_at_10%_20%,rgba(255,255,255,0.18)_0,transparent_40%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.12)_0,transparent_45%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.16)_0,transparent_50%)]" />
       </div>
-
       {/* Subtle vertical glow column */}
       <motion.div
         aria-hidden
@@ -114,7 +104,6 @@ const CosmicBackground: React.FC = () => {
     </div>
   );
 };
-
 /**
  * Subtle glow pulse for key OS surfaces:
  * - Can be wrapped around main panels / shells
@@ -149,7 +138,6 @@ export const GlowShell: React.FC<{ children: ReactNode; className?: string }> = 
     </motion.div>
   );
 };
-
 /**
  * MotionProvider:
  * - Wraps the entire OS
@@ -158,18 +146,15 @@ export const GlowShell: React.FC<{ children: ReactNode; className?: string }> = 
  */
 export const MotionProvider: React.FC<MotionProviderProps> = ({ children }) => {
   const pathname = usePathname();
-
   const key = useMemo(() => {
     return pathname || "/";
   }, [pathname]);
-
   return (
     <MotionConfig
       transition={TRANSITION}
       reducedMotion="user"
     >
       <CosmicBackground />
-
       <div className="relative z-0 flex min-h-screen flex-col bg-transparent text-slate-50 antialiased">
         <AnimatePresence mode="wait" initial={false}>
           <motion.main
@@ -187,5 +172,4 @@ export const MotionProvider: React.FC<MotionProviderProps> = ({ children }) => {
     </MotionConfig>
   );
 };
-
 export default MotionProvider;

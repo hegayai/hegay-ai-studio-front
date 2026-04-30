@@ -1,12 +1,9 @@
 "use client";
-
 export default function WarpDistortionLayer({ active }: { active: boolean }) {
   if (!active) return null;
-
   return (
     <div className="fixed inset-0 z-[9995] pointer-events-none overflow-hidden">
       <div className="absolute inset-0 warp-field" />
-
       <style jsx>{`
         .warp-field {
           background: radial-gradient(
@@ -19,7 +16,6 @@ export default function WarpDistortionLayer({ active }: { active: boolean }) {
           filter: blur(40px);
           opacity: 0.6;
         }
-
         @keyframes warpPulse {
           0% {
             transform: scale(1);
@@ -34,7 +30,6 @@ export default function WarpDistortionLayer({ active }: { active: boolean }) {
             opacity: 0.4;
           }
         }
-
         @keyframes warpShift {
           0% {
             transform: translate(-5%, -5%) rotate(0deg);

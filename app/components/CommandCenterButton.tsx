@@ -1,10 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 export default function CommandCenterButton() {
   const [hover, setHover] = useState(false);
-
   const openCommandCenter = () => {
     const event = new KeyboardEvent("keydown", {
       key: "c",
@@ -14,7 +11,6 @@ export default function CommandCenterButton() {
     });
     window.dispatchEvent(event);
   };
-
   return (
     <button
       onClick={openCommandCenter}

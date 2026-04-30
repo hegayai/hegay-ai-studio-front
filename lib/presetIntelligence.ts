@@ -4,24 +4,18 @@ export type AutoField = {
   section: string;
   defaultValue: string;
 };
-
 export function autoExpandTemplate(template: string) {
   const missingVars = Array.from(template.matchAll(/{{\s*([\w_]+)\s*}}/g))
     .map((m) => m[1]);
-
   const unique = [...new Set(missingVars)];
-
   return unique;
 }
-
 export function autoGenerateFields(variableNames: string[]): AutoField[] {
   return variableNames.map((key) => {
     const label = key
       .replace(/_/g, " ")
       .replace(/\b\w/g, (c) => c.toUpperCase());
-
     const section = inferSectionFromKey(key);
-
     return {
       key,
       label,
@@ -30,7 +24,6 @@ export function autoGenerateFields(variableNames: string[]): AutoField[] {
     };
   });
 }
-
 function inferSectionFromKey(key: string): string {
   if (key.includes("myth") || key.includes("spirit")) return "Myth & Spirit";
   if (key.includes("govern") || key.includes("law")) return "Structure";

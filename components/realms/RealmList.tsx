@@ -1,7 +1,5 @@
 "use client";
-
 import RealmCard from "./RealmCard";
-
 const realms = [
   {
     title: "Image Realm",
@@ -34,14 +32,12 @@ const realms = [
     accent: "from-rose-500/20 to-rose-700/10",
   },
 ];
-
 export default function RealmList() {
   return (
     <section className="w-full mt-10">
       <h2 className="mb-4 text-lg font-semibold text-slate-100">
         Realms
       </h2>
-
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {realms.map((realm) => (
           <RealmCard

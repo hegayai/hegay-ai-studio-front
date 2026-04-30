@@ -1,20 +1,15 @@
 "use client";
-
 import { useState } from "react";
-
 export default function OriginComponent() {
   const [tab, setTab] = useState<"lore" | "seed" | "timeline">("lore");
-
   return (
     <div className="w-full p-8 space-y-8">
       <h1 className="text-4xl font-bold">Origin Realm</h1>
-
       <p className="text-gray-400 max-w-2xl">
         The Origin Realm is where creation begins. Generate lore, seed new
         worlds, and shape timelines that define civilizations across the
         multiverse.
       </p>
-
       {/* Tabs */}
       <div className="flex gap-4 border-b border-gray-800 pb-2">
         <button
@@ -25,7 +20,6 @@ export default function OriginComponent() {
         >
           Lore Engine
         </button>
-
         <button
           onClick={() => setTab("seed")}
           className={`px-4 py-2 rounded ${
@@ -34,7 +28,6 @@ export default function OriginComponent() {
         >
           World Seed
         </button>
-
         <button
           onClick={() => setTab("timeline")}
           className={`px-4 py-2 rounded ${
@@ -46,7 +39,6 @@ export default function OriginComponent() {
           Timeline Engine
         </button>
       </div>
-
       {/* Panels */}
       <div className="rounded-xl border border-gray-800 p-6 bg-black/20">
         {tab === "lore" && <LorePanel />}
@@ -56,7 +48,6 @@ export default function OriginComponent() {
     </div>
   );
 }
-
 /* ------------------------------
    LORE PANEL
 ------------------------------ */
@@ -68,19 +59,16 @@ function LorePanel() {
         Generate mythic narratives, ancestral histories, and foundational
         cosmologies for your worlds.
       </p>
-
       <textarea
         placeholder="Describe the essence of your world..."
         className="w-full h-40 p-4 bg-black/40 border border-gray-700 rounded-lg text-gray-200"
       />
-
       <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold">
         Generate Lore
       </button>
     </div>
   );
 }
-
 /* ------------------------------
    SEED PANEL
 ------------------------------ */
@@ -92,19 +80,16 @@ function SeedPanel() {
         Create the foundational seed that defines the physics, culture, and
         emotional resonance of your universe.
       </p>
-
       <textarea
         placeholder="Enter seed concept..."
         className="w-full h-40 p-4 bg-black/40 border border-gray-700 rounded-lg text-gray-200"
       />
-
       <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold">
         Generate Seed
       </button>
     </div>
   );
 }
-
 /* ------------------------------
    TIMELINE PANEL
 ------------------------------ */
@@ -116,12 +101,10 @@ function TimelinePanel() {
         Construct branching timelines, epochs, and historical arcs that define
         your world's evolution.
       </p>
-
       <textarea
         placeholder="Describe the timeline event..."
         className="w-full h-40 p-4 bg-black/40 border border-gray-700 rounded-lg text-gray-200"
       />
-
       <button className="px-6 py-3 bg-white text-black rounded-lg font-semibold">
         Generate Timeline
       </button>

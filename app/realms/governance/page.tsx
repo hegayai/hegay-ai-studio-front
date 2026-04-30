@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function GovernanceRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function GovernanceRealmPage() {
         description="The decision‑making engine of your Creative OS — laws, councils, authority systems, and collective governance."
         aura="from-purple-500/40 to-indigo-500/40"
       />
-
       <RealmToolPanel
         title="Governance Tools"
         description="Tools for designing laws, councils, governance models, and decision systems."

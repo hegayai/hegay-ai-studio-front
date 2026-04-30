@@ -1,35 +1,27 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function EmotionalPhysicsPage() {
   const [emotionA, setEmotionA] = useState("Joy");
   const [emotionB, setEmotionB] = useState("Fear");
   const [intensity, setIntensity] = useState(50);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
-
   async function handleSimulate() {
     setLoading(true);
-
     // 🔮 Placeholder for real emotional physics simulation API
     await new Promise((r) => setTimeout(r, 1200));
-
     setResult(
       `Emotional Field Simulation:
 - Primary Force: ${emotionA}
 - Opposing Force: ${emotionB}
 - Intensity: ${intensity}%
-
 Resulting emotional vector suggests a dynamic tension between ${emotionA.toLowerCase()} and ${emotionB.toLowerCase()}, producing a resonance field with ${intensity}% charge.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Emotional Physics Engine"
@@ -55,7 +47,6 @@ Resulting emotional vector suggests a dynamic tension between ${emotionA.toLower
               <option>Wonder</option>
             </select>
           </div>
-
           {/* Emotion B */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -74,7 +65,6 @@ Resulting emotional vector suggests a dynamic tension between ${emotionA.toLower
               <option>Wonder</option>
             </select>
           </div>
-
           {/* Intensity */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -89,7 +79,6 @@ Resulting emotional vector suggests a dynamic tension between ${emotionA.toLower
               className="mt-1 w-full"
             />
           </div>
-
           {/* Button */}
           <button
             onClick={handleSimulate}
@@ -108,13 +97,11 @@ Resulting emotional vector suggests a dynamic tension between ${emotionA.toLower
               <p>Calculating emotional resonance field…</p>
             </div>
           )}
-
           {!loading && result && (
             <pre className="text-xs text-slate-200 whitespace-pre-line">
               {result}
             </pre>
           )}
-
           {!loading && !result && (
             <p className="text-xs text-slate-500 text-center px-4">
               Choose two emotional forces and intensity to simulate the field.

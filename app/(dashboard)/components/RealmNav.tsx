@@ -1,8 +1,6 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 const realms = [
   { name: "Origin", path: "/dashboard", color: "blue" },
   { name: "Aesthetic", path: "/aesthetic", color: "pink" },
@@ -10,15 +8,12 @@ const realms = [
   { name: "Mood", path: "/mood", color: "yellow" },
   { name: "Dream", path: "/dream", color: "indigo" },
 ];
-
 export default function RealmNav() {
   const pathname = usePathname();
-
   return (
     <div className="flex gap-4">
       {realms.map((realm) => {
         const active = pathname === realm.path;
-
         return (
           <Link
             key={realm.name}

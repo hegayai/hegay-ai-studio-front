@@ -3,14 +3,12 @@ export type InfluenceDefinition = {
   type: "order" | "chaos" | "wisdom" | "creation" | "memory" | "rhythm";
   intensity: number; // 0–100
   realms: string[];
-
   // Flattened effect fields
   color?: string;
   glow?: boolean;
   motion?: "slow" | "pulse" | "vibrate";
   sound?: string;
 };
-
 export const PantheonInfluenceRegistry: InfluenceDefinition[] = [
   {
     archetype: "Aruwa — Keeper of Memory",

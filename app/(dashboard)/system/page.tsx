@@ -1,7 +1,6 @@
 export default function SystemIntegrationDashboard() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-4xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function SystemIntegrationDashboard() {
           Represents the highest level of system coordination and stability.
         </p>
       </div>
-
       {/* MODULE GRID */}
       <section>
         <h2 className="text-xl font-medium mb-4">Integration & Autonomy Modules</h2>
@@ -37,7 +35,6 @@ export default function SystemIntegrationDashboard() {
           ))}
         </div>
       </section>
-
       {/* GLOBAL SYSTEM STATE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Global System State</h2>
@@ -52,12 +49,10 @@ export default function SystemIntegrationDashboard() {
           </ul>
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">System Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -65,12 +60,10 @@ export default function SystemIntegrationDashboard() {
               and the OS will coordinate all integration and autonomy modules to
               execute it.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe a system‑level task for the Integration Layer..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Execute
@@ -82,13 +75,11 @@ export default function SystemIntegrationDashboard() {
                 Optimize
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The System Integration Layer coordinates all system‑level
               operations across the OS.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
             <h3 className="font-medium text-sm">Active Integration Layers</h3>
@@ -100,7 +91,6 @@ export default function SystemIntegrationDashboard() {
               <li>• Diagnostics Engine</li>
               <li>• Autonomy Controller</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Integration Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic integration</li>
@@ -109,10 +99,8 @@ export default function SystemIntegrationDashboard() {
               <li>• System‑design integration</li>
             </ul>
           </div>
-
         </div>
       </section>
-
     </div>
   );
 }

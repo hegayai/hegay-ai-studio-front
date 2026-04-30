@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/app/ai/providers/fal";
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { prompt, genre, duration } = body;
-
     const result = await modelRouter({
       model: "music-generator",
       input: {
@@ -17,7 +14,6 @@ export async function POST(req: Request) {
       provider: fal,
       type: "audio",
     });
-
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(

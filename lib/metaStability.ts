@@ -1,10 +1,8 @@
 import { MetaGraph } from "./metaGraph";
-
 export function analyzeMetaStabilityV10(meta: MetaGraph) {
   const avgWeight =
     meta.metaEdges.reduce((sum, e) => sum + e.weight, 0) /
     meta.metaEdges.length;
-
   return `
 Meta‑Realm Stability:
 • Total Realm Graphs: ${meta.graphs.length}
@@ -12,7 +10,6 @@ Meta‑Realm Stability:
 • Stability Level: ${stability(avgWeight)}
 `;
 }
-
 function stability(avg: number) {
   if (avg > 0.75) return "Highly Unstable Meta‑Realm";
   if (avg > 0.55) return "Moderately Unstable Meta‑Realm";

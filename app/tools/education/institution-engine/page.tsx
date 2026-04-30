@@ -1,38 +1,28 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function InstitutionEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [type, setType] = useState("Academy");
   const [tone, setTone] = useState("Formal");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Institution (Mock)
-
 Type: ${type}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing schools, academies, and learning institutions.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Institution Engine"
@@ -41,11 +31,9 @@ This is placeholder metadata representing schools, academies, and learning insti
       left={
         <EnginePanel>
           <textarea
-
                       value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={type}
@@ -57,7 +45,6 @@ This is placeholder metadata representing schools, academies, and learning insti
             <option>Temple of Knowledge</option>
             <option>Technocratic Institute</option>
           </select>
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tone}
@@ -68,7 +55,6 @@ This is placeholder metadata representing schools, academies, and learning insti
             <option>Heroic</option>
             <option>Ancient</option>
           </select>
-
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}

@@ -1,7 +1,6 @@
 export default function ContextFusionEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function ContextFusionEngine() {
           intelligence across Hegay OS Supreme.
         </p>
       </div>
-
       {/* FUSION LAYERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Fusion Layers</h2>
@@ -37,7 +35,6 @@ export default function ContextFusionEngine() {
           ))}
         </div>
       </section>
-
       {/* FUSION OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Fusion Operations</h2>
@@ -60,24 +57,20 @@ export default function ContextFusionEngine() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Fusion Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT: FUSION PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
               Fusion panel (connect to backend). Displays merged context states,
               conflict resolutions, and fused reasoning layers.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe the contexts you want to merge or the fusion operation you want to perform..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Merge
@@ -89,16 +82,13 @@ export default function ContextFusionEngine() {
                 Sync
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The Context Fusion Engine ensures all reasoning across Hegay OS is
               unified, coherent, and world-aware.
             </p>
           </div>
-
           {/* RIGHT: ACTIVE FUSION STATE */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Fusion State</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Universe: Fused</li>
@@ -108,7 +98,6 @@ export default function ContextFusionEngine() {
               <li>• Timeline: Fused</li>
               <li>• Arc: Fused</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Fusion Sync Targets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Hegay Core AI</li>
@@ -118,7 +107,6 @@ export default function ContextFusionEngine() {
               <li>• Asset Pipeline Engine</li>
               <li>• Creator Mode</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Fusion Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic fusion</li>
@@ -126,11 +114,9 @@ export default function ContextFusionEngine() {
               <li>• Character‑centric fusion</li>
               <li>• System‑design fusion</li>
             </ul>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

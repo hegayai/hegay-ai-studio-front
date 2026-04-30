@@ -1,5 +1,4 @@
 // app/(dashboard)/engines/page.tsx
-
 import React from "react";
 import {
   Globe2,
@@ -11,7 +10,6 @@ import {
   Aperture,
   ArrowRight,
 } from "lucide-react";
-
 export default function EngineHubPage() {
   const engines = [
     {
@@ -57,7 +55,6 @@ export default function EngineHubPage() {
       color: "from-[#C9A24F] to-[#FFB85C]",
     },
   ];
-
   return (
     <main className="px-8 py-10 space-y-12">
       {/* Header */}
@@ -71,7 +68,6 @@ export default function EngineHubPage() {
           fundamental layer of creation, evolution, or mythic influence.
         </p>
       </header>
-
       {/* Engine Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {engines.map((engine) => (
@@ -81,9 +77,7 @@ export default function EngineHubPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 type EngineCardProps = {
   title: string;
   description: string;
@@ -91,7 +85,6 @@ type EngineCardProps = {
   href: string;
   color: string;
 };
-
 function EngineCard({
   title,
   description,
@@ -107,16 +100,13 @@ function EngineCard({
       <div
         className={`absolute inset-0 opacity-40 bg-gradient-to-br ${color} blur-3xl transition-all group-hover:opacity-60`}
       />
-
       <div className="relative flex items-center justify-between">
         <h3 className="text-sm font-semibold">{title}</h3>
         <div className="h-9 w-9 rounded-full border border-[#F5D48A55] bg-black/60 flex items-center justify-center">
           <Icon className="h-4 w-4 text-[#F5D48A]" />
         </div>
       </div>
-
       <p className="relative text-[11px] text-slate-300">{description}</p>
-
       <div className="relative text-[11px] text-[#F5D48A] flex items-center gap-1 group-hover:text-[#FFB85C] transition-colors">
         <span>Open Engine</span>
         <ArrowRight className="h-3 w-3" />

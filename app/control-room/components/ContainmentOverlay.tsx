@@ -1,5 +1,4 @@
 "use client";
-
 export default function ContainmentOverlay({ active }: { active: boolean }) {
   return (
     <div
@@ -9,12 +8,10 @@ export default function ContainmentOverlay({ active }: { active: boolean }) {
     >
       {/* Dark cosmic veil */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
-
       {/* Aurora energy waves */}
       <div className="absolute inset-0 overflow-hidden opacity-40 mix-blend-screen">
         <div className="absolute -inset-[20%] bg-gradient-to-r from-purple-700 via-fuchsia-500 to-indigo-600 animate-[aurora_12s_linear_infinite]" />
       </div>
-
       {/* Shield lattice grid */}
       <div className="absolute inset-0 opacity-30">
         <svg width="100%" height="100%">
@@ -37,7 +34,6 @@ export default function ContainmentOverlay({ active }: { active: boolean }) {
           <rect width="100%" height="100%" fill="url(#shieldGrid)" />
         </svg>
       </div>
-
       {/* Pulsing rings */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative">
@@ -46,12 +42,10 @@ export default function ContainmentOverlay({ active }: { active: boolean }) {
           <div className="absolute inset-0 w-52 h-52 rounded-full border-4 border-purple-300/20 animate-[pulse2_3s_ease_infinite]" />
         </div>
       </div>
-
       {/* Glow bloom */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full" />
       </div>
-
       {/* Text */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center animate-[fadeInUp_1s_ease]">
@@ -63,7 +57,6 @@ export default function ContainmentOverlay({ active }: { active: boolean }) {
           </p>
         </div>
       </div>
-
       {/* Keyframe animations */}
       <style jsx>{`
         @keyframes aurora {
@@ -77,7 +70,6 @@ export default function ContainmentOverlay({ active }: { active: boolean }) {
             transform: translateX(-20%) translateY(-10%) rotate(360deg);
           }
         }
-
         @keyframes pulse2 {
           0% {
             transform: scale(0.9);
@@ -92,7 +84,6 @@ export default function ContainmentOverlay({ active }: { active: boolean }) {
             opacity: 0.4;
           }
         }
-
         @keyframes fadeInUp {
           0% {
             opacity: 0;

@@ -1,10 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 export default function TopbarNotificationButton() {
   const [hover, setHover] = useState(false);
-
   const openNotifications = () => {
     const event = new KeyboardEvent("keydown", {
       key: "n",
@@ -13,7 +10,6 @@ export default function TopbarNotificationButton() {
     });
     window.dispatchEvent(event);
   };
-
   return (
     <button
       onClick={openNotifications}

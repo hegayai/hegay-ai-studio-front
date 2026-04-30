@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function ToneEnginePage() {
   const [inputText, setInputText] = useState("");
   const [tone, setTone] = useState("Cinematic");
@@ -12,29 +10,21 @@ export default function ToneEnginePage() {
   const [intensity, setIntensity] = useState(50);
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleTransform() {
     if (!inputText.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real tone transformation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Transformed Text (Mock)
-
 Tone: ${tone}
 Style: ${style}
 Intensity: ${intensity}%
-
 ${inputText}
-
 This is placeholder text representing the transformed writing output.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Tone Engine"
@@ -54,7 +44,6 @@ This is placeholder text representing the transformed writing output.`
               onChange={(e) => setInputText(e.target.value)}
             />
           </div>
-
           {/* Tone */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -75,7 +64,6 @@ This is placeholder text representing the transformed writing output.`
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Style */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -95,7 +83,6 @@ This is placeholder text representing the transformed writing output.`
               <option>Verbose</option>
             </select>
           </div>
-
           {/* Intensity */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -110,7 +97,6 @@ This is placeholder text representing the transformed writing output.`
               className="mt-1 w-full"
             />
           </div>
-
           {/* Button */}
           <button
             onClick={handleTransform}
@@ -130,14 +116,12 @@ This is placeholder text representing the transformed writing output.`
               <p>Shaping narrative voice…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -1,13 +1,11 @@
 "use client";
 import { useEffect } from "react";
-
 export default function StudioHero() {
   useEffect(() => {
     const audio = new Audio("/sounds/hegay-boot-chime.mp3");
     audio.volume = 0.4;
     audio.play().catch(() => {});
   }, []);
-
   return (
     <section className="relative overflow-hidden min-h-[420px] rounded-3xl cosmic-panel page-enter">
       <div className="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_10%_0%,rgba(241,91,181,0.35),transparent_55%),radial-gradient(circle_at_90%_100%,rgba(75,228,210,0.35),transparent_55%)]" />
@@ -32,7 +30,6 @@ export default function StudioHero() {
             </button>
           </div>
         </div>
-
         <div className="relative w-full md:w-[320px] h-[220px] md:h-[260px]">
           <div className="absolute inset-0 rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl animate-pulse-slow" />
           <div className="absolute inset-4 rounded-2xl bg-gradient-to-br from-[color:var(--hegay-violet)]/40 via-[color:var(--hegay-magenta)]/40 to-[color:var(--hegay-cyan)]/40 blur-xl" />

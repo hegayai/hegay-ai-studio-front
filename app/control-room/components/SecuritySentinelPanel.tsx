@@ -1,7 +1,5 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 type Alert = {
   id: number;
   level: "info" | "warning" | "critical";
@@ -9,11 +7,9 @@ type Alert = {
   message: string;
   createdAt: string;
 };
-
 export default function SecuritySentinelPanel() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [loading, setLoading] = useState(true);
-
   const loadAlerts = async () => {
     try {
       const res = await fetch("/api/system/security");
@@ -25,17 +21,14 @@ export default function SecuritySentinelPanel() {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     loadAlerts();
     const interval = setInterval(loadAlerts, 15000);
     return () => clearInterval(interval);
   }, []);
-
   return (
     <div className="p-6 rounded-xl bg-gray-900/60 border border-red-700/60 shadow-xl mt-10">
       <h2 className="text-2xl font-semibold mb-4">Security Sentinel</h2>
-
       {loading ? (
         <div className="text-gray-400">Loading security alerts…</div>
       ) : alerts.length === 0 ? (
@@ -50,7 +43,6 @@ export default function SecuritySentinelPanel() {
     </div>
   );
 }
-
 function AlertRow({ alert }: { alert: Alert }) {
   const color =
     alert.level === "critical"
@@ -58,10 +50,8 @@ function AlertRow({ alert }: { alert: Alert }) {
       : alert.level === "warning"
       ? "border-yellow-500/70 bg-yellow-900/20"
       : "border-blue-500/60 bg-blue-900/20";
-
   const levelLabel =
     alert.level === "critical" ? "CRITICAL" : alert.level === "warning" ? "WARNING" : "INFO";
-
   return (
     <div
       className={`p-3 rounded-lg border ${color} text-sm flex flex-col gap-1`}

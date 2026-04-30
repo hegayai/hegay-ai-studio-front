@@ -1,26 +1,20 @@
 "use client";
-
 import { useTabs } from "./TabManager";
 import { useWindows } from "./WindowManager";
-
 type RunningTab = {
   type: "tab";
   title: string;
   path: string;
 };
-
 type RunningWindow = {
   type: "window";
   title: string;
   id: string;
 };
-
 type RunningApp = RunningTab | RunningWindow;
-
 export default function Taskbar() {
   const { tabs, active, switchTab } = useTabs();
   const { windows } = useWindows();
-
   const runningApps: RunningApp[] = [
     ...tabs.map((t) => ({
       type: "tab" as const,
@@ -33,7 +27,6 @@ export default function Taskbar() {
       id: w.id,
     })),
   ];
-
   return (
     <div className="fixed bottom-0 left-0 right-0 h-14 bg-black/40 backdrop-blur border-t border-white/10 flex items-center gap-4 px-6">
       {runningApps.map((app, i) => (

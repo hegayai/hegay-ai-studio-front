@@ -1,7 +1,6 @@
 export default function AgentOrchestrator() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function AgentOrchestrator() {
           universes, realms, characters, cultures, timelines, and assets.
         </p>
       </div>
-
       {/* AGENT GRID */}
       <section>
         <h2 className="text-xl font-medium mb-4">Registered Agents</h2>
@@ -37,7 +35,6 @@ export default function AgentOrchestrator() {
           ))}
         </div>
       </section>
-
       {/* WORKFLOW MODES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Workflow Modes</h2>
@@ -60,12 +57,10 @@ export default function AgentOrchestrator() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Orchestrator Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT: COMMAND PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -73,12 +68,10 @@ export default function AgentOrchestrator() {
               determine which agents to activate, how to route the task, and how
               to merge outputs into a coherent result.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe a complex task — the Orchestrator will coordinate multiple agents to complete it..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Execute
@@ -90,16 +83,13 @@ export default function AgentOrchestrator() {
                 Route to Pipeline
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The Orchestrator uses the Agent Kernel to coordinate reasoning,
               context, and routing across all agents.
             </p>
           </div>
-
           {/* RIGHT: ACTIVE CONTEXT */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Global Context</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Universe: Diaspora Storyworld v3</li>
@@ -109,7 +99,6 @@ export default function AgentOrchestrator() {
               <li>• Timeline: Diaspora Timeline</li>
               <li>• Arc: Diaspora Hero Arc</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Active Agents</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Story Agent</li>
@@ -119,7 +108,6 @@ export default function AgentOrchestrator() {
               <li>• Audio Agent</li>
               <li>• Pipeline Agent</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Workflow Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic workflow</li>
@@ -127,11 +115,9 @@ export default function AgentOrchestrator() {
               <li>• Character‑centric workflow</li>
               <li>• System‑design workflow</li>
             </ul>
-
           </div>
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Orchestrator Systems</h2>
@@ -154,7 +140,6 @@ export default function AgentOrchestrator() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

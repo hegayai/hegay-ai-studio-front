@@ -1,8 +1,6 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useNotify } from "./NotificationProvider";
-
 export default function RestorePanel({
   onComplete,
 }: {
@@ -10,9 +8,7 @@ export default function RestorePanel({
 }) {
   const [backups, setBackups] = useState<any[]>([]);
   const [selectedBackup, setSelectedBackup] = useState("");
-
   const { notify } = useNotify();
-
   const loadBackups = async () => {
     try {
       const res = await fetch("/api/system/backup");
@@ -22,21 +18,17 @@ export default function RestorePanel({
       notify("Failed to load backups", "error");
     }
   };
-
   const restoreBackup = async () => {
     if (!selectedBackup) {
       notify("Select a backup to restore", "info");
       return;
     }
-
     try {
       const res = await fetch("/api/system/restore", {
         method: "POST",
         body: JSON.stringify({ id: Number(selectedBackup) }),
       });
-
       const data = await res.json();
-
       if (data.success) {
         notify("System restored successfully", "success");
         onComplete(); // ⭐ now valid
@@ -47,15 +39,12 @@ export default function RestorePanel({
       notify("Restore error: " + err.message, "error");
     }
   };
-
   useEffect(() => {
     loadBackups();
   }, []);
-
   return (
     <div className="p-6 rounded-xl bg-gray-900/60 border border-gray-700 shadow-xl mt-10">
       <h2 className="text-2xl font-semibold mb-4">System Restore</h2>
-
       <select
         value={selectedBackup}
         onChange={(e) => setSelectedBackup(e.target.value)}
@@ -68,16 +57,13 @@ export default function RestorePanel({
           </option>
         ))}
       </select>
-
       <button
         onClick={restoreBackup}
         className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold"
       >
         Restore Backup
       </button>
-
       <h3 className="text-xl font-semibold mt-8 mb-3">Available Backups</h3>
-
       <div className="space-y-3">
         {backups.map((b) => (
           <div

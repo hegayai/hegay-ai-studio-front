@@ -1,22 +1,16 @@
 import { NextResponse } from "next/server";
-
 // ⭐ Correct provider import
-import { fal } from "@/app/ai/providers/fal";
-
 // ⭐ Correct model router import
 import { modelRouter } from "@/src/core/model-router";
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-
     const {
       image,
       mask,
       prompt,
       strength
     } = body;
-
     // ⭐ Unified provider-based inpainting
     const result = await modelRouter({
       model: "image-inpaint",
@@ -29,19 +23,16 @@ export async function POST(req: Request) {
       provider: fal,
       type: "image"
     });
-
     if (!result?.url) {
       return NextResponse.json(
         { error: "Image inpaint failed", raw: result },
         { status: 500 }
       );
     }
-
     return NextResponse.json({
       url: result.url,
       inpainted: result.inpainted || null
     });
-
   } catch (error) {
     return NextResponse.json(
       {

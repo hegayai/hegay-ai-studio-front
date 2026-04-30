@@ -1,10 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 export default function NotificationCenter() {
   const [open, setOpen] = useState(false);
-
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -25,11 +22,9 @@ export default function NotificationCenter() {
       tone: "text-amber-300",
     },
   ]);
-
   const dismiss = (id: number) => {
     setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
-
   return (
     <>
       {/* Toggle Button */}
@@ -41,18 +36,15 @@ export default function NotificationCenter() {
           {open ? "Close Notifications" : "Notifications"}
         </button>
       </div>
-
       {/* Panel */}
       {open && (
         <div className="fixed top-16 right-4 w-80 z-50 rounded-2xl border border-white/10 bg-black/80 backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.9)] animate-fade-in-scale overflow-hidden">
-
           {/* Header */}
           <div className="border-b border-white/10 px-4 py-3">
             <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
               Notification Center
             </div>
           </div>
-
           {/* Notifications */}
           <div className="max-h-[70vh] overflow-y-auto">
             {notifications.length === 0 && (
@@ -60,7 +52,6 @@ export default function NotificationCenter() {
                 No notifications.
               </div>
             )}
-
             {notifications.map((note) => (
               <div
                 key={note.id}
@@ -75,7 +66,6 @@ export default function NotificationCenter() {
                       {note.body}
                     </div>
                   </div>
-
                   <button
                     onClick={() => dismiss(note.id)}
                     className="text-[10px] text-slate-500 hover:text-slate-300 transition-all ml-3"

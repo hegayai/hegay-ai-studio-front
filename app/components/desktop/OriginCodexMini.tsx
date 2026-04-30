@@ -1,5 +1,4 @@
 // app/components/desktop/OriginCodexMini.tsx
-
 export default function OriginCodexMini() {
   return (
     <div className="space-y-2">

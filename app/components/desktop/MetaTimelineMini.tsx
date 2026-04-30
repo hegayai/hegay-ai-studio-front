@@ -1,5 +1,4 @@
 // app/components/desktop/MetaTimelineMini.tsx
-
 export default function MetaTimelineMini() {
   return (
     <div className="space-y-2">

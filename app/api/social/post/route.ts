@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/app/ai/providers/fal";
-
 export const runtime = "nodejs";
-
 export async function POST() {
   try {
     const job = await prisma.job.findFirst({
@@ -14,16 +11,13 @@ export async function POST() {
       },
       orderBy: { scheduledAt: "asc" }
     });
-
     if (!job) {
       return NextResponse.json({ message: "No scheduled posts" });
     }
-
     await prisma.job.update({
       where: { id: job.id },
       data: { status: "processing" }
     });
-
     // Provider-based posting (placeholder)
     const result = await modelRouter({
       model: "social-post",
@@ -31,7 +25,6 @@ export async function POST() {
       provider: fal,
       type: "agent"
     });
-
     await prisma.job.update({
       where: { id: job.id },
       data: {
@@ -39,13 +32,11 @@ export async function POST() {
         result
       }
     });
-
     return NextResponse.json({
       posted: true,
       jobId: job.id,
       result
     });
-
   } catch (error) {
     return NextResponse.json(
       { error: "Social posting error", details: String(error) },

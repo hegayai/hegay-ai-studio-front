@@ -1,15 +1,12 @@
 "use client";
-
 import { motion } from "framer-motion";
 import Link from "next/link";
-
 type UniverseNodeProps = {
   label: string;
   href: string;
   aura: string;
   size?: "lg" | "md" | "sm";
 };
-
 export default function UniverseNode({
   label,
   href,
@@ -22,7 +19,6 @@ export default function UniverseNode({
       : size === "sm"
       ? "h-16 w-16"
       : "h-24 w-24";
-
   return (
     <motion.div
       whileHover={{ scale: 1.06 }}

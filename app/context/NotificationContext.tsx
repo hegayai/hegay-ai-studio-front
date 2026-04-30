@@ -1,32 +1,23 @@
 "use client";
-
 import React, { createContext, useContext, useState } from "react";
-
 export type NotificationType = "success" | "error" | "info";
-
 export type NotificationContextType = {
   notify: (message: string, type?: NotificationType) => void;
 };
-
 const NotificationContext = createContext<NotificationContextType>({
   notify: () => {},
 });
-
 export function NotificationProvider({ children }: { children: React.ReactNode }) {
   const [message, setMessage] = useState<string | null>(null);
   const [type, setType] = useState<NotificationType>("info");
-
   const notify = (msg: string, t: NotificationType = "info") => {
     setMessage(msg);
     setType(t);
-
     setTimeout(() => setMessage(null), 3000);
   };
-
   return (
     <NotificationContext.Provider value={{ notify }}>
       {children}
-
       {message && (
         <div
           className={`
@@ -42,5 +33,4 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
     </NotificationContext.Provider>
   );
 }
-
 export const useNotification = () => useContext(NotificationContext);

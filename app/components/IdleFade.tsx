@@ -1,11 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 export default function IdleFade() {
   const [idle, setIdle] = useState(false);
   const [lastMove, setLastMove] = useState(Date.now());
-
   /* ---------------------------------------------------------
      USER ACTIVITY TRACKING
      --------------------------------------------------------- */
@@ -14,18 +11,15 @@ export default function IdleFade() {
       setLastMove(Date.now());
       setIdle(false);
     };
-
     window.addEventListener("mousemove", update);
     window.addEventListener("keydown", update);
     window.addEventListener("click", update);
-
     return () => {
       window.removeEventListener("mousemove", update);
       window.removeEventListener("keydown", update);
       window.removeEventListener("click", update);
     };
   }, []);
-
   /* ---------------------------------------------------------
      IDLE DETECTION
      --------------------------------------------------------- */
@@ -36,15 +30,12 @@ export default function IdleFade() {
         setIdle(true);
       }
     }, 3000);
-
     return () => clearInterval(interval);
   }, [lastMove]);
-
   /* ---------------------------------------------------------
      IDLE OVERLAY
      --------------------------------------------------------- */
   if (!idle) return null;
-
   return (
     <div
       className="

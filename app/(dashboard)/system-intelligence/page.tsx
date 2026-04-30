@@ -1,5 +1,4 @@
 "use client";
-
 export default function SystemIntelligencePage() {
   return (
     <main className="min-h-screen w-full bg-black text-slate-100 relative overflow-hidden p-6">
@@ -7,7 +6,6 @@ export default function SystemIntelligencePage() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="cosmic-particles" />
       </div>
-
       <div className="relative z-10 max-w-6xl mx-auto space-y-8">
         <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-black via-[#020814] to-black p-8 shadow-[0_30px_80px_rgba(0,0,0,0.9)] relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(16,185,129,0.18),_transparent_55%)]" />
@@ -23,7 +21,6 @@ export default function SystemIntelligencePage() {
             </p>
           </div>
         </section>
-
         <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <IntelCard
             title="Tension Index"
@@ -44,7 +41,6 @@ export default function SystemIntelligencePage() {
             desc="No immediate existential threats detected. Monitor localized anomalies."
           />
         </section>
-
         <section className="rounded-2xl border border-white/10 bg-black/70 backdrop-blur-2xl p-6 shadow-[0_18px_45px_rgba(0,0,0,0.85)]">
           <div className="text-[11px] uppercase tracking-[0.25em] text-slate-500 mb-2">
             Narrative Forecast
@@ -58,7 +54,6 @@ export default function SystemIntelligencePage() {
     </main>
   );
 }
-
 function IntelCard({
   title,
   value,

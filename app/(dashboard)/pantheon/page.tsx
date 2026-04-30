@@ -1,8 +1,6 @@
 // app/(dashboard)/pantheon/page.tsx
-
 import React from "react";
 import { Star, Sparkles, Brain, Flame, Feather, Eye } from "lucide-react";
-
 export default function PantheonPage() {
   return (
     <main className="px-8 py-10 space-y-10">
@@ -17,7 +15,6 @@ export default function PantheonPage() {
           archetype carries resonance, law, and mythic influence.
         </p>
       </header>
-
       {/* Pantheon Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         <ArchetypeCard
@@ -63,7 +60,6 @@ export default function PantheonPage() {
           color="from-[#4A3A2A] to-[#6B4F3A]"
         />
       </section>
-
       {/* Pantheon Overview Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
@@ -76,14 +72,12 @@ export default function PantheonPage() {
           law, and symbolic gravity. Together, they form the emotional and
           metaphysical backbone of Hegay OS.
         </p>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
           <StatCard label="Active Archetypes" value="9" icon={Star} />
           <StatCard label="Realm Connections" value="6" icon={Sparkles} />
           <StatCard label="Influence Threads" value="72" icon={Brain} />
         </div>
       </section>
-
       {/* Resonance Field */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
@@ -94,7 +88,6 @@ export default function PantheonPage() {
           A visualization of how archetypes influence each other. Resonance
           fields reveal harmony, tension, and mythic flow.
         </p>
-
         <div className="mt-4 rounded-xl bg-black/70 border border-white/5 relative overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <ResonanceDots />
@@ -107,9 +100,7 @@ export default function PantheonPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function ArchetypeCard({
   name,
   domain,
@@ -151,7 +142,6 @@ function ArchetypeCard({
     </div>
   );
 }
-
 function StatCard({
   label,
   value,
@@ -173,9 +163,7 @@ function StatCard({
     </div>
   );
 }
-
 /* ───────────────── RESONANCE VISUALS ───────────────── */
-
 function ResonanceDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -192,7 +180,6 @@ function ResonanceDots() {
     </svg>
   );
 }
-
 function ResonanceNodes() {
   return (
     <div className="relative w-full h-full">
@@ -204,7 +191,6 @@ function ResonanceNodes() {
     </div>
   );
 }
-
 function Node({ className }: { className?: string }) {
   return (
     <div

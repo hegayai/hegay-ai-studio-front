@@ -1,14 +1,11 @@
 "use client";
-
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiBell } from "react-icons/fi";
-
 type NotificationCenterProps = {
   open: boolean;
   onClose: () => void;
 };
-
 const notifications = [
   {
     title: "Backup Completed",
@@ -26,7 +23,6 @@ const notifications = [
     time: "1 hour ago",
   },
 ];
-
 export default function NotificationCenter({
   open,
   onClose,
@@ -38,7 +34,6 @@ export default function NotificationCenter({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
-
   return (
     <AnimatePresence>
       {open && (
@@ -63,7 +58,6 @@ export default function NotificationCenter({
               </h2>
               <FiBell className="h-5 w-5 text-purple-300" />
             </div>
-
             {/* List */}
             <div className="space-y-3">
               {notifications.map((note, i) => (

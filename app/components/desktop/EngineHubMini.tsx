@@ -1,5 +1,4 @@
 // app/components/desktop/EngineHubMini.tsx
-
 export default function EngineHubMini() {
   return (
     <div className="space-y-2">

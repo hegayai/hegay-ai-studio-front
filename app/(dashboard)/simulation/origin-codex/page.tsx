@@ -1,5 +1,4 @@
 // app/(dashboard)/simulation/origin-codex/page.tsx
-
 import React from "react";
 import {
   Infinity,
@@ -12,7 +11,6 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
-
 export default function OriginCodexPage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -28,14 +26,12 @@ export default function OriginCodexPage() {
           pantheon archetypes, and universes.
         </p>
       </header>
-
       {/* Law Categories */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-8">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Law Categories
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <CategoryCard
             icon={Atom}
@@ -54,14 +50,12 @@ export default function OriginCodexPage() {
           />
         </div>
       </section>
-
       {/* Law List */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-8">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           All Origin Laws
         </h2>
-
         <div className="space-y-4">
           <LawRow name="Law of Harmonic Memory" />
           <LawRow name="Law of Symbolic Gravity" />
@@ -70,19 +64,16 @@ export default function OriginCodexPage() {
           <LawRow name="Law of Archetypal Flow" />
         </div>
       </section>
-
       {/* Relationship Map */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Law Relationship Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of how Origin Laws interact, reinforce, or
           counterbalance each other across cosmic layers.
         </p>
-
         <div className="relative h-[450px] rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <MapDots />
@@ -92,14 +83,12 @@ export default function OriginCodexPage() {
           </div>
         </div>
       </section>
-
       {/* Cross‑Layer Effects */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-8">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Cross‑Layer Effects
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <EffectCard
             icon={Layers}
@@ -118,7 +107,6 @@ export default function OriginCodexPage() {
           />
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -131,15 +119,12 @@ export default function OriginCodexPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 type CategoryCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
 };
-
 function CategoryCard({ icon: Icon, title, description }: CategoryCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-5 py-5 space-y-2">
@@ -151,11 +136,9 @@ function CategoryCard({ icon: Icon, title, description }: CategoryCardProps) {
     </div>
   );
 }
-
 type LawRowProps = {
   name: string;
 };
-
 function LawRow({ name }: LawRowProps) {
   return (
     <div className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-black/60 px-4 py-3">
@@ -164,13 +147,11 @@ function LawRow({ name }: LawRowProps) {
     </div>
   );
 }
-
 type EffectCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   description: string;
 };
-
 function EffectCard({ icon: Icon, label, description }: EffectCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-5 py-5 space-y-2">
@@ -182,9 +163,7 @@ function EffectCard({ icon: Icon, label, description }: EffectCardProps) {
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function MapDots() {
   const dots = Array.from({ length: 150 });
   return (
@@ -201,9 +180,7 @@ function MapDots() {
     </svg>
   );
 }
-
 type NodeProps = { className: string };
-
 function MapNodes() {
   return (
     <div className="relative w-full h-full">
@@ -215,7 +192,6 @@ function MapNodes() {
     </div>
   );
 }
-
 function Node({ className }: NodeProps) {
   return (
     <div

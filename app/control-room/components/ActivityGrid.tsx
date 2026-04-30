@@ -1,10 +1,7 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 export default function ActivityGrid() {
   const [events, setEvents] = useState<any[]>([]);
-
   const loadEvents = async () => {
     try {
       const res = await fetch("/api/system/activity");
@@ -14,13 +11,11 @@ export default function ActivityGrid() {
       console.error("Failed to load activity:", err);
     }
   };
-
   useEffect(() => {
     loadEvents();
     const interval = setInterval(loadEvents, 4000);
     return () => clearInterval(interval);
   }, []);
-
   const colorFor = (type: string) => {
     switch (type) {
       case "backup":
@@ -35,11 +30,9 @@ export default function ActivityGrid() {
         return "from-gray-700 to-gray-500";
     }
   };
-
   return (
     <div className="mt-10">
       <h2 className="text-2xl font-semibold mb-4">Real‑Time Activity Grid</h2>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {events.map((event, i) => (
           <div

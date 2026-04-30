@@ -1,7 +1,5 @@
 "use client";
-
 import { motion } from "framer-motion";
-
 export default function ToolShell({
   title,
   description,
@@ -24,7 +22,6 @@ export default function ToolShell({
         <h1 className="text-lg font-semibold text-slate-100">{title}</h1>
         <p className="mt-1 text-sm text-slate-300">{description}</p>
       </header>
-
       <div className="rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur-xl min-h-[200px]">
         {children || (
           <p className="text-xs text-slate-500">

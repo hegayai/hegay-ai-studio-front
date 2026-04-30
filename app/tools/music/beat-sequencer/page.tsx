@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function BeatSequencerPage() {
   const [tempo, setTempo] = useState(100);
   const [swing, setSwing] = useState(0);
@@ -13,24 +11,18 @@ export default function BeatSequencerPage() {
   );
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
-
   function toggleStep(index: number) {
     const updated = [...pattern];
     updated[index] = !updated[index];
     setPattern(updated);
   }
-
   async function handleGenerate() {
     setLoading(true);
-
     // 🔮 Placeholder for real beat generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setAudioUrl("/placeholder-beat.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Beat Sequencer"
@@ -52,7 +44,6 @@ export default function BeatSequencerPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Swing */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -67,13 +58,11 @@ export default function BeatSequencerPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Step Grid */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
               Pattern Grid (16 Steps)
             </label>
-
             <div className="grid grid-cols-8 gap-2 mt-2">
               {pattern.map((active, i) => (
                 <button
@@ -90,7 +79,6 @@ export default function BeatSequencerPage() {
               ))}
             </div>
           </div>
-
           {/* Generate Button */}
           <button
             onClick={handleGenerate}
@@ -109,13 +97,11 @@ export default function BeatSequencerPage() {
               <p>Building rhythmic pattern…</p>
             </div>
           )}
-
           {!loading && audioUrl && (
             <div className="w-full space-y-2">
               <audio controls className="w-full">
                 <source src={audioUrl} type="audio/mpeg" />
               </audio>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -129,7 +115,6 @@ export default function BeatSequencerPage() {
               </div>
             </div>
           )}
-
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500 text-center px-4">
               Toggle steps on the grid to build your beat pattern.

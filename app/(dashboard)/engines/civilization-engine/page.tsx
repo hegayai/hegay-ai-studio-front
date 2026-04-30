@@ -1,8 +1,6 @@
 // app/(dashboard)/engines/civilization-engine/page.tsx
-
 import React from "react";
 import { Network, Sparkles, Star, Globe2, ArrowRight } from "lucide-react";
-
 export default function CivilizationEnginePage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -17,32 +15,27 @@ export default function CivilizationEnginePage() {
           economic, and emotional dimensions.
         </p>
       </header>
-
       {/* Input Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Civilization Seed
         </h2>
-
         <textarea
           placeholder="Describe the civilization you want to generate..."
           className="w-full h-40 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-500 focus:border-[#F5D48A66] outline-none"
         />
-
         <button className="px-4 py-2 rounded-full border border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] text-sm hover:bg-[#F5D48A33] transition-all inline-flex items-center gap-2">
           <Sparkles className="h-4 w-4" />
           Generate Civilization
         </button>
       </section>
-
       {/* Output Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Generated Civilization
         </h2>
-
         <div className="space-y-4 text-sm text-slate-300">
           <OutputBlock title="Cultural Structure" />
           <OutputBlock title="Governance Model" />
@@ -51,7 +44,6 @@ export default function CivilizationEnginePage() {
           <OutputBlock title="Societal Dynamics" />
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -64,9 +56,7 @@ export default function CivilizationEnginePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function OutputBlock({ title }: { title: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 space-y-1">

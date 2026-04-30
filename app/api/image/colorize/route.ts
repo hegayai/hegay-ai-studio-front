@@ -1,6 +1,5 @@
 // app/api/image/colorize/route.ts
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const body = await req.json();
   const {
@@ -9,7 +8,6 @@ export async function POST(req: Request) {
     palette,
     strength,
   } = body;
-
   const res = await fetch(process.env.IMAGE_COLORIZE_API_URL!, {
     method: "POST",
     headers: {
@@ -23,9 +21,7 @@ export async function POST(req: Request) {
       strength,
     }),
   });
-
   const data = await res.json();
-
   return NextResponse.json({
     url: data?.meta?.url || data?.url || null,
     colorized: data?.colorized || null,

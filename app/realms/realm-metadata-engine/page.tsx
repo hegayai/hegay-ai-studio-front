@@ -1,7 +1,6 @@
 export default function RealmMetadataEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function RealmMetadataEngine() {
           linkable, and synchronized across your entire creative civilization.
         </p>
       </div>
-
       {/* PRIMARY ACTIONS */}
       <div className="grid grid-cols-2 gap-4">
         <button className="p-5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition">
@@ -23,7 +21,6 @@ export default function RealmMetadataEngine() {
           Open Metadata Library
         </button>
       </div>
-
       {/* METADATA MODULES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Core Metadata Modules</h2>
@@ -46,7 +43,6 @@ export default function RealmMetadataEngine() {
           ))}
         </div>
       </section>
-
       {/* ACTIVE METADATA PROFILES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Active Metadata Profiles</h2>
@@ -66,7 +62,6 @@ export default function RealmMetadataEngine() {
           ))}
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Metadata Systems</h2>
@@ -89,7 +84,6 @@ export default function RealmMetadataEngine() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

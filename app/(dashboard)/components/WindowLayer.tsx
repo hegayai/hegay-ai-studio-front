@@ -1,12 +1,8 @@
 "use client";
-
 import { useWindows } from "./WindowManager";
-
 export default function WindowLayer() {
   const { windows, closeWindow } = useWindows();
-
   if (!windows.length) return null;
-
   return (
     <>
       {windows.map((w) => (

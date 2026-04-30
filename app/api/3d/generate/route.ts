@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/app/ai/providers/fal";
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { prompt, seed } = body;
-
     const result = await modelRouter({
       model: "3d-generator",
       input: {
@@ -16,7 +13,6 @@ export async function POST(req: Request) {
       provider: fal,
       type: "3d",
     });
-
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(

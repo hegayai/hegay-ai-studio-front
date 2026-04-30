@@ -1,13 +1,10 @@
 "use client";
-
 import React from "react";
-
 export type InfluenceDefinition = {
   color?: string;
   glow?: boolean;
   motion?: boolean;
 };
-
 export default function InfluenceField({
   influence,
 }: {

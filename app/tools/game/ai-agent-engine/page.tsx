@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function AIAgentEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [aiType, setAIType] = useState("NPC");
@@ -12,30 +10,22 @@ export default function AIAgentEnginePage() {
   const [movement, setMovement] = useState("Pathfinding");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real AI agent generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated AI Agent System (Mock)
-
 AI Type: ${aiType}
 Behavior Model: ${behaviorModel}
 Movement Logic: ${movement}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated AI behavior and decision logic.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="AI Agent Engine"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated AI behavior and decision
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* AI Type */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -74,7 +63,6 @@ This is placeholder metadata representing the generated AI behavior and decision
               <option>Custom Agent</option>
             </select>
           </div>
-
           {/* Behavior Model */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -92,7 +80,6 @@ This is placeholder metadata representing the generated AI behavior and decision
               <option>Randomized</option>
             </select>
           </div>
-
           {/* Movement Logic */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -111,7 +98,6 @@ This is placeholder metadata representing the generated AI behavior and decision
               <option>Static</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -131,14 +117,12 @@ This is placeholder metadata representing the generated AI behavior and decision
               <p>Designing agent intelligence…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -14,7 +14,6 @@ export default function AcceptableUsePage() {
             you agree to follow these rules.
           </p>
         </header>
-
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-white">Prohibited Uses</h2>
           <p className="text-sm text-white/70">
@@ -45,7 +44,6 @@ export default function AcceptableUsePage() {
             </li>
           </ul>
         </section>
-
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-white">Responsibility & Enforcement</h2>
           <p className="text-sm text-white/70">
@@ -59,7 +57,6 @@ export default function AcceptableUsePage() {
             Computer Misuse Act and fraud laws.
           </p>
         </section>
-
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-white">Brand & Copyright</h2>
           <p className="text-sm text-white/70">
@@ -73,7 +70,6 @@ export default function AcceptableUsePage() {
             authorities.
           </p>
         </section>
-
         <section className="space-y-2">
           <p className="text-xs text-white/50">
             This policy may be updated as laws, safety standards, and our technology evolve. Please

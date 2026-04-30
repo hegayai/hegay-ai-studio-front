@@ -1,19 +1,14 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 type RealmIntroProps = {
   title: string;
   description: string;
 };
-
 export default function RealmIntro({ title, description }: RealmIntroProps) {
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     setVisible(true);
   }, []);
-
   return (
     <div
       className={`transition-all duration-700 ${

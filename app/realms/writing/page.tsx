@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function WritingRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function WritingRealmPage() {
         description="The narrative imagination engine of your Creative OS — stories, scripts, lore, and world‑building text."
         aura="from-amber-500/40 to-pink-500/40"
       />
-
       <RealmToolPanel
         title="Writing Tools"
         description="Tools for generating stories, scripts, lore, and narrative structures."

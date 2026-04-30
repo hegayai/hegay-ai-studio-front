@@ -1,30 +1,23 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function DreamWriterPage() {
   const [prompt, setPrompt] = useState("");
   const [tone, setTone] = useState("Surreal");
   const [length, setLength] = useState("Medium");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1000));
-
     setResult(
       `A ${tone.toLowerCase()} dream of ${prompt.toLowerCase()}, written in a ${length.toLowerCase()} narrative.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Dream Writer"
@@ -43,7 +36,6 @@ export default function DreamWriterPage() {
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -61,7 +53,6 @@ export default function DreamWriterPage() {
                 <option>Cosmic</option>
               </select>
             </div>
-
             <div>
               <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
                 Length
@@ -77,7 +68,6 @@ export default function DreamWriterPage() {
               </select>
             </div>
           </div>
-
           <button
             onClick={handleGenerate}
             disabled={loading || !prompt.trim()}
@@ -92,11 +82,9 @@ export default function DreamWriterPage() {
           {loading && (
             <p className="text-xs text-slate-300">Weaving your dream…</p>
           )}
-
           {!loading && result && (
             <p className="text-xs text-slate-200 whitespace-pre-line">{result}</p>
           )}
-
           {!loading && !result && (
             <p className="text-xs text-slate-500">
               Describe a dream essence to begin.

@@ -1,5 +1,4 @@
 "use client";
-
 export default function AddonsPage() {
   async function subscribe(plan: string) {
     const res = await fetch("/api/stripe/create-checkout-session", {
@@ -9,14 +8,11 @@ export default function AddonsPage() {
       },
       body: JSON.stringify({ plan }),
     });
-
     const data = await res.json();
-
     if (data?.url) {
       window.location.href = data.url;
     }
   }
-
   return (
     <div>
       <button onClick={() => subscribe("basic")}>Subscribe Basic</button>

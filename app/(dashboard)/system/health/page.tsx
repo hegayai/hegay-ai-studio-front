@@ -1,7 +1,6 @@
 export default function OSHealthDiagnosticsEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function OSHealthDiagnosticsEngine() {
           Provides real‑time diagnostics and self‑healing capabilities.
         </p>
       </div>
-
       {/* HEALTH DOMAINS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Health Domains</h2>
@@ -37,7 +35,6 @@ export default function OSHealthDiagnosticsEngine() {
           ))}
         </div>
       </section>
-
       {/* DIAGNOSTIC OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Diagnostic Operations</h2>
@@ -60,12 +57,10 @@ export default function OSHealthDiagnosticsEngine() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Diagnostics Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -73,12 +68,10 @@ export default function OSHealthDiagnosticsEngine() {
               error logs, drift detection, performance analysis, and
               self‑healing operations.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe the diagnostic operation you want the OS to perform..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Run Check
@@ -90,16 +83,13 @@ export default function OSHealthDiagnosticsEngine() {
                 Heal
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The OS Health & Diagnostics Engine ensures system stability,
               integrity, and performance.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Health State</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Agents: Stable</li>
@@ -109,7 +99,6 @@ export default function OSHealthDiagnosticsEngine() {
               <li>• Sync: Healthy</li>
               <li>• Pipeline: Operational</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Diagnostics Sync Targets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Hegay Core AI</li>
@@ -119,7 +108,6 @@ export default function OSHealthDiagnosticsEngine() {
               <li>• Asset Pipeline Engine</li>
               <li>• Creator Mode</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Diagnostics Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic diagnostics</li>
@@ -127,11 +115,9 @@ export default function OSHealthDiagnosticsEngine() {
               <li>• Character‑centric diagnostics</li>
               <li>• System‑design diagnostics</li>
             </ul>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

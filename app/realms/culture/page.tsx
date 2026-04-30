@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function CultureRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function CultureRealmPage() {
         description="The cultural intelligence engine of your Creative OS — traditions, rituals, identity systems, and collective meaning‑making."
         aura="from-rose-500/40 to-orange-500/40"
       />
-
       <RealmToolPanel
         title="Culture Tools"
         description="Tools for crafting cultural systems, rituals, identity frameworks, and symbolic meaning structures."

@@ -1,18 +1,14 @@
 "use client";
-
 import React from "react";
-
 type ActivityItem = {
   id: string | number;
   title: string;
   description: string;
   timestamp: string;
 };
-
 type ActivityFeedProps = {
   items: ActivityItem[];
 };
-
 export default function ActivityFeed({ items }: ActivityFeedProps) {
   return (
     <div className="space-y-4">
@@ -25,12 +21,10 @@ export default function ActivityFeed({ items }: ActivityFeedProps) {
             <h3 className="text-sm font-semibold text-slate-100">
               {item.title}
             </h3>
-
             <span className="text-[10px] text-slate-500">
               {new Date(item.timestamp).toLocaleString()}
             </span>
           </div>
-
           <p className="text-xs text-slate-400 mt-1">
             {item.description}
           </p>

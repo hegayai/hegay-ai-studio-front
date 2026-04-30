@@ -1,7 +1,5 @@
 // app/economy/page.tsx
-
 import { Card } from "@/components/ui/Card";
-
 export default function EconomyPage() {
   return (
     <div className="fade-in-up space-y-6">

@@ -1,8 +1,6 @@
 "use client";
-
 import { GlowShell } from "@/components/MotionProvider";
 import { motion } from "framer-motion";
-
 const culturePresets = [
   {
     title: "Fire Dance Tradition",
@@ -21,7 +19,6 @@ const culturePresets = [
     description: "Ceremonies guided by water, flow, and emotional resonance.",
   },
 ];
-
 export default function CulturePresetsPage() {
   return (
     <div className="min-h-screen w-full">
@@ -38,7 +35,6 @@ export default function CulturePresetsPage() {
             One‑click cultural identity presets
           </p>
         </motion.div>
-
         {/* PANEL */}
         <GlowShell>
           <div className="space-y-8">
@@ -51,7 +47,6 @@ export default function CulturePresetsPage() {
     </div>
   );
 }
-
 function PresetCard({
   title,
   description,

@@ -1,10 +1,8 @@
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, role, traits, memory } = body;
-
     const res = await fetch(process.env.PANTHEON_CREATE_API_URL!, {
       method: "POST",
       headers: {
@@ -18,7 +16,6 @@ export async function POST(req: Request) {
         memory,
       }),
     });
-
     if (!res.ok) {
       const errorText = await res.text();
       return NextResponse.json(
@@ -26,7 +23,6 @@ export async function POST(req: Request) {
         { status: res.status }
       );
     }
-
     const data = await res.json();
     return NextResponse.json(data);
   } catch (error) {

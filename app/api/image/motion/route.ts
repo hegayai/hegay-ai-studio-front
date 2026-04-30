@@ -1,6 +1,5 @@
 // app/api/image/motion/route.ts
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const body = await req.json();
   const {
@@ -11,7 +10,6 @@ export async function POST(req: Request) {
     intensity,
     duration,
   } = body;
-
   const res = await fetch(process.env.IMAGE_MOTION_API_URL!, {
     method: "POST",
     headers: {
@@ -27,9 +25,7 @@ export async function POST(req: Request) {
       duration,
     }),
   });
-
   const data = await res.json();
-
   return NextResponse.json({
     url: data?.meta?.url || data?.url || null,
     motion: data?.motion || null,

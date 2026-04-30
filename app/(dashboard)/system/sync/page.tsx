@@ -1,7 +1,6 @@
 export default function SystemSyncEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function SystemSyncEngine() {
           pipelines remain aligned and up‑to‑date across the entire system.
         </p>
       </div>
-
       {/* SYNC DOMAINS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Sync Domains</h2>
@@ -36,7 +34,6 @@ export default function SystemSyncEngine() {
           ))}
         </div>
       </section>
-
       {/* SYNC OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Sync Operations</h2>
@@ -59,24 +56,20 @@ export default function SystemSyncEngine() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Sync Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
               Sync panel (connect to backend). Displays sync operations, conflict
               resolutions, live sync status, and system alignment diagnostics.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe the sync operation you want the OS to perform..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Sync
@@ -88,15 +81,12 @@ export default function SystemSyncEngine() {
                 Resolve
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The System Sync Engine keeps the entire OS aligned and coherent.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Sync State</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Agents: Synced</li>
@@ -106,7 +96,6 @@ export default function SystemSyncEngine() {
               <li>• Reasoning: Synced</li>
               <li>• Pipeline: Synced</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Sync Targets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Hegay Core AI</li>
@@ -116,7 +105,6 @@ export default function SystemSyncEngine() {
               <li>• Asset Pipeline Engine</li>
               <li>• Creator Mode</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Sync Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic sync</li>
@@ -124,11 +112,9 @@ export default function SystemSyncEngine() {
               <li>• Character‑centric sync</li>
               <li>• System‑design sync</li>
             </ul>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

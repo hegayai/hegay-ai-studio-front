@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function RadioShowBuilderPage() {
   const [title, setTitle] = useState("");
   const [tone, setTone] = useState("Warm");
@@ -12,34 +10,25 @@ export default function RadioShowBuilderPage() {
   const [newSegment, setNewSegment] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
-
   function addSegment() {
     if (!newSegment.trim()) return;
     setSegments([...segments, newSegment]);
     setNewSegment("");
   }
-
   async function handleGenerate() {
     if (!title.trim() || segments.length === 0) return;
     setLoading(true);
-
     // 🔮 Placeholder for real radio‑show assembly API
     await new Promise((r) => setTimeout(r, 1200));
-
     setResult(
       `Radio Show Blueprint: ${title}
-
 Tone: ${tone}
-
 Segments:
 ${segments.map((s, i) => `• Segment ${i + 1}: ${s}`).join("\n")}
-
 Your show structure is ready for production.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Radio Show Builder"
@@ -60,7 +49,6 @@ Your show structure is ready for production.`
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-
           {/* Tone */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -79,7 +67,6 @@ Your show structure is ready for production.`
               <option>Inspirational</option>
             </select>
           </div>
-
           {/* Add Segment */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -101,7 +88,6 @@ Your show structure is ready for production.`
               </button>
             </div>
           </div>
-
           {/* Segment List */}
           {segments.length > 0 && (
             <div className="mt-2 space-y-1">
@@ -115,7 +101,6 @@ Your show structure is ready for production.`
               ))}
             </div>
           )}
-
           {/* Generate Button */}
           <button
             onClick={handleGenerate}
@@ -134,13 +119,11 @@ Your show structure is ready for production.`
               <p>Assembling broadcast flow…</p>
             </div>
           )}
-
           {!loading && result && (
             <pre className="text-xs text-slate-200 whitespace-pre-line">
               {result}
             </pre>
           )}
-
           {!loading && !result && (
             <p className="text-xs text-slate-500 text-center px-4">
               Add segments and define tone to build your radio show blueprint.

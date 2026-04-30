@@ -1,5 +1,4 @@
 "use client";
-
 export default function ArchiveVaultPage() {
   return (
     <main className="min-h-screen w-full bg-black text-slate-100 relative overflow-hidden p-6">
@@ -7,7 +6,6 @@ export default function ArchiveVaultPage() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="cosmic-particles" />
       </div>
-
       <div className="relative z-10 max-w-5xl mx-auto space-y-8">
         <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-black via-[#050712] to-black p-8 shadow-[0_30px_80px_rgba(0,0,0,0.9)] relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(148,163,184,0.18),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(15,23,42,0.9))]" />
@@ -23,7 +21,6 @@ export default function ArchiveVaultPage() {
             </p>
           </div>
         </section>
-
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <VaultCard title="Universe Snapshots" desc="Frozen states of universes at key narrative moments." />
           <VaultCard title="Culture Capsules" desc="Curated bundles of language, music, and memory." />
@@ -34,7 +31,6 @@ export default function ArchiveVaultPage() {
     </main>
   );
 }
-
 function VaultCard({ title, desc }: { title: string; desc: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/70 backdrop-blur-2xl p-6 shadow-[0_18px_45px_rgba(0,0,0,0.85)]">

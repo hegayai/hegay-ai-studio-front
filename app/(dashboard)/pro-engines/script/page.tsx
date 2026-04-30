@@ -1,7 +1,6 @@
 export default function ScriptEnginePro() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function ScriptEnginePro() {
           cultures, timelines, realms, and your entire creative OS.
         </p>
       </div>
-
       {/* PRIMARY MODES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Primary Modes</h2>
@@ -36,7 +34,6 @@ export default function ScriptEnginePro() {
           ))}
         </div>
       </section>
-
       {/* CONTEXT LOADERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Context Loaders</h2>
@@ -59,25 +56,21 @@ export default function ScriptEnginePro() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Script Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT: SCRIPT PANEL */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[320px]">
             <div className="opacity-70 text-sm">
               Script preview area (connect to your narrative backend). This panel
               will display scenes, beats, arcs, and structured narrative outputs.
             </div>
-
             <div className="mt-auto">
               <textarea
                 className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-32"
                 placeholder="Describe the scene, episode, or narrative you want to generate..."
               />
-
               <div className="flex gap-3 mt-3">
                 <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                   Generate Script
@@ -89,7 +82,6 @@ export default function ScriptEnginePro() {
                   Save to Pipeline
                 </button>
               </div>
-
               <p className="opacity-50 text-[11px] mt-2">
                 Script Engine Pro supports multi‑step narrative workflows,
                 character‑aware writing, and routing outputs into your asset
@@ -97,10 +89,8 @@ export default function ScriptEnginePro() {
               </p>
             </div>
           </div>
-
           {/* RIGHT: CONTEXT + ROUTING */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Attached Context</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Universe: Diaspora Storyworld v3</li>
@@ -110,7 +100,6 @@ export default function ScriptEnginePro() {
               <li>• Culture: Diaspora Culture Grid</li>
               <li>• Arc: Diaspora Hero Arc</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Output Routing</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Save to: Asset Pipeline</li>
@@ -118,7 +107,6 @@ export default function ScriptEnginePro() {
               <li>• Save to: Character Genome Engine</li>
               <li>• Save to: Timeline Engine</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic tone</li>
@@ -126,11 +114,9 @@ export default function ScriptEnginePro() {
               <li>• Character‑centric scenes</li>
               <li>• System‑design exposition</li>
             </ul>
-
           </div>
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Script Engine Systems</h2>
@@ -153,7 +139,6 @@ export default function ScriptEnginePro() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

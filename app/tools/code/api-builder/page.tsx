@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function ApiBuilderPage() {
   const [endpoint, setEndpoint] = useState("");
   const [method, setMethod] = useState("GET");
@@ -12,28 +10,21 @@ export default function ApiBuilderPage() {
   const [schema, setSchema] = useState("None");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!endpoint.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real API generation
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated API (Mock)
-
 Framework: ${framework}
 Method: ${method}
 Endpoint: ${endpoint}
 Schema: ${schema}
-
 This is placeholder API code representing the generated backend route.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="API Builder"
@@ -54,7 +45,6 @@ This is placeholder API code representing the generated backend route.`
               onChange={(e) => setEndpoint(e.target.value)}
             />
           </div>
-
           {/* Method */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -72,7 +62,6 @@ This is placeholder API code representing the generated backend route.`
               <option>DELETE</option>
             </select>
           </div>
-
           {/* Framework */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -90,7 +79,6 @@ This is placeholder API code representing the generated backend route.`
               <option>Go Fiber</option>
             </select>
           </div>
-
           {/* Schema */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -107,7 +95,6 @@ This is placeholder API code representing the generated backend route.`
               <option>JSON Schema</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -127,14 +114,12 @@ This is placeholder API code representing the generated backend route.`
               <p>Generating backend route…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function SystemArchitecturePage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("High-level Blueprint");
@@ -12,30 +10,22 @@ export default function SystemArchitecturePage() {
   const [focus, setFocus] = useState("Full System");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real architecture generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated System Architecture (Mock)
-
 Style: ${style}
 Pattern: ${pattern}
 Focus: ${focus}
-
 Prompt:
 ${prompt}
-
 This is placeholder text representing the generated architecture blueprint.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="System Architecture Engine"
@@ -55,7 +45,6 @@ This is placeholder text representing the generated architecture blueprint.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Style */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -72,7 +61,6 @@ This is placeholder text representing the generated architecture blueprint.`
               <option>API & Integration Focused</option>
             </select>
           </div>
-
           {/* Pattern */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -90,7 +78,6 @@ This is placeholder text representing the generated architecture blueprint.`
               <option>Layered Architecture</option>
             </select>
           </div>
-
           {/* Focus */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -108,7 +95,6 @@ This is placeholder text representing the generated architecture blueprint.`
               <option>Real-time & Events</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -128,14 +114,12 @@ This is placeholder text representing the generated architecture blueprint.`
               <p>Mapping services and flows…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

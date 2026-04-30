@@ -1,5 +1,4 @@
 // app/(dashboard)/engines/system-intelligence/page.tsx
-
 import React from "react";
 import {
   Cpu,
@@ -12,7 +11,6 @@ import {
   Activity,
   BarChart3,
 } from "lucide-react";
-
 export default function SystemIntelligenceEnginePage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -27,32 +25,27 @@ export default function SystemIntelligenceEnginePage() {
           tensions, and generate high‑level insights across all layers of Hegay OS.
         </p>
       </header>
-
       {/* Analysis Input */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Intelligence Query
         </h2>
-
         <textarea
           placeholder="Describe what you want the system to analyze (e.g., realm tension, civilization drift, pantheon influence)..."
           className="w-full h-40 bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-200 placeholder-slate-500 focus:border-[#F5D48A66] outline-none"
         />
-
         <button className="px-4 py-2 rounded-full border border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] text-sm hover:bg-[#F5D48A33] transition-all inline-flex items-center gap-2">
           <Sparkles className="h-4 w-4" />
           Run Analysis
         </button>
       </section>
-
       {/* Intelligence Output */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Intelligence Report
         </h2>
-
         <div className="space-y-4 text-sm text-slate-300">
           <OutputBlock title="Primary Insight" />
           <OutputBlock title="Realm Dynamics" />
@@ -61,14 +54,12 @@ export default function SystemIntelligenceEnginePage() {
           <OutputBlock title="Origin Law Interactions" />
         </div>
       </section>
-
       {/* Metrics Grid */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           System Metrics
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <MetricCard
             icon={Activity}
@@ -90,19 +81,16 @@ export default function SystemIntelligenceEnginePage() {
           />
         </div>
       </section>
-
       {/* Visualization */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Intelligence Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of system‑wide patterns, mythic flows, and
           cross‑layer interactions.
         </p>
-
         <div className="relative h-80 rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <IntelligenceDots />
@@ -112,7 +100,6 @@ export default function SystemIntelligenceEnginePage() {
           </div>
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -125,9 +112,7 @@ export default function SystemIntelligenceEnginePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function OutputBlock({ title }: { title: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 space-y-1">
@@ -140,14 +125,12 @@ function OutputBlock({ title }: { title: string }) {
     </div>
   );
 }
-
 type MetricCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: string;
   description: string;
 };
-
 function MetricCard({ icon: Icon, label, value, description }: MetricCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-4 space-y-1">
@@ -164,9 +147,7 @@ function MetricCard({ icon: Icon, label, value, description }: MetricCardProps) 
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function IntelligenceDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -183,7 +164,6 @@ function IntelligenceDots() {
     </svg>
   );
 }
-
 function IntelligenceNodes() {
   return (
     <div className="relative w-full h-full">
@@ -195,7 +175,6 @@ function IntelligenceNodes() {
     </div>
   );
 }
-
 function Node({ className }: { className: string }) {
   return (
     <div

@@ -1,7 +1,5 @@
 // lib/models/registry.ts
-
 import { ModelConfig } from "./types";
-
 export const MODEL_REGISTRY: Record<string, ModelConfig> = {
   "flux-text": {
     id: "flux-text",

@@ -1,7 +1,6 @@
 export default function UniverseTemplates() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function UniverseTemplates() {
           world‑building while keeping your creative civilization coherent.
         </p>
       </div>
-
       {/* PRIMARY ACTIONS */}
       <div className="grid grid-cols-2 gap-4">
         <button className="p-5 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 transition">
@@ -23,7 +21,6 @@ export default function UniverseTemplates() {
           Build Custom Template
         </button>
       </div>
-
       {/* TEMPLATE CATEGORIES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Template Categories</h2>
@@ -46,7 +43,6 @@ export default function UniverseTemplates() {
           ))}
         </div>
       </section>
-
       {/* FEATURED TEMPLATES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Featured Templates</h2>
@@ -69,7 +65,6 @@ export default function UniverseTemplates() {
           ))}
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Template Systems</h2>
@@ -92,7 +87,6 @@ export default function UniverseTemplates() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

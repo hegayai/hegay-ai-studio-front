@@ -1,15 +1,12 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
-
 type GeneratedImage = {
   id: string;
   prompt: string;
   style: string;
   url: string;
 };
-
 export default function ImageStudioPage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Cinematic poster");
@@ -27,9 +24,7 @@ export default function ImageStudioPage() {
       url: "/images/sample-hegay-poster-2.jpg", // replace later
     },
   ]);
-
   const [isAdmin] = useState(true); // UI-only flag for now
-
   const handleGenerate = () => {
     if (!prompt.trim()) return;
     const id = `img-${Date.now()}`;
@@ -44,7 +39,6 @@ export default function ImageStudioPage() {
     ]);
     setPrompt("");
   };
-
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Background */}
@@ -52,7 +46,6 @@ export default function ImageStudioPage() {
       <div className="fixed inset-0 -z-10 opacity-40 pointer-events-none">
         <div className="w-[160%] h-[160%] bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.3),_transparent_60%),_radial-gradient(circle_at_bottom,_rgba(236,72,153,0.22),_transparent_55%)] translate-x-[-15%] translate-y-[-10%]" />
       </div>
-
       <div className="mx-auto max-w-6xl px-6 py-8 flex flex-col gap-8">
         {/* TOP BAR */}
         <header className="flex items-center justify-between">
@@ -85,7 +78,6 @@ export default function ImageStudioPage() {
             </Link>
           </nav>
         </header>
-
         {/* TITLE STRIP */}
         <section className="space-y-2">
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-emerald-300/80">
@@ -101,7 +93,6 @@ export default function ImageStudioPage() {
             </p>
           </div>
         </section>
-
         {!isAdmin && (
           <div className="rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4 text-[11px] text-slate-300">
             <p className="font-semibold mb-1">Access mode</p>
@@ -111,7 +102,6 @@ export default function ImageStudioPage() {
             </p>
           </div>
         )}
-
         {isAdmin && (
           <>
             {/* MAIN GRID */}
@@ -133,7 +123,6 @@ export default function ImageStudioPage() {
                       Step 1 · Prompt
                     </span>
                   </div>
-
                   <div className="space-y-3 text-[11px]">
                     <textarea
                       value={prompt}
@@ -167,7 +156,6 @@ export default function ImageStudioPage() {
                     </p>
                   </div>
                 </div>
-
                 {/* NOTES */}
                 <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-4 text-[11px] text-slate-300 space-y-2">
                   <p className="font-semibold">Use cases</p>
@@ -179,7 +167,6 @@ export default function ImageStudioPage() {
                   </ul>
                 </div>
               </div>
-
               {/* RIGHT: IMAGE GRID */}
               <div className="space-y-4">
                 <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-5 space-y-3">
@@ -196,14 +183,12 @@ export default function ImageStudioPage() {
                       Step 2 · Assets
                     </span>
                   </div>
-
                   <div className="grid gap-3 md:grid-cols-1">
                     {images.map((img) => (
                       <ImageCard key={img.id} image={img} />
                     ))}
                   </div>
                 </div>
-
                 {/* EXPORT STRIP */}
                 <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-4 text-[11px] space-y-2">
                   <p className="text-slate-300 font-semibold">
@@ -226,7 +211,6 @@ export default function ImageStudioPage() {
             </section>
           </>
         )}
-
         {/* FOOTER */}
         <footer className="mt-8 border-t border-slate-800/70 pt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
           <span>
@@ -240,7 +224,6 @@ export default function ImageStudioPage() {
     </main>
   );
 }
-
 function ImageCard({ image }: { image: GeneratedImage }) {
   return (
     <div className="rounded-2xl border border-slate-800/80 bg-black/60 p-3 flex gap-3">

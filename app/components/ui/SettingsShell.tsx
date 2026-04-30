@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -10,13 +9,11 @@ import {
   FiCpu,
   FiGlobe,
 } from "react-icons/fi";
-
 type Section = {
   id: string;
   label: string;
   icon: React.ComponentType<{ className?: string }>;
 };
-
 const sections: Section[] = [
   { id: "general", label: "General", icon: FiSettings },
   { id: "account", label: "Account", icon: FiUser },
@@ -25,16 +22,12 @@ const sections: Section[] = [
   { id: "system", label: "System", icon: FiCpu },
   { id: "language", label: "Language & Region", icon: FiGlobe },
 ];
-
 export default function SettingsShell() {
   const [active, setActive] = useState<string>("general");
-
   const ActiveIcon =
     sections.find((s) => s.id === active)?.icon ?? FiSettings;
-
   const activeLabel =
     sections.find((s) => s.id === active)?.label ?? "Settings";
-
   return (
     <div className="grid gap-8 md:grid-cols-[260px,1fr]">
       {/* Sidebar */}
@@ -42,7 +35,6 @@ export default function SettingsShell() {
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
           Settings
         </h2>
-
         <nav className="space-y-1">
           {sections.map(({ id, label, icon: Icon }) => {
             const isActive = id === active;
@@ -63,14 +55,12 @@ export default function SettingsShell() {
           })}
         </nav>
       </aside>
-
       {/* Content */}
       <section className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">
         <header className="mb-6 flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/20 border border-purple-400/40">
             <ActiveIcon className="h-5 w-5 text-purple-200" />
           </div>
-
           <div>
             <h1 className="text-base font-semibold text-slate-100">
               {activeLabel}
@@ -80,7 +70,6 @@ export default function SettingsShell() {
             </p>
           </div>
         </header>
-
         <motion.div
           key={active}
           initial={{ opacity: 0, y: 6 }}
@@ -99,11 +88,9 @@ export default function SettingsShell() {
     </div>
   );
 }
-
 /* --------------------------------------------- */
 /* COMPONENTS                                    */
 /* --------------------------------------------- */
-
 function Card({
   title,
   description,
@@ -123,7 +110,6 @@ function Card({
     </div>
   );
 }
-
 function ToggleRow({
   label,
   hint,
@@ -139,18 +125,15 @@ function ToggleRow({
           <p className="text-[0.7rem] text-slate-500 mt-0.5">{hint}</p>
         )}
       </div>
-
       <button className="relative inline-flex h-5 w-9 items-center rounded-full bg-purple-500/60">
         <span className="inline-block h-4 w-4 translate-x-4 rounded-full bg-white shadow transition" />
       </button>
     </div>
   );
 }
-
 /* --------------------------------------------- */
 /* SETTINGS SECTIONS                             */
 /* --------------------------------------------- */
-
 function GeneralSettings() {
   return (
     <>
@@ -161,7 +144,6 @@ function GeneralSettings() {
         <ToggleRow label="Use cosmic gradient theme" />
         <ToggleRow label="Enable subtle motion" />
       </Card>
-
       <Card
         title="Startup"
         description="Choose what you see when you enter the OS."
@@ -172,7 +154,6 @@ function GeneralSettings() {
     </>
   );
 }
-
 function AccountSettings() {
   return (
     <>
@@ -187,7 +168,6 @@ function AccountSettings() {
           Future: avatar, roles, multi‑profile support.
         </p>
       </Card>
-
       <Card
         title="Security"
         description="Strengthen access to your Creative OS."
@@ -198,7 +178,6 @@ function AccountSettings() {
     </>
   );
 }
-
 function NotificationSettings() {
   return (
     <>
@@ -209,7 +188,6 @@ function NotificationSettings() {
         <ToggleRow label="Backups & system health" />
         <ToggleRow label="New tools & features" />
       </Card>
-
       <Card
         title="Creative Activity"
         description="Signals from realms, studio, and collaborators."
@@ -220,7 +198,6 @@ function NotificationSettings() {
     </>
   );
 }
-
 function PrivacySettings() {
   return (
     <>
@@ -231,7 +208,6 @@ function PrivacySettings() {
         <ToggleRow label="Show recent activity on Dashboard" />
         <ToggleRow label="Show realm usage insights" />
       </Card>
-
       <Card
         title="Protection"
         description="Guardrails for sensitive creative work."
@@ -242,7 +218,6 @@ function PrivacySettings() {
     </>
   );
 }
-
 function SystemSettings() {
   return (
     <>
@@ -253,7 +228,6 @@ function SystemSettings() {
         <ToggleRow label="Enable high‑fidelity visuals" />
         <ToggleRow label="Prefer performance on low‑power devices" />
       </Card>
-
       <Card
         title="Backups"
         description="Continuity and restoration of your creative civilization."
@@ -264,7 +238,6 @@ function SystemSettings() {
     </>
   );
 }
-
 function LanguageSettings() {
   return (
     <>
@@ -277,7 +250,6 @@ function LanguageSettings() {
           Future: layered language packs, dialect‑aware UI, cultural modes.
         </p>
       </Card>
-
       <Card
         title="Region"
         description="Regional defaults for time, formats, and signals."

@@ -1,7 +1,6 @@
 export default function StoryworldOverview() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function StoryworldOverview() {
           This is the meta‑navigation layer that connects all engines and systems.
         </p>
       </div>
-
       {/* UNIVERSE SNAPSHOTS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Active Universes</h2>
@@ -33,7 +31,6 @@ export default function StoryworldOverview() {
           ))}
         </div>
       </section>
-
       {/* REALM SNAPSHOTS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Active Realms</h2>
@@ -53,7 +50,6 @@ export default function StoryworldOverview() {
           ))}
         </div>
       </section>
-
       {/* TIMELINE SNAPSHOTS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Timelines</h2>
@@ -73,7 +69,6 @@ export default function StoryworldOverview() {
           ))}
         </div>
       </section>
-
       {/* CULTURE SNAPSHOTS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Cultures</h2>
@@ -93,7 +88,6 @@ export default function StoryworldOverview() {
           ))}
         </div>
       </section>
-
       {/* CHARACTER SNAPSHOTS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Characters</h2>
@@ -113,7 +107,6 @@ export default function StoryworldOverview() {
           ))}
         </div>
       </section>
-
       {/* RESONANCE SNAPSHOTS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Resonance Fields</h2>
@@ -133,7 +126,6 @@ export default function StoryworldOverview() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

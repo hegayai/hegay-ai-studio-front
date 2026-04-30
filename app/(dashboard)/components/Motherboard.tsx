@@ -1,12 +1,9 @@
 "use client";
-
 import { useState } from "react";
 import { useMotherboard } from "./MotherboardContext";
-
 export default function Motherboard() {
   const [open, setOpen] = useState(false);
   const { settings, toggle, toggleRealm } = useMotherboard();
-
   return (
     <>
       <button
@@ -15,13 +12,10 @@ export default function Motherboard() {
       >
         Motherboard
       </button>
-
       {open && (
         <div className="fixed bottom-28 right-6 w-80 bg-black/60 backdrop-blur-xl border border-white/10 rounded-xl p-6 z-50">
           <h2 className="text-xl font-bold mb-4">Hegay OS Motherboard</h2>
-
           <div className="flex flex-col gap-3">
-
             {/* SYSTEM TOGGLES */}
             {Object.keys(settings)
               .filter((k) => k !== "realms")
@@ -37,10 +31,8 @@ export default function Motherboard() {
                   </span>
                 </button>
               ))}
-
             {/* REALMS */}
             <h3 className="mt-4 mb-2 font-semibold">Realms</h3>
-
             {Object.keys(settings.realms).map((realm) => (
               <button
                 key={realm}
@@ -55,7 +47,6 @@ export default function Motherboard() {
                 </span>
               </button>
             ))}
-
           </div>
         </div>
       )}

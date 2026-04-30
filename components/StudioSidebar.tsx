@@ -1,8 +1,6 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { FiHome, FiGrid, FiLayers, FiRadio, FiSettings } from "react-icons/fi";
-
 const navItems = [
   {
     label: "Dashboard",
@@ -25,11 +23,9 @@ const navItems = [
     icon: <FiSettings className="h-4 w-4" />,
   },
 ];
-
 export default function StudioSidebar() {
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-full w-64 flex-col border-r border-white/10 bg-black/30 p-6 backdrop-blur-xl">
-      
       {/* Logo / Title */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
@@ -44,7 +40,6 @@ export default function StudioSidebar() {
           Creative OS
         </p>
       </motion.div>
-
       {/* Navigation */}
       <nav className="flex flex-col gap-2">
         {navItems.map((item, index) => (
@@ -60,7 +55,6 @@ export default function StudioSidebar() {
           </motion.button>
         ))}
       </nav>
-
       {/* Footer */}
       <div className="mt-auto pt-6">
         <p className="text-[0.65rem] text-slate-500 tracking-wide">

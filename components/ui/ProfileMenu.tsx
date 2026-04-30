@@ -1,15 +1,12 @@
 "use client";
-
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { FiUser, FiSettings, FiLogOut } from "react-icons/fi";
-
 type ProfileMenuProps = {
   open: boolean;
   onClose: () => void;
 };
-
 export default function ProfileMenu({ open, onClose }: ProfileMenuProps) {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -18,7 +15,6 @@ export default function ProfileMenu({ open, onClose }: ProfileMenuProps) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
-
   return (
     <AnimatePresence>
       {open && (
@@ -50,7 +46,6 @@ export default function ProfileMenu({ open, onClose }: ProfileMenuProps) {
                 </p>
               </div>
             </div>
-
             {/* Links */}
             <div className="space-y-2">
               <Link
@@ -61,7 +56,6 @@ export default function ProfileMenu({ open, onClose }: ProfileMenuProps) {
                 <FiSettings className="h-4 w-4" />
                 Settings
               </Link>
-
               <button
                 className="flex w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-red-300 hover:bg-red-500/20 transition"
               >

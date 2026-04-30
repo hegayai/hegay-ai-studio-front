@@ -1,5 +1,4 @@
 "use client";
-
 export default function RealmNavigatorPage() {
   return (
     <main className="min-h-screen w-full bg-black text-slate-100 relative overflow-hidden p-6">
@@ -7,7 +6,6 @@ export default function RealmNavigatorPage() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="cosmic-particles" />
       </div>
-
       <div className="relative z-10 max-w-6xl mx-auto space-y-8">
         <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-black via-[#050712] to-black p-8 shadow-[0_30px_80px_rgba(0,0,0,0.9)] relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(52,211,153,0.18),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(96,165,250,0.18),_transparent_55%)]" />
@@ -23,7 +21,6 @@ export default function RealmNavigatorPage() {
             </p>
           </div>
         </section>
-
         <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <RealmCard title="Culture Realm" desc="Language, memory, and ancestral signals." />
           <RealmCard title="Origin Codex" desc="Foundational laws and mythic structure." />
@@ -36,7 +33,6 @@ export default function RealmNavigatorPage() {
     </main>
   );
 }
-
 function RealmCard({ title, desc }: { title: string; desc: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/70 backdrop-blur-2xl p-6 shadow-[0_18px_45px_rgba(0,0,0,0.85)] hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(52,211,153,0.35)] transition-all duration-300">

@@ -1,14 +1,11 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 type DockItem = {
   href: string;
   label: string;
   icon?: string;
 };
-
 const DOCK_ITEMS: DockItem[] = [
   { href: "/", label: "Dashboard" },
   { href: "/studio", label: "Studio" },
@@ -17,10 +14,8 @@ const DOCK_ITEMS: DockItem[] = [
   { href: "/archive", label: "Archive" },
   { href: "/signals", label: "Signals" },
 ];
-
 export default function Dock() {
   const pathname = usePathname() || "/";
-
   return (
     <div
       className="
@@ -38,7 +33,6 @@ export default function Dock() {
           item.href === "/"
             ? pathname === "/"
             : pathname.startsWith(item.href);
-
         return (
           <Link
             key={item.href}

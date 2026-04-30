@@ -1,7 +1,5 @@
 "use client";
-
 import { motion } from "framer-motion";
-
 export default function EconomyPresetsPage() {
   const presets = [
     {
@@ -17,11 +15,9 @@ export default function EconomyPresetsPage() {
       description: "Models multi‑region trade interactions.",
     },
   ];
-
   return (
     <div className="p-10">
       <h1 className="text-3xl font-bold mb-6">Economy Presets</h1>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {presets.map((p, i) => (
           <PresetCard
@@ -35,17 +31,14 @@ export default function EconomyPresetsPage() {
     </div>
   );
 }
-
 /* ─────────────────────────────────────────────── */
 /* FIXED: PresetCard now has explicit prop types   */
 /* ─────────────────────────────────────────────── */
-
 type PresetCardProps = {
   title: string;
   description: string;
   index: number;
 };
-
 function PresetCard({ title, description, index }: PresetCardProps) {
   return (
     <motion.div

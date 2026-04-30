@@ -1,27 +1,21 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 type GalleryItem = {
   id: string;
   type: "image" | "video";
   url: string;
   prompt?: string;
 };
-
 export default function GalleryPage() {
   const [items, setItems] = useState<GalleryItem[]>([]);
-
   useEffect(() => {
     fetch("/api/media/list")
       .then((res) => res.json())
       .then((data) => setItems((data.items as GalleryItem[]) || []));
   }, []);
-
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-6">Gallery</h1>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {items.map((item) => (
           <div
@@ -33,7 +27,6 @@ export default function GalleryPage() {
             ) : (
               <video src={item.url} controls className="rounded-xl mb-3" />
             )}
-
             <p className="text-white/60 text-sm">{item.prompt}</p>
           </div>
         ))}

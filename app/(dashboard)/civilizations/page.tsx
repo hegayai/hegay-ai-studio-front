@@ -1,8 +1,6 @@
 // app/(dashboard)/civilizations/page.tsx
-
 import React from "react";
 import { Network, Sparkles, Globe2, Star } from "lucide-react";
-
 export default function CivilizationsPage() {
   return (
     <main className="px-8 py-10 space-y-10">
@@ -17,7 +15,6 @@ export default function CivilizationsPage() {
           dynamic network of culture, myth, governance, and emotional physics.
         </p>
       </header>
-
       {/* Civilization Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         <CivilizationCard
@@ -57,7 +54,6 @@ export default function CivilizationsPage() {
           color="from-[#5A3E2B] to-[#8C5F3A]"
         />
       </section>
-
       {/* Civilization Graph Preview */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
@@ -68,7 +64,6 @@ export default function CivilizationsPage() {
           A high‑level view of how your civilizations connect, influence, and
           evolve. This graph reveals alliances, tensions, and mythic flows.
         </p>
-
         <div className="mt-4 rounded-xl bg-black/70 border border-white/5 relative overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <GraphDots />
@@ -87,14 +82,12 @@ export default function CivilizationsPage() {
           </div>
         </div>
       </section>
-
       {/* Civilization Stats */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Civilization Metrics
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
           <StatCard label="Active Civilizations" value="24" icon={Network} />
           <StatCard label="Pantheon Influence" value="9" icon={Star} />
@@ -104,9 +97,7 @@ export default function CivilizationsPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function CivilizationCard({
   name,
   realm,
@@ -146,7 +137,6 @@ function CivilizationCard({
     </div>
   );
 }
-
 function StatCard({
   label,
   value,
@@ -168,9 +158,7 @@ function StatCard({
     </div>
   );
 }
-
 /* ───────────────── GRAPH VISUALS ───────────────── */
-
 function GraphDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -187,7 +175,6 @@ function GraphDots() {
     </svg>
   );
 }
-
 function GraphNodes() {
   return (
     <div className="relative w-full h-full">
@@ -199,7 +186,6 @@ function GraphNodes() {
     </div>
   );
 }
-
 function NodeBubble({ className }: { className?: string }) {
   return (
     <div

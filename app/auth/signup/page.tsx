@@ -1,14 +1,11 @@
 "use client";
-
 import { useState } from "react";
-
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAdult, setIsAdult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
   async function handleSignup() {
     if (!email || !password || !isAdult) {
       setMessage("You must be 18+ and fill all fields.");
@@ -16,17 +13,14 @@ export default function SignupPage() {
     }
     setLoading(true);
     setMessage("");
-
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       body: JSON.stringify({ email, password, isAdult }),
     });
-
     const data = await res.json();
     setMessage(data.message || "Check your email to verify your account.");
     setLoading(false);
   }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
       <div className="w-full max-w-sm p-6 rounded-xl bg-black/60 border border-white/10">
@@ -34,7 +28,6 @@ export default function SignupPage() {
         <p className="text-xs text-slate-400 mt-1">
           Hegay AI Studio is for users 18+ only.
         </p>
-
         <input
           type="email"
           placeholder="Email"
@@ -42,7 +35,6 @@ export default function SignupPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-
         <input
           type="password"
           placeholder="Password"
@@ -50,7 +42,6 @@ export default function SignupPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <label className="mt-3 flex items-center gap-2 text-xs text-slate-300">
           <input
             type="checkbox"
@@ -59,7 +50,6 @@ export default function SignupPage() {
           />
           I confirm I am 18 years or older.
         </label>
-
         <button
           onClick={handleSignup}
           disabled={loading}
@@ -67,7 +57,6 @@ export default function SignupPage() {
         >
           {loading ? "Creating account…" : "Sign up"}
         </button>
-
         {message && (
           <p className="mt-3 text-xs text-slate-300 whitespace-pre-line">
             {message}

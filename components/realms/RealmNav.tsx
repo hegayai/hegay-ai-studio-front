@@ -1,8 +1,6 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
-
 const tabs = [
   { id: "all", label: "All Realms" },
   { id: "visual", label: "Visual" },
@@ -10,10 +8,8 @@ const tabs = [
   { id: "audio", label: "Audio" },
   { id: "systems", label: "Systems" },
 ];
-
 export default function RealmNav() {
   const [active, setActive] = useState("all");
-
   return (
     <nav className="mt-8 flex w-full items-center justify-between gap-4">
       <div className="inline-flex items-center gap-1 rounded-2xl border border-white/10 bg-black/30 p-1 backdrop-blur">
@@ -38,7 +34,6 @@ export default function RealmNav() {
           </button>
         ))}
       </div>
-
       <p className="text-[0.7rem] text-slate-500 uppercase tracking-[0.22em]">
         Realms Navigation
       </p>

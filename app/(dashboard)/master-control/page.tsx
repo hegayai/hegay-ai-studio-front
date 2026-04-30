@@ -1,7 +1,6 @@
 export default function MasterControlSystem() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-4xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function MasterControlSystem() {
           and OS‑level orchestration.
         </p>
       </div>
-
       {/* CONTROL DOMAINS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Control Domains</h2>
@@ -40,7 +38,6 @@ export default function MasterControlSystem() {
           ))}
         </div>
       </section>
-
       {/* MASTER OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Master Operations</h2>
@@ -63,24 +60,20 @@ export default function MasterControlSystem() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Master Control Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
               Global command panel (connect to backend). Executes system‑wide
               commands, overrides, optimizations, and policies.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Enter a global OS‑level command..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Execute
@@ -92,12 +85,10 @@ export default function MasterControlSystem() {
                 Optimize
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The Master Control System governs the entire OS.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
             <h3 className="font-medium text-sm">Active Master State</h3>
@@ -109,7 +100,6 @@ export default function MasterControlSystem() {
               <li>• Integration: Unified</li>
               <li>• Intelligence: Online</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Master Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic control</li>
@@ -118,10 +108,8 @@ export default function MasterControlSystem() {
               <li>• System‑design control</li>
             </ul>
           </div>
-
         </div>
       </section>
-
     </div>
   );
 }

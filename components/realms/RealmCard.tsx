@@ -1,14 +1,11 @@
 "use client";
-
 import React from "react";
 import { motion } from "framer-motion";
-
 type RealmCardProps = {
   title: string;
   description: string;
   accent: string; // gradient or color class
 };
-
 export default function RealmCard({ title, description, accent }: RealmCardProps) {
   return (
     <motion.div
@@ -21,13 +18,11 @@ export default function RealmCard({ title, description, accent }: RealmCardProps
       <div
         className={`absolute inset-0 opacity-20 blur-2xl bg-gradient-to-br ${accent}`}
       />
-
       {/* Content */}
       <div className="relative z-10 space-y-2">
         <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
         <p className="text-sm text-slate-400">{description}</p>
       </div>
-
       {/* Hover Shine */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition bg-gradient-to-t from-white/10 to-transparent" />
     </motion.div>

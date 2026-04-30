@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function ThreeDRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function ThreeDRealmPage() {
         description="The spatial imagination engine of your Creative OS — models, materials, lighting, and rendering systems."
         aura="from-cyan-500/40 to-blue-500/40"
       />
-
       <RealmToolPanel
         title="3D Tools"
         description="Tools for generating models, materials, lighting setups, and render pipelines."

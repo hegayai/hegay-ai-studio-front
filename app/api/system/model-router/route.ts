@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-
 export async function GET() {
   try {
     // Simulated model router state (replace with real router later)
@@ -33,9 +32,7 @@ export async function GET() {
         priority: "worker-mode",
       },
     ];
-
     const routingMode = "dynamic-load-balancing";
-
     return NextResponse.json({
       routingMode,
       models,

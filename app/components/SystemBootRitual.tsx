@@ -1,26 +1,18 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 export default function SystemBootRitual() {
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     const alreadyBooted = sessionStorage.getItem("hegay-os-booted");
     if (alreadyBooted === "true") return;
-
     setVisible(true);
     sessionStorage.setItem("hegay-os-booted", "true");
-
     const timeout = setTimeout(() => {
       setVisible(false);
     }, 2200);
-
     return () => clearTimeout(timeout);
   }, []);
-
   if (!visible) return null;
-
   return (
     <div
       className="

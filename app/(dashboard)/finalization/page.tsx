@@ -1,7 +1,6 @@
 export default function OSFinalizationEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-4xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function OSFinalizationEngine() {
           full activation of the complete creative operating system.
         </p>
       </div>
-
       {/* FINALIZATION DOMAINS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Finalization Domains</h2>
@@ -40,7 +38,6 @@ export default function OSFinalizationEngine() {
           ))}
         </div>
       </section>
-
       {/* FINALIZATION OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Finalization Operations</h2>
@@ -63,24 +60,20 @@ export default function OSFinalizationEngine() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Finalization Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
               Finalization panel (connect to backend). Executes full validation,
               optimization, sync, and sealing operations across the entire OS.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe the finalization operation you want the OS to perform..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Validate
@@ -92,13 +85,11 @@ export default function OSFinalizationEngine() {
                 Seal
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The OS Finalization Engine seals the architecture and prepares the
               system for full activation.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
             <h3 className="font-medium text-sm">Active Finalization State</h3>
@@ -110,7 +101,6 @@ export default function OSFinalizationEngine() {
               <li>• Intelligence: Synced</li>
               <li>• System: Ready</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Finalization Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic finalization</li>
@@ -119,10 +109,8 @@ export default function OSFinalizationEngine() {
               <li>• System‑design finalization</li>
             </ul>
           </div>
-
         </div>
       </section>
-
     </div>
   );
 }

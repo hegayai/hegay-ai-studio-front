@@ -1,8 +1,6 @@
 import { RealmInteraction } from "./presetInteraction";
-
 export function simulateRealmDynamicsV8(interactions: RealmInteraction[]) {
   const summary: string[] = [];
-
   interactions.forEach((i) => {
     summary.push(`
 ${i.source} → ${i.target}
@@ -11,10 +9,8 @@ ${i.source} → ${i.target}
 • Outcome: ${predictOutcome(i)}
 `);
   });
-
   return summary.join("\n");
 }
-
 function predictOutcome(i: RealmInteraction) {
   if (i.intensity > 0.7) return "Major structural shift";
   if (i.intensity > 0.5) return "Moderate cultural blending";

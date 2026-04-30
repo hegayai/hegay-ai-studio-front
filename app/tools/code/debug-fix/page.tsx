@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function DebugFixPage() {
   const [errorText, setErrorText] = useState("");
   const [codeSnippet, setCodeSnippet] = useState("");
@@ -12,31 +10,22 @@ export default function DebugFixPage() {
   const [focus, setFocus] = useState("Bug Fix");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleAnalyze() {
     if (!errorText.trim() && !codeSnippet.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real debug/fix analysis API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Debug & Fix Analysis (Mock)
-
 Focus: ${focus}
-
 Error / Context:
 ${errorText || "(no error text provided)"}
-
 Code Snippet:
 ${codeSnippet || "(no code snippet provided)"}
-
 This is placeholder analysis and suggested fix for the provided issue.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Debug & Fix Engine"
@@ -56,7 +45,6 @@ This is placeholder analysis and suggested fix for the provided issue.`
               onChange={(e) => setErrorText(e.target.value)}
             />
           </div>
-
           {/* Code Snippet */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -69,7 +57,6 @@ This is placeholder analysis and suggested fix for the provided issue.`
               onChange={(e) => setCodeSnippet(e.target.value)}
             />
           </div>
-
           {/* Context */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -82,7 +69,6 @@ This is placeholder analysis and suggested fix for the provided issue.`
               onChange={(e) => setContext(e.target.value)}
             />
           </div>
-
           {/* Focus */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -100,7 +86,6 @@ This is placeholder analysis and suggested fix for the provided issue.`
               <option>Best Practices</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleAnalyze}
@@ -120,14 +105,12 @@ This is placeholder analysis and suggested fix for the provided issue.`
               <p>Reading errors and mapping a fix path…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

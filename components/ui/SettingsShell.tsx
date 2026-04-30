@@ -1,5 +1,4 @@
 "use client";
-
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -10,7 +9,6 @@ import {
   FiCpu,
   FiGlobe,
 } from "react-icons/fi";
-
 const sections = [
   { id: "general", label: "General", icon: FiSettings },
   { id: "account", label: "Account", icon: FiUser },
@@ -19,14 +17,11 @@ const sections = [
   { id: "system", label: "System", icon: FiCpu },
   { id: "language", label: "Language & Region", icon: FiGlobe },
 ];
-
 export default function SettingsShell() {
   const [active, setActive] = useState("general");
-
   const ActiveIcon = sections.find((s) => s.id === active)?.icon ?? FiSettings;
   const activeLabel =
     sections.find((s) => s.id === active)?.label ?? "Settings";
-
   return (
     <div className="grid gap-8 md:grid-cols-[260px,1fr]">
       {/* Left: Sidebar */}
@@ -54,7 +49,6 @@ export default function SettingsShell() {
           })}
         </nav>
       </aside>
-
       {/* Right: Content */}
       <section className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">
         <header className="mb-6 flex items-center gap-3">
@@ -70,7 +64,6 @@ export default function SettingsShell() {
             </p>
           </div>
         </header>
-
         <motion.div
           key={active}
           initial={{ opacity: 0, y: 6 }}
@@ -89,17 +82,14 @@ export default function SettingsShell() {
     </div>
   );
 }
-
 /* -------------------------------------------------------
    INTERNAL COMPONENTS — STRICT MODE SAFE
 ------------------------------------------------------- */
-
 type CardProps = {
   title: string;
   description?: string;
   children?: ReactNode;
 };
-
 function Card({ title, description, children }: CardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 p-4">
@@ -111,12 +101,10 @@ function Card({ title, description, children }: CardProps) {
     </div>
   );
 }
-
 type ToggleRowProps = {
   label: string;
   hint?: string;
 };
-
 function ToggleRow({ label, hint }: ToggleRowProps) {
   return (
     <div className="flex items-center justify-between gap-4">
@@ -130,11 +118,9 @@ function ToggleRow({ label, hint }: ToggleRowProps) {
     </div>
   );
 }
-
 /* -------------------------------------------------------
    SETTINGS SECTIONS — STRICT MODE SAFE
 ------------------------------------------------------- */
-
 function GeneralSettings() {
   return (
     <>
@@ -145,7 +131,6 @@ function GeneralSettings() {
         <ToggleRow label="Use cosmic gradient theme" />
         <ToggleRow label="Enable subtle motion" />
       </Card>
-
       <Card
         title="Startup"
         description="Choose what you see when you enter the OS."
@@ -156,7 +141,6 @@ function GeneralSettings() {
     </>
   );
 }
-
 function AccountSettings() {
   return (
     <>
@@ -171,7 +155,6 @@ function AccountSettings() {
           Future: avatar, roles, multi‑profile support.
         </p>
       </Card>
-
       <Card
         title="Security"
         description="Strengthen access to your Creative OS."
@@ -182,7 +165,6 @@ function AccountSettings() {
     </>
   );
 }
-
 function NotificationSettings() {
   return (
     <>
@@ -193,7 +175,6 @@ function NotificationSettings() {
         <ToggleRow label="Backups & system health" />
         <ToggleRow label="New tools & features" />
       </Card>
-
       <Card
         title="Creative Activity"
         description="Signals from realms, studio, and collaborators."
@@ -204,7 +185,6 @@ function NotificationSettings() {
     </>
   );
 }
-
 function PrivacySettings() {
   return (
     <>
@@ -215,7 +195,6 @@ function PrivacySettings() {
         <ToggleRow label="Show recent activity on Dashboard" />
         <ToggleRow label="Show realm usage insights" />
       </Card>
-
       <Card
         title="Protection"
         description="Guardrails for sensitive creative work."
@@ -226,7 +205,6 @@ function PrivacySettings() {
     </>
   );
 }
-
 function SystemSettings() {
   return (
     <>
@@ -237,7 +215,6 @@ function SystemSettings() {
         <ToggleRow label="Enable high‑fidelity visuals" />
         <ToggleRow label="Prefer performance on low‑power devices" />
       </Card>
-
       <Card
         title="Backups"
         description="Continuity and restoration of your creative civilization."
@@ -248,7 +225,6 @@ function SystemSettings() {
     </>
   );
 }
-
 function LanguageSettings() {
   return (
     <>
@@ -261,7 +237,6 @@ function LanguageSettings() {
           Future: layered language packs, dialect‑aware UI, cultural modes.
         </p>
       </Card>
-
       <Card
         title="Region"
         description="Regional defaults for time, formats, and signals."

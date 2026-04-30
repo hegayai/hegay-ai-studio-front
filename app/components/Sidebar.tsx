@@ -1,14 +1,11 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 type NavItem = {
   href: string;
   label: string;
   badge?: string;
 };
-
 const NAV_ITEMS: NavItem[] = [
   { href: "/", label: "Dashboard" },
   { href: "/studio", label: "Studio" },
@@ -17,7 +14,6 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/archive", label: "Archive" },
   { href: "/signals", label: "Signals" },
 ];
-
 function SidebarLogo() {
   return (
     <div className="mb-6 flex items-center gap-2 px-4 pt-4">
@@ -33,7 +29,6 @@ function SidebarLogo() {
     </div>
   );
 }
-
 function SidebarNavItem({ item, active }: { item: NavItem; active: boolean }) {
   return (
     <Link
@@ -53,10 +48,8 @@ function SidebarNavItem({ item, active }: { item: NavItem; active: boolean }) {
     </Link>
   );
 }
-
 export default function Sidebar() {
   const pathname = usePathname() || "/";
-
   return (
     <aside
       className="
@@ -69,7 +62,6 @@ export default function Sidebar() {
       "
     >
       <SidebarLogo />
-
       <nav className="flex-1 space-y-1 px-2">
         {NAV_ITEMS.map((item) => {
           const active =
@@ -79,7 +71,6 @@ export default function Sidebar() {
           return <SidebarNavItem key={item.href} item={item} active={active} />;
         })}
       </nav>
-
       <div className="mt-auto px-4 pb-4 pt-2 border-t border-white/5 text-[11px] text-[var(--diamond-white)]/60">
         <div className="flex items-center justify-between">
           <span>World‑Soul: Stable</span>

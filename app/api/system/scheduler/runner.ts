@@ -1,22 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { exec } from "child_process";
-
 const schedulerDir = "C:\\HegayOS\\scheduler";
 const schedulerFile = path.join(schedulerDir, "schedules.json");
-
 const workflowDir = "C:\\HegayOS\\workflows";
 const workflowFile = path.join(workflowDir, "workflows.json");
-
 function loadJSON(file: string) {
   if (!fs.existsSync(file)) return [];
   return JSON.parse(fs.readFileSync(file, "utf8"));
 }
-
 function saveJSON(file: string, data: any) {
   fs.writeFileSync(file, JSON.stringify(data, null, 2));
 }
-
 function runWorkflow(steps: string[]) {
   steps.forEach((step) => {
     switch (step) {
@@ -45,26 +40,20 @@ function runWorkflow(steps: string[]) {
     }
   });
 }
-
 export function startScheduler() {
   setInterval(() => {
     const schedules = loadJSON(schedulerFile);
     const workflows = loadJSON(workflowFile);
-
     const now = Date.now();
-
     schedules.forEach((schedule: any) => {
       const workflow = workflows.find((w: any) => w.id === schedule.workflowId);
       if (!workflow) return;
-
       const lastRun = schedule.lastRun ? new Date(schedule.lastRun).getTime() : 0;
-
       if (now - lastRun >= schedule.interval * 1000) {
         runWorkflow(workflow.steps);
         schedule.lastRun = new Date().toISOString();
       }
     });
-
     saveJSON(schedulerFile, schedules);
   }, 30000);
 }

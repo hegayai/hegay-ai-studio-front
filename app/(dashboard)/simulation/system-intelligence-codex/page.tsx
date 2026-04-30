@@ -1,5 +1,4 @@
 // app/(dashboard)/simulation/system-intelligence-codex/page.tsx
-
 import React from "react";
 import {
   Cpu,
@@ -13,7 +12,6 @@ import {
   BarChart3,
   Sparkles,
 } from "lucide-react";
-
 export default function SystemIntelligenceCodexPage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -29,14 +27,12 @@ export default function SystemIntelligenceCodexPage() {
           civilizations, pantheon forces, and origin laws.
         </p>
       </header>
-
       {/* Intelligence Categories */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-8">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Intelligence Categories
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <CategoryCard
             icon={Activity}
@@ -55,19 +51,16 @@ export default function SystemIntelligenceCodexPage() {
           />
         </div>
       </section>
-
       {/* Intelligence Map */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Intelligence Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of system‑wide patterns, mythic flows,
           structural tensions, and predictive trajectories across all universes.
         </p>
-
         <div className="relative h-[450px] rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <MapDots />
@@ -77,14 +70,12 @@ export default function SystemIntelligenceCodexPage() {
           </div>
         </div>
       </section>
-
       {/* Predictive Metrics */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-8">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Predictive Metrics
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <MetricCard
             icon={BarChart3}
@@ -106,14 +97,12 @@ export default function SystemIntelligenceCodexPage() {
           />
         </div>
       </section>
-
       {/* Cross‑Layer Intelligence */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-8 space-y-8">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Cross‑Layer Intelligence
         </h2>
-
         <div className="space-y-4">
           <IntelligenceRow
             title="Realm Drift"
@@ -133,7 +122,6 @@ export default function SystemIntelligenceCodexPage() {
           />
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -146,15 +134,12 @@ export default function SystemIntelligenceCodexPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 type CategoryCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
 };
-
 function CategoryCard({ icon: Icon, title, description }: CategoryCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-5 py-5 space-y-2">
@@ -166,14 +151,12 @@ function CategoryCard({ icon: Icon, title, description }: CategoryCardProps) {
     </div>
   );
 }
-
 type MetricCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: string;
   description: string;
 };
-
 function MetricCard({ icon: Icon, label, value, description }: MetricCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-5 py-5 space-y-1">
@@ -190,12 +173,10 @@ function MetricCard({ icon: Icon, label, value, description }: MetricCardProps) 
     </div>
   );
 }
-
 type IntelligenceRowProps = {
   title: string;
   description: string;
 };
-
 function IntelligenceRow({ title, description }: IntelligenceRowProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/60 px-4 py-3 space-y-1">
@@ -204,9 +185,7 @@ function IntelligenceRow({ title, description }: IntelligenceRowProps) {
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function MapDots() {
   const dots = Array.from({ length: 150 });
   return (
@@ -223,11 +202,9 @@ function MapDots() {
     </svg>
   );
 }
-
 type NodeProps = {
   className?: string;
 };
-
 function MapNodes() {
   return (
     <div className="relative w-full h-full">
@@ -239,7 +216,6 @@ function MapNodes() {
     </div>
   );
 }
-
 function Node({ className }: NodeProps) {
   return (
     <div

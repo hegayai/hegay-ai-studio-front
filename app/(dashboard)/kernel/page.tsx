@@ -1,7 +1,6 @@
 export default function OSKernel() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-4xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function OSKernel() {
           modules ultimately depend on the Kernel.
         </p>
       </div>
-
       {/* KERNEL DOMAINS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Kernel Domains</h2>
@@ -40,7 +38,6 @@ export default function OSKernel() {
           ))}
         </div>
       </section>
-
       {/* KERNEL OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Kernel Operations</h2>
@@ -63,12 +60,10 @@ export default function OSKernel() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Kernel Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -76,12 +71,10 @@ export default function OSKernel() {
               updates, policy changes, subsystem restarts, and kernel‑level
               operations.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Enter a kernel‑level command..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Execute
@@ -93,12 +86,10 @@ export default function OSKernel() {
                 Restart
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The OS Kernel governs the deepest system operations.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
             <h3 className="font-medium text-sm">Active Kernel State</h3>
@@ -110,7 +101,6 @@ export default function OSKernel() {
               <li>• Lifecycle: Healthy</li>
               <li>• Heartbeat: Normal</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Kernel Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic kernel</li>
@@ -119,10 +109,8 @@ export default function OSKernel() {
               <li>• System‑design kernel</li>
             </ul>
           </div>
-
         </div>
       </section>
-
     </div>
   );
 }

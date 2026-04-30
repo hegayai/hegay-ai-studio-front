@@ -1,10 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 export default function TopbarProfileButton() {
   const [hover, setHover] = useState(false);
-
   const openProfileMenu = () => {
     const event = new KeyboardEvent("keydown", {
       key: "p",
@@ -13,7 +10,6 @@ export default function TopbarProfileButton() {
     });
     window.dispatchEvent(event);
   };
-
   return (
     <button
       onClick={openProfileMenu}

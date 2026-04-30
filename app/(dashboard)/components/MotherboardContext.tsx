@@ -1,7 +1,5 @@
 "use client";
-
 import { createContext, useContext, useState } from "react";
-
 type MotherboardSettings = {
   sidebar: boolean;
   taskbar: boolean;
@@ -21,15 +19,12 @@ type MotherboardSettings = {
     dream: boolean;
   };
 };
-
 type MotherboardContextType = {
   settings: MotherboardSettings;
   toggle: (key: keyof MotherboardSettings) => void;
   toggleRealm: (realm: keyof MotherboardSettings["realms"]) => void;
 };
-
 const MotherboardContext = createContext<MotherboardContextType | null>(null);
-
 export function MotherboardProvider({
   children,
 }: {
@@ -54,25 +49,21 @@ export function MotherboardProvider({
       dream: true,
     },
   });
-
   function toggle(key: keyof MotherboardSettings) {
     setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
   }
-
   function toggleRealm(realm: keyof MotherboardSettings["realms"]) {
     setSettings((prev) => ({
       ...prev,
       realms: { ...prev.realms, [realm]: !prev.realms[realm] },
     }));
   }
-
   return (
     <MotherboardContext.Provider value={{ settings, toggle, toggleRealm }}>
       {children}
     </MotherboardContext.Provider>
   );
 }
-
 export function useMotherboard() {
   const ctx = useContext(MotherboardContext);
   if (!ctx) throw new Error("useMotherboard must be used inside MotherboardProvider");

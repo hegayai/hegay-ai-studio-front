@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
-
 export async function POST(req: Request) {
   try {
     const { userId, key, content } = await req.json();
-
     if (!userId || !key || !content) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
-
     const saved = await prisma.memory.upsert({
       where: {
         userId_key: {
@@ -28,7 +25,6 @@ export async function POST(req: Request) {
         content,
       },
     });
-
     return NextResponse.json({
       success: true,
       memory: saved,

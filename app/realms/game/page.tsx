@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function GameRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function GameRealmPage() {
         description="The interactive systems engine of your Creative OS — gameplay loops, mechanics, agents, and progression models."
         aura="from-yellow-500/40 to-orange-500/40"
       />
-
       <RealmToolPanel
         title="Game Tools"
         description="Tools for building gameplay systems, AI agents, and interactive mechanics."

@@ -1,12 +1,9 @@
 "use client";
-
 import { useState } from "react";
-
 export default function OriginModelPage() {
   const [name, setName] = useState("");
   const [culture, setCulture] = useState("");
   const [prompt, setPrompt] = useState("");
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 lg:px-6 lg:py-8">
@@ -22,7 +19,6 @@ export default function OriginModelPage() {
             Generate mythic portraits, ancestral worlds, and lineage stories from identity and heritage.
           </p>
         </header>
-
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           {/* Left: Controls */}
           <section className="space-y-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4">
@@ -62,7 +58,6 @@ export default function OriginModelPage() {
               </button>
             </div>
           </section>
-
           {/* Right: Preview */}
           <section className="space-y-3 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">

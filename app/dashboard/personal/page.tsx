@@ -1,7 +1,6 @@
 export default function PersonalDashboard() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function PersonalDashboard() {
           This dashboard gives you full oversight of your creative civilization.
         </p>
       </div>
-
       {/* SYSTEM HEALTH */}
       <section>
         <h2 className="text-xl font-medium mb-4">System Health</h2>
@@ -33,7 +31,6 @@ export default function PersonalDashboard() {
           ))}
         </div>
       </section>
-
       {/* UNIVERSE ACTIVITY */}
       <section>
         <h2 className="text-xl font-medium mb-4">Universe Activity</h2>
@@ -53,7 +50,6 @@ export default function PersonalDashboard() {
           ))}
         </div>
       </section>
-
       {/* REALM OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Realm Operations</h2>
@@ -73,7 +69,6 @@ export default function PersonalDashboard() {
           ))}
         </div>
       </section>
-
       {/* ENGINE STATUS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Engine Status</h2>
@@ -96,7 +91,6 @@ export default function PersonalDashboard() {
           ))}
         </div>
       </section>
-
       {/* SYNC DIAGNOSTICS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Sync Diagnostics</h2>
@@ -116,7 +110,6 @@ export default function PersonalDashboard() {
           ))}
         </div>
       </section>
-
       {/* CREATIVE TASKS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Creative Tasks</h2>
@@ -136,7 +129,6 @@ export default function PersonalDashboard() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

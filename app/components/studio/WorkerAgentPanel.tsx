@@ -1,12 +1,9 @@
 "use client";
-
 import { useState, useEffect } from "react";
-
 export default function WorkerAgentPanel() {
   const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedJob, setSelectedJob] = useState<any | null>(null);
-
   // Load jobs from API
   async function loadJobs() {
     setLoading(true);
@@ -19,21 +16,17 @@ export default function WorkerAgentPanel() {
     }
     setLoading(false);
   }
-
   useEffect(() => {
     loadJobs();
   }, []);
-
   return (
     <div className="w-full p-8 space-y-8">
       <h1 className="text-4xl font-bold">Worker Agent</h1>
-
       <p className="text-gray-400 max-w-2xl">
         Monitor, inspect, and manage workflow jobs processed by the Hegay
         Worker Agent. This panel shows job status, results, and execution
         details.
       </p>
-
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-semibold">Job Queue</h2>
         <button
@@ -43,7 +36,6 @@ export default function WorkerAgentPanel() {
           Refresh
         </button>
       </div>
-
       {/* Job List */}
       <div className="rounded-xl border border-gray-800 bg-black/20 overflow-hidden">
         <table className="w-full text-left">
@@ -56,7 +48,6 @@ export default function WorkerAgentPanel() {
               <th className="p-3">Action</th>
             </tr>
           </thead>
-
           <tbody>
             {loading && (
               <tr>
@@ -65,7 +56,6 @@ export default function WorkerAgentPanel() {
                 </td>
               </tr>
             )}
-
             {!loading && jobs.length === 0 && (
               <tr>
                 <td colSpan={5} className="p-4 text-gray-500">
@@ -73,7 +63,6 @@ export default function WorkerAgentPanel() {
                 </td>
               </tr>
             )}
-
             {!loading &&
               jobs.map((job) => (
                 <tr
@@ -99,7 +88,6 @@ export default function WorkerAgentPanel() {
           </tbody>
         </table>
       </div>
-
       {/* Job Details Panel */}
       {selectedJob && (
         <div className="rounded-xl border border-gray-800 p-6 bg-black/30 space-y-4">
@@ -112,7 +100,6 @@ export default function WorkerAgentPanel() {
               Close
             </button>
           </div>
-
           <div className="space-y-2">
             <p>
               <span className="text-gray-400">Job ID:</span> {selectedJob.id}
@@ -130,7 +117,6 @@ export default function WorkerAgentPanel() {
               {new Date(selectedJob.createdAt).toLocaleString()}
             </p>
           </div>
-
           {/* Payload */}
           <div>
             <h4 className="text-lg font-semibold mb-2">Payload</h4>
@@ -138,7 +124,6 @@ export default function WorkerAgentPanel() {
               {JSON.stringify(selectedJob.payload, null, 2)}
             </pre>
           </div>
-
           {/* Result */}
           {selectedJob.result && (
             <div>
@@ -148,7 +133,6 @@ export default function WorkerAgentPanel() {
               </pre>
             </div>
           )}
-
           {/* Error */}
           {selectedJob.error && (
             <div>

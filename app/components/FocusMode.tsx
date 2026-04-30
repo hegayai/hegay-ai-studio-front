@@ -1,24 +1,18 @@
 "use client";
-
 import { createContext, useContext, useEffect, useState } from "react";
-
 type FocusContextType = {
   enabled: boolean;
   toggle: () => void;
 };
-
 const FocusContext = createContext<FocusContextType>({
   enabled: false,
   toggle: () => {},
 });
-
 export function useFocusMode() {
   return useContext(FocusContext);
 }
-
 export default function FocusModeProvider({ children }: { children: React.ReactNode }) {
   const [enabled, setEnabled] = useState(false);
-
   /* ---------------------------------------------------------
      LOAD USER PREFERENCE
      --------------------------------------------------------- */
@@ -29,14 +23,12 @@ export default function FocusModeProvider({ children }: { children: React.ReactN
       document.documentElement.classList.add("focus-mode");
     }
   }, []);
-
   /* ---------------------------------------------------------
      APPLY MODE
      --------------------------------------------------------- */
   const toggle = () => {
     const next = !enabled;
     setEnabled(next);
-
     if (next) {
       document.documentElement.classList.add("focus-mode");
       localStorage.setItem("hegay-focus-mode", "true");
@@ -45,7 +37,6 @@ export default function FocusModeProvider({ children }: { children: React.ReactN
       localStorage.setItem("hegay-focus-mode", "false");
     }
   };
-
   return (
     <FocusContext.Provider value={{ enabled, toggle }}>
       {children}
@@ -53,13 +44,11 @@ export default function FocusModeProvider({ children }: { children: React.ReactN
     </FocusContext.Provider>
   );
 }
-
 /* ---------------------------------------------------------
    FOCUS OVERLAY
    --------------------------------------------------------- */
 function FocusOverlay({ enabled }: { enabled: boolean }) {
   if (!enabled) return null;
-
   return (
     <div
       className="

@@ -1,5 +1,4 @@
 import ImageEngine from "@/src/components/studio/ImageEngine";
-
 export default function ImageEnginePage() {
   return (
     <div className="p-8">

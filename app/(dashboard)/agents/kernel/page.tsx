@@ -1,7 +1,6 @@
 export default function AgentKernel() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function AgentKernel() {
           Every agent in Hegay OS connects to the kernel.
         </p>
       </div>
-
       {/* CORE SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Kernel Systems</h2>
@@ -36,7 +34,6 @@ export default function AgentKernel() {
           ))}
         </div>
       </section>
-
       {/* CONTEXT LOADERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Context Loaders</h2>
@@ -59,7 +56,6 @@ export default function AgentKernel() {
           ))}
         </div>
       </section>
-
       {/* AGENT REGISTRY */}
       <section>
         <h2 className="text-xl font-medium mb-4">Registered Agents</h2>
@@ -82,7 +78,6 @@ export default function AgentKernel() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

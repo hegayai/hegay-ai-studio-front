@@ -1,7 +1,5 @@
 "use client";
-
 import RealmIntro from "../components/RealmIntro";
-
 export default function DreamPage() {
   return (
     <div className="p-6">

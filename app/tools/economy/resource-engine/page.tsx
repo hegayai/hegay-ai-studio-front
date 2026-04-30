@@ -1,38 +1,28 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function ResourceEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [type, setType] = useState("Natural Resource");
   const [tone, setTone] = useState("Neutral");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Resource System (Mock)
-
 Type: ${type}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing resources and supply chains.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Resource Engine"
@@ -46,7 +36,6 @@ This is placeholder metadata representing resources and supply chains.`
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={type}
@@ -58,7 +47,6 @@ This is placeholder metadata representing resources and supply chains.`
             <option>Magical Resource</option>
             <option>Technological Resource</option>
           </select>
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tone}
@@ -69,7 +57,6 @@ This is placeholder metadata representing resources and supply chains.`
             <option>Abundant</option>
             <option>Heroic</option>
           </select>
-
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}

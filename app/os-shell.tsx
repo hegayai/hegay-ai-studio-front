@@ -1,13 +1,10 @@
 "use client";
-
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 type OsShellProps = {
   children: ReactNode;
 };
-
 // Minimal brand glyph
 function BrandGlyph() {
   return (
@@ -17,7 +14,6 @@ function BrandGlyph() {
     </div>
   );
 }
-
 // Updated premium navigation
 const NAV_ITEMS = [
   { href: "/", label: "Origin" },
@@ -25,10 +21,8 @@ const NAV_ITEMS = [
   { href: "/studio", label: "Hegay Studio" },
   { href: "/realms", label: "Realms" },
 ];
-
 function Sidebar() {
   const pathname = usePathname();
-
   return (
     <nav className="flex flex-col gap-1 p-4 text-sm">
       {NAV_ITEMS.map((item) => {
@@ -50,7 +44,6 @@ function Sidebar() {
     </nav>
   );
 }
-
 function TopBar() {
   return (
     <div className="h-14 bg-black/40 backdrop-blur-xl border-b border-white/10 flex items-center justify-between px-4">
@@ -66,7 +59,6 @@ function TopBar() {
     </div>
   );
 }
-
 export function OsShell({ children }: OsShellProps) {
   return (
     <div className="flex h-screen w-full bg-black text-white">
@@ -74,7 +66,6 @@ export function OsShell({ children }: OsShellProps) {
       <div className="w-56 bg-black/40 border-r border-white/10 backdrop-blur-xl">
         <Sidebar />
       </div>
-
       {/* Main */}
       <div className="flex flex-col flex-1">
         <TopBar />

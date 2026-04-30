@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function RadioRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function RadioRealmPage() {
         description="The broadcast engine of your Creative OS — audio atmospheres, storytelling, live mixes, and diaspora radio intelligence."
         aura="from-amber-500/40 to-red-500/40"
       />
-
       <RealmToolPanel
         title="Radio Tools"
         description="Tools for crafting radio shows, mixing atmospheres, generating voices, and building immersive broadcast experiences."

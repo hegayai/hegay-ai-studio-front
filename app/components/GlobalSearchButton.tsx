@@ -1,10 +1,7 @@
 "use client";
-
 import { useState } from "react";
-
 export default function GlobalSearchButton() {
   const [hover, setHover] = useState(false);
-
   const openSearch = () => {
     const event = new KeyboardEvent("keydown", {
       key: "k",
@@ -13,7 +10,6 @@ export default function GlobalSearchButton() {
     });
     window.dispatchEvent(event);
   };
-
   return (
     <button
       onClick={openSearch}

@@ -1,23 +1,19 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
 import { getCurrentUser } from "@/lib/auth";
-
 export async function GET(req: Request) {
   try {
     const user = await getCurrentUser(req);
-
     if (!user) {
       return NextResponse.json(
         { error: "Unauthorized" },
         { status: 401 }
       );
     }
-
     const media = await prisma.media.findMany({
       where: { userId: user.id },
       orderBy: { createdAt: "desc" },
     });
-
     return NextResponse.json({ media });
   } catch (err: any) {
     return NextResponse.json(

@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
 import { hegayRouter } from "@/src/core/hegay-router";
-
 export async function POST(req: Request) {
   try {
     const { userId, message, threadId } = await req.json();
-
     const reply = await hegayRouter(message);
-
     // Save user message
     await prisma.message.create({
       data: {
@@ -16,7 +13,6 @@ export async function POST(req: Request) {
         content: message,
       },
     });
-
     // Save assistant reply
     const saved = await prisma.message.create({
       data: {
@@ -25,7 +21,6 @@ export async function POST(req: Request) {
         content: reply,
       },
     });
-
     return NextResponse.json({
       success: true,
       reply,

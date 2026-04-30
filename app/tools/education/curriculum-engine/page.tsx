@@ -1,38 +1,28 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function CurriculumEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [level, setLevel] = useState("Basic");
   const [tone, setTone] = useState("Structured");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Curriculum (Mock)
-
 Level: ${level}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing curricula and educational frameworks.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Curriculum Engine"
@@ -46,7 +36,6 @@ This is placeholder metadata representing curricula and educational frameworks.`
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={level}
@@ -57,7 +46,6 @@ This is placeholder metadata representing curricula and educational frameworks.`
             <option>Advanced</option>
             <option>Mastery</option>
           </select>
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tone}
@@ -68,7 +56,6 @@ This is placeholder metadata representing curricula and educational frameworks.`
             <option>Heroic</option>
             <option>Scholarly</option>
           </select>
-
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}

@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function VocalSynthPage() {
   const [lyrics, setLyrics] = useState("");
   const [voice, setVoice] = useState("Female Soft");
@@ -12,19 +10,14 @@ export default function VocalSynthPage() {
   const [emotion, setEmotion] = useState("Warm");
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
-
   async function handleGenerate() {
     if (!lyrics.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real vocal synthesis API
     await new Promise((r) => setTimeout(r, 1500));
-
     setAudioUrl("/placeholder-vocals.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Vocal Synth"
@@ -44,7 +37,6 @@ export default function VocalSynthPage() {
               onChange={(e) => setLyrics(e.target.value)}
             />
           </div>
-
           {/* Voice Type */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -64,7 +56,6 @@ export default function VocalSynthPage() {
               <option>Robotic</option>
             </select>
           </div>
-
           {/* Style */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -83,7 +74,6 @@ export default function VocalSynthPage() {
               <option>Distorted</option>
             </select>
           </div>
-
           {/* Emotion */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -102,7 +92,6 @@ export default function VocalSynthPage() {
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -122,14 +111,12 @@ export default function VocalSynthPage() {
               <p>Generating vocal performance…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && audioUrl && (
             <div className="w-full space-y-3">
               <audio controls className="w-full">
                 <source src={audioUrl} type="audio/mpeg" />
               </audio>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -143,7 +130,6 @@ export default function VocalSynthPage() {
               </div>
             </div>
           )}
-
           {/* Empty */}
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -1,5 +1,4 @@
 // app/(dashboard)/engines/pantheon-engine/page.tsx
-
 import React from "react";
 import {
   Star,
@@ -10,7 +9,6 @@ import {
   Feather,
   ArrowRight,
 } from "lucide-react";
-
 export default function PantheonEnginePage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -25,14 +23,12 @@ export default function PantheonEnginePage() {
           across realms and civilizations.
         </p>
       </header>
-
       {/* Archetype Selection */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Select Archetype
         </h2>
-
         <select className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-sm text-slate-200 focus:border-[#F5D48A66] outline-none">
           <option>Select an archetype...</option>
           <option>Weaver of Echoes</option>
@@ -42,20 +38,17 @@ export default function PantheonEnginePage() {
           <option>Bearer of Sparks</option>
           <option>Guardian of Thresholds</option>
         </select>
-
         <button className="px-4 py-2 rounded-full border border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] text-sm hover:bg-[#F5D48A33] transition-all inline-flex items-center gap-2">
           <Sparkles className="h-4 w-4" />
           Invoke Archetype
         </button>
       </section>
-
       {/* Resonance Output */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Resonance Field
         </h2>
-
         <div className="space-y-4 text-sm text-slate-300">
           <OutputBlock title="Mythic Influence" />
           <OutputBlock title="Cultural Resonance" />
@@ -64,19 +57,16 @@ export default function PantheonEnginePage() {
           <OutputBlock title="Cross‑Realm Impact" />
         </div>
       </section>
-
       {/* Visualization */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Archetype Resonance Map
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A visual representation of how the invoked archetype radiates influence
           across realms, civilizations, and mythic layers.
         </p>
-
         <div className="relative h-80 rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <ResonanceDots />
@@ -86,7 +76,6 @@ export default function PantheonEnginePage() {
           </div>
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -99,9 +88,7 @@ export default function PantheonEnginePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function OutputBlock({ title }: { title: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 space-y-1">
@@ -114,9 +101,7 @@ function OutputBlock({ title }: { title: string }) {
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function ResonanceDots() {
   const dots = Array.from({ length: 80 });
   return (
@@ -133,7 +118,6 @@ function ResonanceDots() {
     </svg>
   );
 }
-
 function ResonanceNodes() {
   return (
     <div className="relative w-full h-full">
@@ -145,7 +129,6 @@ function ResonanceNodes() {
     </div>
   );
 }
-
 function Node({ className }: { className: string }) {
   return (
     <div

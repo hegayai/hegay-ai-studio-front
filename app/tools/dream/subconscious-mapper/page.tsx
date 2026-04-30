@@ -1,31 +1,24 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function SubconsciousMapperPage() {
   const [symbol, setSymbol] = useState("");
   const [depth, setDepth] = useState("Surface");
   const [clarity, setClarity] = useState(50);
   const [loading, setLoading] = useState(false);
   const [resultUrl, setResultUrl] = useState("");
-
   async function handleGenerate() {
     if (!symbol.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real subconscious mapping API
     await new Promise((r) => setTimeout(r, 1200));
-
     setResultUrl(
       "https://via.placeholder.com/768x512.png?text=Subconscious+Map"
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Subconscious Mapper"
@@ -46,7 +39,6 @@ export default function SubconsciousMapperPage() {
               onChange={(e) => setSymbol(e.target.value)}
             />
           </div>
-
           {/* Depth */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -64,7 +56,6 @@ export default function SubconsciousMapperPage() {
               <option>Core Self</option>
             </select>
           </div>
-
           {/* Clarity */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -79,7 +70,6 @@ export default function SubconsciousMapperPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -98,7 +88,6 @@ export default function SubconsciousMapperPage() {
               <p>Rendering symbolic pathways…</p>
             </div>
           )}
-
           {!loading && resultUrl && (
             <div className="w-full space-y-2">
               <div className="overflow-hidden rounded-lg border border-white/10 bg-slate-900/60">
@@ -109,7 +98,6 @@ export default function SubconsciousMapperPage() {
                   className="h-64 w-full object-cover"
                 />
               </div>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -123,7 +111,6 @@ export default function SubconsciousMapperPage() {
               </div>
             </div>
           )}
-
           {!loading && !resultUrl && (
             <p className="text-xs text-slate-500 text-center px-4">
               Enter a symbol or archetype to generate a subconscious map.

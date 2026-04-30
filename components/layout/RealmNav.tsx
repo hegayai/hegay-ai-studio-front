@@ -1,18 +1,14 @@
 // components/layout/RealmNav.tsx
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Realms } from "@/lib/realms";
-
 export function RealmNav() {
   const pathname = usePathname();
-
   return (
     <nav className="space-y-1">
       {Object.entries(Realms).map(([key, realm]) => {
         const active = pathname === realm.path;
-
         return (
           <Link
             key={key}
@@ -31,4 +27,3 @@ export function RealmNav() {
     </nav>
   );
 }
-

@@ -1,7 +1,6 @@
 export default function BackgroundIntelligenceEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function BackgroundIntelligenceEngine() {
           stays intelligent, aligned, and ready at all times.
         </p>
       </div>
-
       {/* BACKGROUND MODES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Background Modes</h2>
@@ -37,7 +35,6 @@ export default function BackgroundIntelligenceEngine() {
           ))}
         </div>
       </section>
-
       {/* BACKGROUND OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Background Operations</h2>
@@ -60,12 +57,10 @@ export default function BackgroundIntelligenceEngine() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Background Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -73,12 +68,10 @@ export default function BackgroundIntelligenceEngine() {
               background tasks, reasoning threads, sync operations, and
               optimization cycles.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe the background operation you want the OS to run..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Start
@@ -90,16 +83,13 @@ export default function BackgroundIntelligenceEngine() {
                 Optimize
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The Background Intelligence Engine keeps the OS intelligent even
               when idle.
             </p>
           </div>
-
           {/* RIGHT PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Background State</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Background Reasoning: Active</li>
@@ -109,7 +99,6 @@ export default function BackgroundIntelligenceEngine() {
               <li>• Optimization Cycle: Continuous</li>
               <li>• Agent Collaboration: Background</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Background Sync Targets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Hegay Core AI</li>
@@ -119,7 +108,6 @@ export default function BackgroundIntelligenceEngine() {
               <li>• Asset Pipeline Engine</li>
               <li>• Creator Mode</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Background Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic background intelligence</li>
@@ -127,11 +115,9 @@ export default function BackgroundIntelligenceEngine() {
               <li>• Character‑centric background intelligence</li>
               <li>• System‑design background intelligence</li>
             </ul>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

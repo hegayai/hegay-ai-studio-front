@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const body = await req.json();
   const { name, invocation } = body;
-
   const res = await fetch(process.env.PANTHEON_INVOKE_API_URL!, {
     method: "POST",
     headers: {
@@ -15,7 +13,6 @@ export async function POST(req: Request) {
       invocation,
     }),
   });
-
   const data = await res.json();
   return NextResponse.json(data);
 }

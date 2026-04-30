@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
-
 export async function POST(req: Request) {
   try {
     const { userId, planId, status } = await req.json();
-
     if (!userId || !planId) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
-
     // Upsert the user's subscription
     const updated = await prisma.userSubscription.upsert({
       where: { userId },
@@ -26,7 +23,6 @@ export async function POST(req: Request) {
         expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
       },
     });
-
     return NextResponse.json({
       success: true,
       subscription: updated,

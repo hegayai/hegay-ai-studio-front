@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function SonicAtmospherePage() {
   const [prompt, setPrompt] = useState("");
   const [texture, setTexture] = useState("Warm Pad");
@@ -12,19 +10,14 @@ export default function SonicAtmospherePage() {
   const [space, setSpace] = useState("Wide");
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real atmosphere generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setAudioUrl("/placeholder-atmosphere.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Sonic Atmosphere Engine"
@@ -44,7 +37,6 @@ export default function SonicAtmospherePage() {
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Texture */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -64,7 +56,6 @@ export default function SonicAtmospherePage() {
               <option>Water Flow</option>
             </select>
           </div>
-
           {/* Intensity */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -79,7 +70,6 @@ export default function SonicAtmospherePage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Space */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -97,7 +87,6 @@ export default function SonicAtmospherePage() {
               <option>Deep Field</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -117,14 +106,12 @@ export default function SonicAtmospherePage() {
               <p>Shaping emotional space…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && audioUrl && (
             <div className="w-full space-y-3">
               <audio controls className="w-full">
                 <source src={audioUrl} type="audio/mpeg" />
               </audio>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -138,7 +125,6 @@ export default function SonicAtmospherePage() {
               </div>
             </div>
           )}
-
           {/* Empty */}
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500 text-center px-4">

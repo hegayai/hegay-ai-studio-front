@@ -2,25 +2,20 @@ import { callGroq } from "./providers/groq";
 import { callDeepSeek } from "./providers/deepseek";
 import { callFal } from "./providers/fal";
 import { callOpenAI } from "./providers/openai";
-
 export type Provider = "groq" | "deepseek" | "fal" | "openai" | "local";
-
 export type ModelCallInput = {
   provider?: Provider;
   model: string;
   systemPrompt?: string;
   prompt: string;
 };
-
 export type ModelCallResult = {
   output: string;
   provider: Provider;
   model: string;
 };
-
 export async function callModel(input: ModelCallInput): Promise<ModelCallResult> {
   const provider = input.provider || "local";
-
   switch (provider) {
     case "groq":
       return callGroq(input);

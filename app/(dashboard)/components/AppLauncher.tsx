@@ -1,22 +1,17 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useTabs } from "./TabManager";
 import { useWindows } from "./WindowManager";
 import { useDesktop } from "./DesktopRegistry";
-
 export default function AppLauncher() {
   const [open, setOpen] = useState(false);
-
   // SAFE FALLBACKS to prevent null errors
   const tabs = useTabs() || { openTab: () => {} };
   const windows = useWindows() || { openWindow: () => {} };
   const desktop = useDesktop() || { items: [] };
-
   const { openTab } = tabs;
   const { openWindow } = windows;
   const { items } = desktop;
-
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -25,16 +20,13 @@ export default function AppLauncher() {
         setOpen((prev) => !prev);
       }
     }
-
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
-
   function launch(item: any) {
     if (item.type === "realm") {
       openTab(item.label, item.path);
     }
-
     if (item.type === "ritual") {
       openWindow(
         <div className="text-sm opacity-80">
@@ -43,16 +35,12 @@ export default function AppLauncher() {
         item.label
       );
     }
-
     setOpen(false);
   }
-
   if (!open) return null;
-
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-xl z-50 flex flex-col items-center pt-24">
       <h1 className="text-4xl font-bold mb-10 opacity-90">Hegay OS Launcher</h1>
-
       <div className="grid grid-cols-6 gap-10 px-20">
         {items.map((item: any) => (
           <button

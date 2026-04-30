@@ -1,9 +1,7 @@
 "use client";
-
 import { GlowShell } from "@/components/MotionProvider";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
 const realmOptions = [
   "Origin Realm",
   "Culture Realm",
@@ -11,11 +9,9 @@ const realmOptions = [
   "Economy Realm",
   "Education Realm",
 ];
-
 export default function CrossRealmEnginePage() {
   const [selectedRealms, setSelectedRealms] = useState<string[]>([]);
   const [input, setInput] = useState("");
-
   const toggleRealm = (realm: string) => {
     setSelectedRealms((prev) =>
       prev.includes(realm)
@@ -23,7 +19,6 @@ export default function CrossRealmEnginePage() {
         : [...prev, realm]
     );
   };
-
   return (
     <div className="min-h-screen w-full">
       <div className="mx-auto max-w-6xl pt-10 pb-20 px-6">
@@ -41,7 +36,6 @@ export default function CrossRealmEnginePage() {
             Combine multiple realms into a unified generative pipeline
           </p>
         </motion.div>
-
         {/* MAIN PANEL */}
         <GlowShell>
           <div className="space-y-10">
@@ -50,11 +44,9 @@ export default function CrossRealmEnginePage() {
               title="What This Does"
               text="The Cross‑Realm Engine allows creators to combine any number of realms into a single generative request. This is the inter‑realm synthesis chamber of your Creative Civilization OS, enabling hybrid identity, culture‑governance blends, economic‑mythic fusion, and more."
             />
-
             {/* SECTION: REALM SELECTOR */}
             <section className="space-y-4">
               <h2 className="text-xl font-medium text-white">Select Realms</h2>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {realmOptions.map((realm, index) => (
                   <motion.button
@@ -74,13 +66,11 @@ export default function CrossRealmEnginePage() {
                 ))}
               </div>
             </section>
-
             {/* SECTION: INPUT */}
             <section className="space-y-4">
               <h2 className="text-xl font-medium text-white">
                 Describe Your Hybrid Request
               </h2>
-
               <motion.textarea
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -91,7 +81,6 @@ export default function CrossRealmEnginePage() {
                 className="w-full h-40 rounded-xl bg-white/5 border border-white/10 p-4 text-slate-200 placeholder-slate-500 backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-white/20"
               />
             </section>
-
             {/* SECTION: ACTION BUTTON */}
             <motion.button
               whileHover={{ scale: 1.03 }}
@@ -107,7 +96,6 @@ export default function CrossRealmEnginePage() {
             >
               Generate Cross‑Realm Output
             </motion.button>
-
             {/* SECTION: OUTPUT PANEL */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -118,7 +106,6 @@ export default function CrossRealmEnginePage() {
               <h2 className="text-xl font-medium text-white mb-4">
                 Cross‑Realm Output
               </h2>
-
               <p className="text-slate-400 text-sm">
                 Your hybrid generative output will appear here.  
                 This panel will display:
@@ -137,11 +124,9 @@ export default function CrossRealmEnginePage() {
     </div>
   );
 }
-
 /* --------------------------------------------- */
 /* SECTION COMPONENT                             */
 /* --------------------------------------------- */
-
 function Section({ title, text }: { title: string; text: string }) {
   return (
     <motion.div

@@ -1,5 +1,4 @@
 "use client";
-
 export default function PresetsPage() {
   const presets = [
     { name: "Mythic Civilization", desc: "Ancient, heroic, divine‑influenced." },
@@ -8,14 +7,12 @@ export default function PresetsPage() {
     { name: "Trade Empire", desc: "Economy‑heavy, merchant guilds, markets." },
     { name: "Scholarly Nation", desc: "Education‑focused, knowledge‑driven." },
   ];
-
   return (
     <div className="p-6 rounded-xl bg-black/40 border border-white/10">
       <h1 className="text-xl font-semibold text-white">Presets</h1>
       <p className="text-xs text-slate-400 mt-1">
         One‑click templates for creators.
       </p>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
         {presets.map((p, i) => (
           <div

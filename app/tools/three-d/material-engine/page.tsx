@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function MaterialEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [materialType, setMaterialType] = useState("PBR");
@@ -12,30 +10,22 @@ export default function MaterialEnginePage() {
   const [resolution, setResolution] = useState("2K");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real material generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Material (Mock)
-
 Material Type: ${materialType}
 Style: ${style}
 Resolution: ${resolution}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated material and texture maps.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Material Engine"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated material and texture map
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Material Type */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -72,7 +61,6 @@ This is placeholder metadata representing the generated material and texture map
               <option>Shader Graph</option>
             </select>
           </div>
-
           {/* Style */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -90,7 +78,6 @@ This is placeholder metadata representing the generated material and texture map
               <option>Anime</option>
             </select>
           </div>
-
           {/* Resolution */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -107,7 +94,6 @@ This is placeholder metadata representing the generated material and texture map
               <option>8K</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -127,14 +113,12 @@ This is placeholder metadata representing the generated material and texture map
               <p>Creating texture maps…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

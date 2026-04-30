@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function StateMachineEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [machineType, setMachineType] = useState("Finite State Machine");
@@ -12,30 +10,22 @@ export default function StateMachineEnginePage() {
   const [complexity, setComplexity] = useState("Medium");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real state machine generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated State Machine (Mock)
-
 Machine Type: ${machineType}
 Transition Mode: ${transitionMode}
 Complexity: ${complexity}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated state machine and transition logic.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="State Machine Engine"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated state machine and transi
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Machine Type */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -73,7 +62,6 @@ This is placeholder metadata representing the generated state machine and transi
               <option>Custom Logic System</option>
             </select>
           </div>
-
           {/* Transition Mode */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -91,7 +79,6 @@ This is placeholder metadata representing the generated state machine and transi
               <option>Hybrid</option>
             </select>
           </div>
-
           {/* Complexity */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -108,7 +95,6 @@ This is placeholder metadata representing the generated state machine and transi
               <option>Extreme</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -128,14 +114,12 @@ This is placeholder metadata representing the generated state machine and transi
               <p>Mapping states and transitions…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

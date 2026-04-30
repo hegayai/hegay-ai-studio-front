@@ -1,10 +1,7 @@
 "use client";
-
 import { useMinimalMotion } from "./MinimalMotionProvider";
-
 export default function MinimalMotionToggle() {
   const { minimal, toggleMinimal } = useMinimalMotion();
-
   return (
     <button
       onClick={toggleMinimal}

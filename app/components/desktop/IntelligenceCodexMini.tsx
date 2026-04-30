@@ -1,5 +1,4 @@
 // app/components/desktop/IntelligenceCodexMini.tsx
-
 export default function IntelligenceCodexMini() {
   return (
     <div className="space-y-2">

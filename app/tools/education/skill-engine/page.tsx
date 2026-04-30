@@ -1,38 +1,28 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function SkillEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [tree, setTree] = useState("General Skill Tree");
   const [tone, setTone] = useState("Neutral");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Skill Tree (Mock)
-
 Tree: ${tree}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing skills, competencies, and mastery paths.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Skill Engine"
@@ -46,7 +36,6 @@ This is placeholder metadata representing skills, competencies, and mastery path
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tree}
@@ -58,7 +47,6 @@ This is placeholder metadata representing skills, competencies, and mastery path
             <option>Leadership Skills</option>
             <option>Creative Skills</option>
           </select>
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tone}
@@ -69,7 +57,6 @@ This is placeholder metadata representing skills, competencies, and mastery path
             <option>Scholarly</option>
             <option>Ancient</option>
           </select>
-
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}

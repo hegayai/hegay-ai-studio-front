@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function MusicGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [genre, setGenre] = useState("Cinematic");
@@ -12,19 +10,14 @@ export default function MusicGeneratorPage() {
   const [mood, setMood] = useState("Emotional");
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real music generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setAudioUrl("/placeholder-music.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Music Generator"
@@ -44,7 +37,6 @@ export default function MusicGeneratorPage() {
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Genre */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -65,7 +57,6 @@ export default function MusicGeneratorPage() {
               <option>Lo‑Fi</option>
             </select>
           </div>
-
           {/* Tempo */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -80,7 +71,6 @@ export default function MusicGeneratorPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Mood */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -99,7 +89,6 @@ export default function MusicGeneratorPage() {
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -118,13 +107,11 @@ export default function MusicGeneratorPage() {
               <p>Composing musical structure…</p>
             </div>
           )}
-
           {!loading && audioUrl && (
             <div className="w-full space-y-2">
               <audio controls className="w-full">
                 <source src={audioUrl} type="audio/mpeg" />
               </audio>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -138,7 +125,6 @@ export default function MusicGeneratorPage() {
               </div>
             </div>
           )}
-
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500 text-center px-4">
               Describe a musical idea to generate your first composition.

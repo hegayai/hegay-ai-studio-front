@@ -1,10 +1,7 @@
 "use client";
-
 import { useTabs } from "./TabManager";
-
 export default function TabBar() {
   const { tabs, active, switchTab, closeTab } = useTabs();
-
   return (
     <div className="fixed top-0 left-0 right-0 h-12 bg-black/40 backdrop-blur border-b border-white/10 flex items-center gap-3 px-4">
       {tabs.map((tab) => (
@@ -19,7 +16,6 @@ export default function TabBar() {
         >
           {/* FIXED: tab.label → tab.title */}
           <span>{tab.title}</span>
-
           <span
             onClick={(e) => {
               e.stopPropagation();

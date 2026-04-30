@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { exec } from "child_process";
-
 const PROJECT_DIR = `C:\\Users\\HEGAY COMMUNICATIONS\\hegay-ai-studio`;
-
 function run(command: string): Promise<{ ok: boolean; error?: string }> {
   return new Promise((resolve) => {
     exec(command, (error, _stdout, stderr) => {
@@ -14,10 +12,8 @@ function run(command: string): Promise<{ ok: boolean; error?: string }> {
     });
   });
 }
-
 export async function POST(request: Request) {
   const { action } = await request.json();
-
   try {
     if (action === "start") {
       const result = await run(
@@ -31,7 +27,6 @@ export async function POST(request: Request) {
       }
       return NextResponse.json({ success: true, message: "Server started" });
     }
-
     if (action === "stop") {
       const result = await run(`taskkill /F /IM node.exe`);
       if (!result.ok) {
@@ -42,7 +37,6 @@ export async function POST(request: Request) {
       }
       return NextResponse.json({ success: true, message: "Server stopped" });
     }
-
     if (action === "restart") {
       const stop = await run(`taskkill /F /IM node.exe`);
       if (!stop.ok) {
@@ -51,7 +45,6 @@ export async function POST(request: Request) {
           { status: 500 }
         );
       }
-
       const start = await run(
         `cmd /c "cd /d ${PROJECT_DIR} && npm run dev"`
       );
@@ -61,10 +54,8 @@ export async function POST(request: Request) {
           { status: 500 }
         );
       }
-
       return NextResponse.json({ success: true, message: "Server restarted" });
     }
-
     return NextResponse.json(
       { success: false, message: "Invalid action" },
       { status: 400 }

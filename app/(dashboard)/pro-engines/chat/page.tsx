@@ -1,7 +1,6 @@
 export default function ChatEnginePro() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function ChatEnginePro() {
           intelligence across Hegay OS.
         </p>
       </div>
-
       {/* PRIMARY ACTIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Primary Modes</h2>
@@ -37,7 +35,6 @@ export default function ChatEnginePro() {
           ))}
         </div>
       </section>
-
       {/* CONTEXT LOADERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Context Loaders</h2>
@@ -60,12 +57,10 @@ export default function ChatEnginePro() {
           ))}
         </div>
       </section>
-
       {/* CHAT PANEL LAYOUT (STATIC SHELL) */}
       <section>
         <h2 className="text-xl font-medium mb-4">Chat Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* CHAT AREA */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[320px]">
             <div className="opacity-70 text-sm">
@@ -90,7 +85,6 @@ export default function ChatEnginePro() {
               </p>
             </div>
           </div>
-
           {/* RIGHT SIDEBAR */}
           <div className="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
             <h3 className="font-medium text-sm">Attached Context</h3>
@@ -102,7 +96,6 @@ export default function ChatEnginePro() {
               <li>• Character: Aruwa — Dawn Incarnate</li>
               <li>• Story Arc: Diaspora Hero Arc</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Output Routing</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Save to: Script Engine Pro</li>
@@ -110,7 +103,6 @@ export default function ChatEnginePro() {
               <li>• Save to: Story Arc Engine</li>
               <li>• Save to: Character Genome Engine</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic tone</li>
@@ -121,7 +113,6 @@ export default function ChatEnginePro() {
           </div>
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Chat Engine Systems</h2>
@@ -144,7 +135,6 @@ export default function ChatEnginePro() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

@@ -1,9 +1,7 @@
 "use client";
-
 import { useDesktop } from "./DesktopRegistry";
 import { useTabs } from "./TabManager";
 import { useWindows } from "./WindowManager";
-
 type DesktopItem = {
   id: string;
   label: string;
@@ -11,17 +9,14 @@ type DesktopItem = {
   path?: string;
   action?: string;
 };
-
 export default function Desktop() {
   const { items } = useDesktop();
   const { openTab } = useTabs();
   const { openWindow } = useWindows();
-
   function handleClick(item: DesktopItem) {
     if (item.type === "realm") {
       openTab(item.label, item.path || "");
     }
-
     if (item.type === "ritual") {
       openWindow(
         <div className="text-sm opacity-80">
@@ -31,7 +26,6 @@ export default function Desktop() {
       );
     }
   }
-
   return (
     <div className="grid grid-cols-6 gap-6 p-6">
       {items.map((item: DesktopItem) => (

@@ -1,7 +1,5 @@
 "use client";
-
 import { UltraAdaptivePresetPage } from "@/components/UltraAdaptivePresetPage";
-
 export default function HarmonyCollectivePage() {
   const template = `
 Civilization Name: {{civ_name}}
@@ -25,7 +23,6 @@ Migration Pattern: {{migration_pattern}}
 Artistic Signature: {{artistic_signature}}
 Hidden Weakness: {{hidden_weakness}}
 `;
-
   return (
     <UltraAdaptivePresetPage
       presetId="harmony-collective"
@@ -44,25 +41,21 @@ Hidden Weakness: {{hidden_weakness}}
         { key: "civ_name", label: "Civilization Name", defaultValue: "Harmony Collective", section: "Identity" },
         { key: "founding_myth", label: "Founding Myth", defaultValue: "Born from the First Resonance", section: "Identity" },
         { key: "core_value", label: "Core Value", defaultValue: "Balance through shared emotion", section: "Identity" },
-
         // Culture
         { key: "ritual_system", label: "Ritual System", defaultValue: "Ceremonies of synchronized breath", section: "Culture" },
         { key: "primary_emotion", label: "Primary Emotion", defaultValue: "Collective serenity", section: "Culture" },
         { key: "cultural_expression", label: "Cultural Expression", defaultValue: "Harmonic chanting and fluid movement", section: "Culture" },
         { key: "artistic_signature", label: "Artistic Signature", defaultValue: "Living sculptures that shift with sound", section: "Culture" },
-
         // Structure
         { key: "governance_structure", label: "Governance Structure", defaultValue: "Council of Resonant Voices", section: "Structure" },
         { key: "economic_model", label: "Economic Model", defaultValue: "Shared abundance economy", section: "Structure" },
         { key: "trade_specialty", label: "Trade Specialty", defaultValue: "Emotion‑infused artifacts", section: "Structure" },
         { key: "social_hierarchy", label: "Social Hierarchy", defaultValue: "Fluid roles based on emotional clarity", section: "Structure" },
         { key: "primary_resource", label: "Primary Resource", defaultValue: "Crystals that store collective memory", section: "Structure" },
-
         // Spirit
         { key: "spiritual_framework", label: "Spiritual Framework", defaultValue: "The Path of Inner Echoes", section: "Spirit" },
         { key: "memory_source", label: "Collective Memory Source", defaultValue: "Ancestral resonance wells", section: "Spirit" },
         { key: "hidden_weakness", label: "Hidden Weakness", defaultValue: "Over‑dependence on emotional harmony", section: "Spirit" },
-
         // Flow
         { key: "conflict_resolution", label: "Conflict Resolution Style", defaultValue: "Ritualized emotional alignment", section: "Flow" },
         { key: "diplomatic_stance", label: "Diplomatic Stance", defaultValue: "Peaceful but firm in values", section: "Flow" },

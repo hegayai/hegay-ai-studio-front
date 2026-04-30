@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function GameplayEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [genre, setGenre] = useState("Action");
@@ -12,30 +10,22 @@ export default function GameplayEnginePage() {
   const [perspective, setPerspective] = useState("Third-Person");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real gameplay system generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Gameplay System (Mock)
-
 Genre: ${genre}
 Complexity: ${complexity}
 Perspective: ${perspective}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated gameplay mechanics and rules.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Gameplay Engine"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated gameplay mechanics and r
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Genre */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -75,7 +64,6 @@ This is placeholder metadata representing the generated gameplay mechanics and r
               <option>Horror</option>
             </select>
           </div>
-
           {/* Complexity */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -92,7 +80,6 @@ This is placeholder metadata representing the generated gameplay mechanics and r
               <option>Extreme</option>
             </select>
           </div>
-
           {/* Perspective */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -110,7 +97,6 @@ This is placeholder metadata representing the generated gameplay mechanics and r
               <option>Side-Scroller</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -130,14 +116,12 @@ This is placeholder metadata representing the generated gameplay mechanics and r
               <p>Designing mechanics…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -1,19 +1,14 @@
 "use client";
-
 import { useFileSystem } from "./FileSystem";
 import { useWindows } from "./WindowManager";
-
 type FileExplorerProps = {
   folder: string;
 };
-
 export default function FileExplorer({ folder }: FileExplorerProps) {
   // Tell TypeScript this context is guaranteed to exist
   const { files, folders } = useFileSystem()!;
   const { openWindow } = useWindows();
-
   const currentFiles = files.filter((f: any) => f.folder === folder);
-
   function openFile(file: any) {
     if (file.type === "ritual") {
       openWindow(
@@ -23,7 +18,6 @@ export default function FileExplorer({ folder }: FileExplorerProps) {
         file.name
       );
     }
-
     if (file.type === "document") {
       openWindow(
         <pre className="whitespace-pre-wrap text-sm opacity-80">
@@ -33,7 +27,6 @@ export default function FileExplorer({ folder }: FileExplorerProps) {
       );
     }
   }
-
   return (
     <div className="grid grid-cols-4 gap-6 p-6">
       {currentFiles.map((file: any) => (

@@ -1,10 +1,7 @@
 // app/components/ui/index.tsx
-
 import React from "react";
 import { cn } from "@/lib/utils";
-
 /* ───────────────── BUTTONS ───────────────── */
-
 export function Button({
   children,
   className,
@@ -18,7 +15,6 @@ export function Button({
 }) {
   const base =
     "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm transition-all border";
-
   const variants = {
     default:
       "border-white/10 text-slate-200 hover:border-[#F5D48A66] hover:text-[#F5D48A]",
@@ -26,16 +22,13 @@ export function Button({
       "border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] hover:bg-[#F5D48A33]",
     ghost: "border-transparent text-slate-400 hover:text-slate-200",
   };
-
   return (
     <button className={cn(base, variants[variant], className)} {...props}>
       {children}
     </button>
   );
 }
-
 /* ───────────────── INPUTS ───────────────── */
-
 export function Input({
   className,
   ...props
@@ -53,9 +46,7 @@ export function Input({
     />
   );
 }
-
 /* ───────────────── TEXTAREA ───────────────── */
-
 export function TextArea({
   className,
   ...props
@@ -73,9 +64,7 @@ export function TextArea({
     />
   );
 }
-
 /* ───────────────── CARD ───────────────── */
-
 export function Card({
   children,
   className,
@@ -97,9 +86,7 @@ export function Card({
     </div>
   );
 }
-
 /* ───────────────── PANEL ───────────────── */
-
 export function Panel({
   children,
   className,
@@ -121,9 +108,7 @@ export function Panel({
     </div>
   );
 }
-
 /* ───────────────── SECTION HEADER ───────────────── */
-
 export function SectionHeader({
   title,
   subtitle,
@@ -143,9 +128,7 @@ export function SectionHeader({
     </div>
   );
 }
-
 /* ───────────────── PILL ───────────────── */
-
 export function Pill({
   label,
   value,
@@ -160,9 +143,7 @@ export function Pill({
     </div>
   );
 }
-
 /* ───────────────── CHIP ───────────────── */
-
 export function Chip({
   children,
   className,
@@ -181,9 +162,7 @@ export function Chip({
     </div>
   );
 }
-
 /* ───────────────── BADGE ───────────────── */
-
 export function Badge({
   children,
   className,
@@ -202,9 +181,7 @@ export function Badge({
     </span>
   );
 }
-
 /* ───────────────── DIVIDER ───────────────── */
-
 export function Divider({ className }: { className?: string }) {
   return (
     <div
@@ -212,9 +189,7 @@ export function Divider({ className }: { className?: string }) {
     />
   );
 }
-
 /* ───────────────── GLOW WRAPPER ───────────────── */
-
 export function Glow({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative">
@@ -223,9 +198,7 @@ export function Glow({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
 /* ───────────────── ICON WRAPPER ───────────────── */
-
 export function IconWrap({
   children,
   className,

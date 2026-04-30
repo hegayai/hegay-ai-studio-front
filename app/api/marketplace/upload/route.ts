@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const { name, file } = await req.json();
-
   const res = await fetch(process.env.MARKETPLACE_UPLOAD_API_URL!, {
     method: "POST",
     headers: {
@@ -14,7 +12,6 @@ export async function POST(req: Request) {
       file,
     }),
   });
-
   const data = await res.json();
   return NextResponse.json(data);
 }

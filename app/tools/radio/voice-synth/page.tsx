@@ -1,28 +1,21 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function VoiceSynthPage() {
   const [text, setText] = useState("");
   const [voice, setVoice] = useState("Warm");
   const [pitch, setPitch] = useState("Normal");
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
-
   async function handleGenerate() {
     if (!text.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1000));
-
     setAudioUrl("/placeholder-voice.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Voice Synth"
@@ -41,7 +34,6 @@ export default function VoiceSynthPage() {
               onChange={(e) => setText(e.target.value)}
             />
           </div>
-
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -59,7 +51,6 @@ export default function VoiceSynthPage() {
                 <option>Whisper</option>
               </select>
             </div>
-
             <div>
               <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
                 Pitch
@@ -75,7 +66,6 @@ export default function VoiceSynthPage() {
               </select>
             </div>
           </div>
-
           <button
             onClick={handleGenerate}
             disabled={loading || !text.trim()}
@@ -90,13 +80,11 @@ export default function VoiceSynthPage() {
           {loading && (
             <p className="text-xs text-slate-300">Synthesizing voice…</p>
           )}
-
           {!loading && audioUrl && (
             <audio controls className="w-full">
               <source src={audioUrl} type="audio/mpeg" />
             </audio>
           )}
-
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500">
               Enter text to synthesize a voice.

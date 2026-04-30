@@ -1,12 +1,9 @@
 "use client";
-
 import { GlowShell } from "@/components/MotionProvider";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
 export default function WorldBuilderPage() {
   const [input, setInput] = useState("");
-
   return (
     <div className="min-h-screen w-full">
       <div className="mx-auto max-w-6xl pt-10 pb-20 px-6">
@@ -24,7 +21,6 @@ export default function WorldBuilderPage() {
             Generate entire worlds using all realms and creation engines
           </p>
         </motion.div>
-
         {/* MAIN PANEL */}
         <GlowShell>
           <div className="space-y-10">
@@ -33,11 +29,9 @@ export default function WorldBuilderPage() {
               title="What This Does"
               text="The World Builder synthesizes all five realms — Origin, Culture, Governance, Economy, and Education — into a unified world generation pipeline. This is the sovereign creation chamber of your Creative Civilization OS."
             />
-
             {/* SECTION: INPUT */}
             <section className="space-y-4">
               <h2 className="text-xl font-medium text-white">Describe Your World</h2>
-
               <motion.textarea
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -48,7 +42,6 @@ export default function WorldBuilderPage() {
                 className="w-full h-40 rounded-xl bg-white/5 border border-white/10 p-4 text-slate-200 placeholder-slate-500 backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-white/20"
               />
             </section>
-
             {/* SECTION: ACTION BUTTON */}
             <motion.button
               whileHover={{ scale: 1.03 }}
@@ -59,7 +52,6 @@ export default function WorldBuilderPage() {
             >
               Generate World
             </motion.button>
-
             {/* SECTION: OUTPUT PANEL */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -68,7 +60,6 @@ export default function WorldBuilderPage() {
               className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
             >
               <h2 className="text-xl font-medium text-white mb-4">Generated World</h2>
-
               <p className="text-slate-400 text-sm">
                 Your generated world will appear here.  
                 This panel will display:
@@ -88,11 +79,9 @@ export default function WorldBuilderPage() {
     </div>
   );
 }
-
 /* --------------------------------------------- */
 /* SECTION COMPONENT                             */
 /* --------------------------------------------- */
-
 function Section({ title, text }: { title: string; text: string }) {
   return (
     <motion.div

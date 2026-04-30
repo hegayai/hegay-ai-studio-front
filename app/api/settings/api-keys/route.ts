@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const { name, value } = await req.json();
-
   const res = await fetch(process.env.SETTINGS_API_KEYS_API_URL!, {
     method: "POST",
     headers: {
@@ -11,7 +9,6 @@ export async function POST(req: Request) {
     },
     body: JSON.stringify({ name, value }),
   });
-
   const data = await res.json();
   return NextResponse.json(data);
 }

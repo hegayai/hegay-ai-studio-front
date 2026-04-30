@@ -1,24 +1,18 @@
 "use client";
-
 import { createContext, useContext, useEffect, useState } from "react";
-
 type MotionContextType = {
   minimal: boolean;
   toggleMinimal: () => void;
 };
-
 const MotionContext = createContext<MotionContextType>({
   minimal: false,
   toggleMinimal: () => {},
 });
-
 export function useMotion() {
   return useContext(MotionContext);
 }
-
 export default function MotionProvider({ children }: { children: React.ReactNode }) {
   const [minimal, setMinimal] = useState(false);
-
   /* ---------------------------------------------------------
      LOAD USER MOTION PREFERENCE
      --------------------------------------------------------- */
@@ -29,14 +23,12 @@ export default function MotionProvider({ children }: { children: React.ReactNode
       document.documentElement.classList.add("minimal-motion");
     }
   }, []);
-
   /* ---------------------------------------------------------
      APPLY MOTION MODE
      --------------------------------------------------------- */
   const toggleMinimal = () => {
     const next = !minimal;
     setMinimal(next);
-
     if (next) {
       document.documentElement.classList.add("minimal-motion");
       localStorage.setItem("hegay-motion", "minimal");
@@ -45,7 +37,6 @@ export default function MotionProvider({ children }: { children: React.ReactNode
       localStorage.setItem("hegay-motion", "full");
     }
   };
-
   return (
     <MotionContext.Provider value={{ minimal, toggleMinimal }}>
       {children}

@@ -1,53 +1,41 @@
 "use client";
-
 import { useState } from "react";
-
 export default function CivilizationEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [structure, setStructure] = useState("Balanced Civilization");
   const [tone, setTone] = useState("Neutral");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generateCivilization() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise(r => setTimeout(r, 1500));
-
     setOutput(
 `CIVILIZATION ENGINE OUTPUT (Mock)
-
 Structure: ${structure}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing a full civilization generated using:
 - Culture Realm
 - Governance Realm
 - Economy Realm
 - Education Realm`
     );
-
     setLoading(false);
   }
-
   return (
     <div className="p-6 rounded-xl bg-black/40 border border-white/10">
       <h1 className="text-xl font-semibold text-white">Civilization Engine</h1>
       <p className="text-xs text-slate-400 mt-1">
         Generate full civilizations with culture, governance, and economy.
       </p>
-
       <textarea
         placeholder="Describe the civilization..."
         className="mt-4 w-full h-32 bg-black/30 border border-white/10 rounded-lg p-3 text-xs text-white"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
-
       <select
         className="mt-3 w-full bg-black/30 border border-white/10 rounded-lg p-2 text-xs text-white"
         value={structure}
@@ -59,7 +47,6 @@ This is placeholder metadata representing a full civilization generated using:
         <option>Spiritual Civilization</option>
         <option>Technocratic Civilization</option>
       </select>
-
       <select
         className="mt-3 w-full bg-black/30 border border-white/10 rounded-lg p-2 text-xs text-white"
         value={tone}
@@ -70,7 +57,6 @@ This is placeholder metadata representing a full civilization generated using:
         <option>Ancient</option>
         <option>Scholarly</option>
       </select>
-
       <button
         onClick={generateCivilization}
         disabled={loading || !prompt.trim()}
@@ -78,7 +64,6 @@ This is placeholder metadata representing a full civilization generated using:
       >
         {loading ? "Generating…" : "Generate Civilization"}
       </button>
-
       {output && (
         <pre className="mt-4 text-xs text-slate-200 bg-white/5 border border-white/10 rounded-lg p-3 whitespace-pre-line">
           {output}

@@ -1,38 +1,28 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function LearningPathEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [pathType, setPathType] = useState("Linear Path");
   const [tone, setTone] = useState("Structured");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function generate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Learning Path (Mock)
-
 Path Type: ${pathType}
 Tone: ${tone}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing learning progression and mastery journeys.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Learning Path Engine"
@@ -46,7 +36,6 @@ This is placeholder metadata representing learning progression and mastery journ
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={pathType}
@@ -58,7 +47,6 @@ This is placeholder metadata representing learning progression and mastery journ
             <option>Guild Progression</option>
             <option>Technocratic Path</option>
           </select>
-
           <select
             className="mt-3 w-full bg-black/40 border border-white/10 rounded-lg p-2 text-xs text-white"
             value={tone}
@@ -69,7 +57,6 @@ This is placeholder metadata representing learning progression and mastery journ
             <option>Heroic</option>
             <option>Scholarly</option>
           </select>
-
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}

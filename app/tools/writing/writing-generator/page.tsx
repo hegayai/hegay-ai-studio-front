@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function WritingGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Cinematic");
@@ -12,29 +10,21 @@ export default function WritingGeneratorPage() {
   const [tone, setTone] = useState("Neutral");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real writing generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
       `Generated Writing (Mock):
-
 ${prompt}
-
 Style: ${style}
 Tone: ${tone}
 Length: ${length}
-
 This is placeholder text representing the generated writing output.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Writing Generator"
@@ -54,7 +44,6 @@ This is placeholder text representing the generated writing output.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Style */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -73,7 +62,6 @@ This is placeholder text representing the generated writing output.`
               <option>Conversational</option>
             </select>
           </div>
-
           {/* Tone */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -92,7 +80,6 @@ This is placeholder text representing the generated writing output.`
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Length */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -108,7 +95,6 @@ This is placeholder text representing the generated writing output.`
               <option>Long</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -128,14 +114,12 @@ This is placeholder text representing the generated writing output.`
               <p>Composing narrative structure…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

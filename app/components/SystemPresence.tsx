@@ -1,11 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 export default function SystemPresence() {
   const [active, setActive] = useState(true);
   const [lastMove, setLastMove] = useState(Date.now());
-
   /* ---------------------------------------------------------
      USER ACTIVITY TRACKING
      --------------------------------------------------------- */
@@ -14,18 +11,15 @@ export default function SystemPresence() {
       setLastMove(Date.now());
       setActive(true);
     };
-
     window.addEventListener("mousemove", update);
     window.addEventListener("keydown", update);
     window.addEventListener("click", update);
-
     return () => {
       window.removeEventListener("mousemove", update);
       window.removeEventListener("keydown", update);
       window.removeEventListener("click", update);
     };
   }, []);
-
   /* ---------------------------------------------------------
      IDLE DETECTION
      --------------------------------------------------------- */
@@ -36,10 +30,8 @@ export default function SystemPresence() {
         setActive(false);
       }
     }, 2000);
-
     return () => clearInterval(interval);
   }, [lastMove]);
-
   /* ---------------------------------------------------------
      PRESENCE AURA
      --------------------------------------------------------- */
@@ -58,7 +50,6 @@ export default function SystemPresence() {
       />
     );
   }
-
   return (
     <div
       className="

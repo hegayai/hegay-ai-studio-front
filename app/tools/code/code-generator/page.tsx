@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function CodeGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [language, setLanguage] = useState("TypeScript");
@@ -12,30 +10,22 @@ export default function CodeGeneratorPage() {
   const [depth, setDepth] = useState("Module");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real code generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Code (Mock)
-
 Language: ${language}
 Framework: ${framework}
 Depth: ${depth}
-
 Prompt:
 ${prompt}
-
 This is placeholder code representing the generated output.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Code Generator"
@@ -55,7 +45,6 @@ This is placeholder code representing the generated output.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Language */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -73,7 +62,6 @@ This is placeholder code representing the generated output.`
               <option>Rust</option>
             </select>
           </div>
-
           {/* Framework */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -91,7 +79,6 @@ This is placeholder code representing the generated output.`
               <option>Node.js</option>
             </select>
           </div>
-
           {/* Depth */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -109,7 +96,6 @@ This is placeholder code representing the generated output.`
               <option>System</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -129,14 +115,12 @@ This is placeholder code representing the generated output.`
               <p>Compiling module…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

@@ -1,6 +1,5 @@
 // lib/jobQueue.ts
 import { prisma } from "@/src/core/db/client";
-
 /**
  * Enqueue a new job for a workflow.
  */
@@ -13,7 +12,6 @@ export async function enqueueJob(workflowId: string, payload: any = {}) {
     },
   });
 }
-
 /**
  * Mark a job as running.
  */
@@ -26,7 +24,6 @@ export async function startJob(id: string) {
     },
   });
 }
-
 /**
  * Mark a job as completed and store the result.
  */
@@ -40,7 +37,6 @@ export async function completeJob(id: string, result: any) {
     },
   });
 }
-
 /**
  * Mark a job as failed and store the error message.
  */
@@ -54,7 +50,6 @@ export async function failJob(id: string, error: string) {
     },
   });
 }
-
 /**
  * Fetch a single job by ID.
  */
@@ -63,7 +58,6 @@ export async function getJob(id: string) {
     where: { id },
   });
 }
-
 /**
  * List jobs, optionally filtered by workflowId or status.
  */

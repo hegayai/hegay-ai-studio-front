@@ -1,5 +1,4 @@
 "use client";
-
 import {
   PhotoIcon,
   VideoCameraIcon,
@@ -8,7 +7,6 @@ import {
   SparklesIcon,
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
-
 export default function MarketplacePage() {
   const items = [
     {
@@ -48,7 +46,6 @@ export default function MarketplacePage() {
       icon: SparklesIcon,
     },
   ];
-
   return (
     <div className="w-full p-8 space-y-12">
       {/* Header */}
@@ -60,7 +57,6 @@ export default function MarketplacePage() {
           media, and shape your creative destiny.
         </p>
       </header>
-
       {/* Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((item) => (
@@ -70,7 +66,6 @@ export default function MarketplacePage() {
     </div>
   );
 }
-
 /* ------------------------------
    MARKETPLACE CARD
 ------------------------------ */
@@ -96,7 +91,6 @@ function MarketplaceCard({
         </div>
         <h3 className="text-xl font-semibold">{title}</h3>
       </div>
-
       <p className="text-gray-400 text-sm">{description}</p>
     </a>
   );

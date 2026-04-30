@@ -1,7 +1,6 @@
 export default function WorldAgent() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -14,7 +13,6 @@ export default function WorldAgent() {
           reasoning, and routing.
         </p>
       </div>
-
       {/* WORLD MODES */}
       <section>
         <h2 className="text-xl font-medium mb-4">World‑Building Modes</h2>
@@ -37,7 +35,6 @@ export default function WorldAgent() {
           ))}
         </div>
       </section>
-
       {/* CONTEXT LOADERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Context Loaders</h2>
@@ -60,12 +57,10 @@ export default function WorldAgent() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">World‑Building Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT: GENERATION PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -73,12 +68,10 @@ export default function WorldAgent() {
               cultures, metaphysics, cosmology, and environmental lore generated
               by the World Agent.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe the realm, culture, cosmology, or world‑building element you want the World Agent to generate..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Generate
@@ -90,16 +83,13 @@ export default function WorldAgent() {
                 Route to Pipeline
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The World Agent uses the Agent Kernel for context, reasoning, and
               routing to other engines.
             </p>
           </div>
-
           {/* RIGHT: CONTEXT + ROUTING */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Context</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Universe: Diaspora Storyworld v3</li>
@@ -109,7 +99,6 @@ export default function WorldAgent() {
               <li>• Cosmology: Diaspora Cosmology</li>
               <li>• World‑Soul: Diaspora World‑Soul Layer</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Routing Targets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Realm Builder</li>
@@ -119,7 +108,6 @@ export default function WorldAgent() {
               <li>• Image Engine Pro</li>
               <li>• Asset Pipeline Engine</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic world‑building</li>
@@ -127,11 +115,9 @@ export default function WorldAgent() {
               <li>• Realm‑centric expansion</li>
               <li>• System‑design metaphysics</li>
             </ul>
-
           </div>
         </div>
       </section>
-
       {/* SYSTEMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">World Agent Systems</h2>
@@ -154,7 +140,6 @@ export default function WorldAgent() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

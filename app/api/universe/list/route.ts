@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-
 export const runtime = "nodejs";
-
 export async function GET() {
   try {
     // -----------------------------------------------------
@@ -22,7 +20,6 @@ export async function GET() {
         description: "A neon‑lit oceanic civilization powered by emotional physics.",
       },
     ];
-
     return NextResponse.json({ universes });
   } catch (err) {
     console.error(err);

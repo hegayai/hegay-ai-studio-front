@@ -1,9 +1,7 @@
 "use client";
-
 import TopbarSearchButton from "./TopbarSearchButton";
 import TopbarNotificationButton from "./TopbarNotificationButton";
 import TopbarProfileButton from "./TopbarProfileButton";
-
 export default function Topbar() {
   return (
     <header
@@ -31,7 +29,6 @@ export default function Topbar() {
           Hegay OS Supreme
         </span>
       </div>
-
       {/* RIGHT — BUTTONS */}
       <div className="flex items-center gap-3">
         <TopbarSearchButton />

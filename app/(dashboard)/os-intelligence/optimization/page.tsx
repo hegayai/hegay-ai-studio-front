@@ -1,7 +1,6 @@
 export default function SelfOptimizationEngine() {
   return (
     <div className="flex flex-col gap-12 max-w-7xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function SelfOptimizationEngine() {
           and agent collaboration to optimize system performance over time.
         </p>
       </div>
-
       {/* OPTIMIZATION MODES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Optimization Modes</h2>
@@ -36,7 +34,6 @@ export default function SelfOptimizationEngine() {
           ))}
         </div>
       </section>
-
       {/* OPTIMIZATION OPERATIONS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Optimization Operations</h2>
@@ -59,12 +56,10 @@ export default function SelfOptimizationEngine() {
           ))}
         </div>
       </section>
-
       {/* WORKSPACE */}
       <section>
         <h2 className="text-xl font-medium mb-4">Optimization Workspace</h2>
         <div className="grid grid-cols-[2fr,1fr] gap-6">
-
           {/* LEFT: OPTIMIZATION PANEL */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4 min-h-[360px]">
             <div className="opacity-70 text-sm">
@@ -72,12 +67,10 @@ export default function SelfOptimizationEngine() {
               inefficiency reports, optimization suggestions, and performance
               improvements.
             </div>
-
             <textarea
               className="w-full bg-black/40 border border-white/10 rounded-lg p-3 text-sm outline-none resize-none h-40"
               placeholder="Describe what you want the OS to optimize..."
             />
-
             <div className="flex gap-3 mt-3">
               <button className="px-4 py-2 rounded-md bg-white/10 border border-white/20 text-sm hover:bg-white/20 transition">
                 Analyze
@@ -89,15 +82,12 @@ export default function SelfOptimizationEngine() {
                 Apply
               </button>
             </div>
-
             <p className="opacity-50 text-[11px] mt-2">
               The Self‑Optimization Engine continuously improves the entire OS.
             </p>
           </div>
-
           {/* RIGHT: ACTIVE OPTIMIZATION STATE */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-4">
-
             <h3 className="font-medium text-sm">Active Optimization State</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Workflow Efficiency: Improving</li>
@@ -107,7 +97,6 @@ export default function SelfOptimizationEngine() {
               <li>• Agent Collaboration: Tuned</li>
               <li>• Engine Performance: Upgraded</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Optimization Sync Targets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• Hegay Core AI</li>
@@ -117,7 +106,6 @@ export default function SelfOptimizationEngine() {
               <li>• Asset Pipeline Engine</li>
               <li>• Creator Mode</li>
             </ul>
-
             <h3 className="font-medium text-sm mt-4">Optimization Presets</h3>
             <ul className="text-sm opacity-80 space-y-1">
               <li>• High‑mythic optimization</li>
@@ -125,11 +113,9 @@ export default function SelfOptimizationEngine() {
               <li>• Character‑centric optimization</li>
               <li>• System‑design optimization</li>
             </ul>
-
           </div>
         </div>
       </section>
-
     </div>
   );
 }

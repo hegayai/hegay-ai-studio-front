@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function LightingEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [lightingType, setLightingType] = useState("Cinematic");
@@ -12,30 +10,22 @@ export default function LightingEnginePage() {
   const [colorTemp, setColorTemp] = useState("Neutral");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real lighting generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Lighting Setup (Mock)
-
 Lighting Type: ${lightingType}
 Intensity: ${intensity}
 Color Temperature: ${colorTemp}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated lighting configuration.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Lighting Engine"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated lighting configuration.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Lighting Type */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -74,7 +63,6 @@ This is placeholder metadata representing the generated lighting configuration.`
               <option>Night Scene</option>
             </select>
           </div>
-
           {/* Intensity */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -91,7 +79,6 @@ This is placeholder metadata representing the generated lighting configuration.`
               <option>Extreme</option>
             </select>
           </div>
-
           {/* Color Temperature */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -108,7 +95,6 @@ This is placeholder metadata representing the generated lighting configuration.`
               <option>Mixed</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -128,14 +114,12 @@ This is placeholder metadata representing the generated lighting configuration.`
               <p>Configuring illumination…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

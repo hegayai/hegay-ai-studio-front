@@ -1,14 +1,11 @@
 "use client";
-
 import { motion } from "framer-motion";
 import UniverseNode from "./UniverseNode";
-
 export default function UniverseMap() {
   return (
     <section className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">
       {/* Background stars */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(168,85,247,0.18),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.18),_transparent_55%)] opacity-70" />
-
       <div className="relative z-10 space-y-4">
         <header className="flex items-center justify-between">
           <div>
@@ -23,7 +20,6 @@ export default function UniverseMap() {
             Realms & Systems
           </p>
         </header>
-
         {/* Map canvas */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -46,12 +42,10 @@ export default function UniverseMap() {
                 size="lg"
               />
             </div>
-
             {/* Orbits: Realms */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div className="h-52 w-52 rounded-full border border-white/10/40" />
             </div>
-
             {/* Image Realm */}
             <div className="absolute left-[18%] top-[22%]">
               <UniverseNode
@@ -61,7 +55,6 @@ export default function UniverseMap() {
                 size="md"
               />
             </div>
-
             {/* Dream Realm */}
             <div className="absolute right-[16%] top-[28%]">
               <UniverseNode
@@ -71,7 +64,6 @@ export default function UniverseMap() {
                 size="md"
               />
             </div>
-
             {/* Radio Realm */}
             <div className="absolute left-[22%] bottom-[18%]">
               <UniverseNode
@@ -81,7 +73,6 @@ export default function UniverseMap() {
                 size="md"
               />
             </div>
-
             {/* Future Realm placeholder */}
             <div className="absolute right-[18%] bottom-[20%]">
               <UniverseNode

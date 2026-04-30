@@ -1,7 +1,5 @@
 "use client";
-
 import { motion } from "framer-motion";
-
 const panels = [
   {
     title: "Image Realm",
@@ -34,14 +32,12 @@ const panels = [
     accent: "from-rose-500/20 to-rose-700/10",
   },
 ];
-
 export default function StudioPanelGrid() {
   return (
     <section className="w-full mt-10">
       <h2 className="mb-4 text-lg font-semibold text-slate-100">
         Studio Panels
       </h2>
-
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {panels.map((panel, index) => (
           <motion.div
@@ -54,13 +50,10 @@ export default function StudioPanelGrid() {
             <h3 className="text-base font-semibold text-slate-100">
               {panel.title}
             </h3>
-
             <p className="mt-2 text-sm text-slate-300/80">
               {panel.description}
             </p>
-
             <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
             <p className="mt-3 text-xs text-purple-200/70">
               Open module →
             </p>

@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function DialogueEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [characters, setCharacters] = useState("");
@@ -12,29 +10,21 @@ export default function DialogueEnginePage() {
   const [style, setStyle] = useState("Cinematic");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim() || !characters.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real dialogue generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated Dialogue (Mock)
-
 Characters: ${characters}
 Tone: ${tone}
 Style: ${style}
-
 ${prompt}
-
 This is placeholder dialogue representing the generated conversation.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Dialogue Engine"
@@ -55,7 +45,6 @@ This is placeholder dialogue representing the generated conversation.`
               onChange={(e) => setCharacters(e.target.value)}
             />
           </div>
-
           {/* Prompt */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -68,7 +57,6 @@ This is placeholder dialogue representing the generated conversation.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Tone */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -88,7 +76,6 @@ This is placeholder dialogue representing the generated conversation.`
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Style */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -107,7 +94,6 @@ This is placeholder dialogue representing the generated conversation.`
               <option>Poetic</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -127,14 +113,12 @@ This is placeholder dialogue representing the generated conversation.`
               <p>Shaping character voices…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

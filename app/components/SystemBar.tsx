@@ -1,7 +1,5 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 type SystemFlags = {
   focus: boolean;
   dimmer: boolean;
@@ -9,7 +7,6 @@ type SystemFlags = {
   presence: boolean;
   minimalMotion: boolean;
 };
-
 export default function SystemBar() {
   const [flags, setFlags] = useState<SystemFlags>({
     focus: false,
@@ -18,7 +15,6 @@ export default function SystemBar() {
     presence: true,
     minimalMotion: false,
   });
-
   /* ---------------------------------------------------------
      CLASS-BASED STATE SYNC
      --------------------------------------------------------- */
@@ -33,17 +29,14 @@ export default function SystemBar() {
         minimalMotion: root.classList.contains("minimal-motion"),
       });
     };
-
     readFlags();
     const observer = new MutationObserver(readFlags);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
     return () => observer.disconnect();
   }, []);
-
   return (
     <div
       className="
@@ -62,7 +55,6 @@ export default function SystemBar() {
         <ModePill label="Dimmer" active={flags.dimmer} />
         <ModePill label="Idle" active={flags.idle} />
       </div>
-
       {/* CENTER — PRESENCE */}
       <div className="flex items-center gap-1">
         <span
@@ -76,7 +68,6 @@ export default function SystemBar() {
         />
         <span>{flags.presence ? "Presence: Active" : "Presence: Idle"}</span>
       </div>
-
       {/* RIGHT — MOTION */}
       <div className="flex items-center gap-2">
         <span
@@ -95,7 +86,6 @@ export default function SystemBar() {
     </div>
   );
 }
-
 /* ---------------------------------------------------------
    MODE PILL
    --------------------------------------------------------- */

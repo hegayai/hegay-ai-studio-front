@@ -1,9 +1,7 @@
 "use client";
-
 import { GlowShell } from "@/components/MotionProvider";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
 const presetCategories = [
   {
     title: "World Templates",
@@ -41,7 +39,6 @@ const presetCategories = [
     href: "/presets/hybrid",
   },
 ];
-
 export default function PresetsEnginePage() {
   return (
     <div className="min-h-screen w-full">
@@ -60,7 +57,6 @@ export default function PresetsEnginePage() {
             One‑click templates for creators • Creative Civilization OS
           </p>
         </motion.div>
-
         {/* MAIN PANEL */}
         <GlowShell className="p-0">
           <div className="p-8 space-y-12">
@@ -72,11 +68,9 @@ export default function PresetsEnginePage() {
                 Each preset is a fully structured template that creators can use to generate worlds, civilizations, cultures, governance systems, economies, and hybrid realm constructs with a single click.
               </p>
             </section>
-
             {/* SECTION: PRESET GRID */}
             <section>
               <h2 className="text-xl font-medium text-white mb-4">Preset Categories</h2>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {presetCategories.map((preset, index) => (
                   <PresetCard
@@ -95,11 +89,9 @@ export default function PresetsEnginePage() {
     </div>
   );
 }
-
 /* --------------------------------------------- */
 /* PRESET CARD COMPONENT                         */
 /* --------------------------------------------- */
-
 function PresetCard({
   title,
   description,

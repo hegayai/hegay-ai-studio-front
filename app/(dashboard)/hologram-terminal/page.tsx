@@ -1,5 +1,4 @@
 "use client";
-
 export default function HologramTerminalPage() {
   return (
     <main className="min-h-screen w-full bg-black text-slate-100 relative overflow-hidden p-6">
@@ -7,7 +6,6 @@ export default function HologramTerminalPage() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="cosmic-particles" />
       </div>
-
       <div className="relative z-10 max-w-4xl mx-auto space-y-8">
         <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-black via-[#020617] to-black p-8 shadow-[0_30px_80px_rgba(0,0,0,0.9)] relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.2),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.2),_transparent_55%)]" />
@@ -23,7 +21,6 @@ export default function HologramTerminalPage() {
             </p>
           </div>
         </section>
-
         <section className="rounded-2xl border border-white/10 bg-black/80 backdrop-blur-2xl p-6 shadow-[0_18px_45px_rgba(0,0,0,0.85)] space-y-3">
           <div className="text-[11px] uppercase tracking-[0.2em] text-slate-500">
             Terminal Input

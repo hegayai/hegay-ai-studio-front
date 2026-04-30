@@ -1,11 +1,8 @@
 // app/(dashboard)/studio/layout.tsx
-
 import React from "react";
-
 type StudioLayoutProps = {
   children: React.ReactNode;
 };
-
 export default function StudioLayout({ children }: StudioLayoutProps) {
   return (
     <div className="min-h-screen flex">
@@ -17,7 +14,6 @@ export default function StudioLayout({ children }: StudioLayoutProps) {
           <a href="/studio/gallery">Gallery</a>
         </nav>
       </aside>
-
       <main className="flex-1 p-8">{children}</main>
     </div>
   );

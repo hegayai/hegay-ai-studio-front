@@ -1,5 +1,4 @@
 // app/(dashboard)/simulation/universe/page.tsx
-
 import React from "react";
 import {
   Globe2,
@@ -10,7 +9,6 @@ import {
   Activity,
   ArrowRight,
 } from "lucide-react";
-
 export default function UniverseSimulationPage() {
   return (
     <main className="px-8 py-10 space-y-12">
@@ -25,14 +23,12 @@ export default function UniverseSimulationPage() {
           evolution, pantheon influence, and origin law effects in real time.
         </p>
       </header>
-
       {/* Simulation Controls */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Simulation Controls
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <ControlBlock label="Speed" options={["0.5x", "1x", "2x", "4x"]} />
           <ControlBlock
@@ -44,7 +40,6 @@ export default function UniverseSimulationPage() {
             options={["Map", "Graph", "Energy Field", "Timeline"]}
           />
         </div>
-
         <div className="flex items-center gap-3 pt-2">
           <button className="px-4 py-2 rounded-full border border-[#F5D48A66] bg-[#F5D48A1A] text-[#F5D48A] text-sm hover:bg-[#F5D48A33] transition-all">
             Start Simulation
@@ -54,19 +49,16 @@ export default function UniverseSimulationPage() {
           </button>
         </div>
       </section>
-
       {/* Simulation Display */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Simulation View
         </h2>
-
         <p className="text-sm text-slate-300 max-w-3xl">
           A dynamic visualization of universe‑scale interactions across realms,
           civilizations, pantheon forces, and origin laws.
         </p>
-
         <div className="relative h-96 rounded-xl bg-black/70 border border-white/5 overflow-hidden">
           <div className="absolute inset-0 opacity-60">
             <SimDots />
@@ -76,14 +68,12 @@ export default function UniverseSimulationPage() {
           </div>
         </div>
       </section>
-
       {/* Live Metrics */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Live Metrics
         </h2>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <MetricCard
             icon={Activity}
@@ -105,7 +95,6 @@ export default function UniverseSimulationPage() {
           />
         </div>
       </section>
-
       {/* Actions */}
       <section className="flex items-center justify-end gap-3">
         <button className="text-xs text-slate-400 hover:text-slate-200 transition-colors">
@@ -118,14 +107,11 @@ export default function UniverseSimulationPage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 type ControlBlockProps = {
   label: string;
   options: string[];
 };
-
 function ControlBlock({ label, options }: ControlBlockProps) {
   return (
     <div className="space-y-2">
@@ -140,14 +126,12 @@ function ControlBlock({ label, options }: ControlBlockProps) {
     </div>
   );
 }
-
 type MetricCardProps = {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: string;
   description: string;
 };
-
 function MetricCard({ icon: Icon, label, value, description }: MetricCardProps) {
   return (
     <div className="rounded-xl border border-white/10 bg-black/40 px-4 py-4 space-y-1">
@@ -164,9 +148,7 @@ function MetricCard({ icon: Icon, label, value, description }: MetricCardProps) 
     </div>
   );
 }
-
 /* ───────────────── VISUALIZATION ───────────────── */
-
 function SimDots() {
   const dots = Array.from({ length: 120 });
   return (
@@ -183,11 +165,9 @@ function SimDots() {
     </svg>
   );
 }
-
 type NodeProps = {
   className?: string;
 };
-
 function SimNodes() {
   return (
     <div className="relative w-full h-full">
@@ -199,7 +179,6 @@ function SimNodes() {
     </div>
   );
 }
-
 function Node({ className }: NodeProps) {
   return (
     <div

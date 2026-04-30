@@ -1,7 +1,6 @@
 export default function UserDashboard() {
   return (
     <div className="flex flex-col gap-12 max-w-6xl">
-
       {/* HEADER */}
       <div>
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -13,7 +12,6 @@ export default function UserDashboard() {
           your gateway into a living mythic‑creative ecosystem.
         </p>
       </div>
-
       {/* FEATURED UNIVERSES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Featured Universes</h2>
@@ -33,7 +31,6 @@ export default function UserDashboard() {
           ))}
         </div>
       </section>
-
       {/* REALMS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Realms</h2>
@@ -53,7 +50,6 @@ export default function UserDashboard() {
           ))}
         </div>
       </section>
-
       {/* CHARACTERS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Characters</h2>
@@ -73,7 +69,6 @@ export default function UserDashboard() {
           ))}
         </div>
       </section>
-
       {/* CULTURES */}
       <section>
         <h2 className="text-xl font-medium mb-4">Cultures</h2>
@@ -93,7 +88,6 @@ export default function UserDashboard() {
           ))}
         </div>
       </section>
-
       {/* CREATIVE TOOLS */}
       <section>
         <h2 className="text-xl font-medium mb-4">Creative Tools</h2>
@@ -116,7 +110,6 @@ export default function UserDashboard() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

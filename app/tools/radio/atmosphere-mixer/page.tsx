@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function AtmosphereMixerPage() {
   const [layerA, setLayerA] = useState("Rain");
   const [layerB, setLayerB] = useState("Wind");
@@ -12,18 +10,13 @@ export default function AtmosphereMixerPage() {
   const [intensityB, setIntensityB] = useState(50);
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
-
   async function handleMix() {
     setLoading(true);
-
     // 🔮 Placeholder for real audio mixing API
     await new Promise((r) => setTimeout(r, 1200));
-
     setAudioUrl("/placeholder-mix.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Atmosphere Mixer"
@@ -49,7 +42,6 @@ export default function AtmosphereMixerPage() {
               <option>Fire Crackle</option>
             </select>
           </div>
-
           {/* Intensity A */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -64,7 +56,6 @@ export default function AtmosphereMixerPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Layer B */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -83,7 +74,6 @@ export default function AtmosphereMixerPage() {
               <option>Fire Crackle</option>
             </select>
           </div>
-
           {/* Intensity B */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -98,7 +88,6 @@ export default function AtmosphereMixerPage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Button */}
           <button
             onClick={handleMix}
@@ -117,13 +106,11 @@ export default function AtmosphereMixerPage() {
               <p>Blending sound layers…</p>
             </div>
           )}
-
           {!loading && audioUrl && (
             <div className="w-full space-y-2">
               <audio controls className="w-full">
                 <source src={audioUrl} type="audio/mpeg" />
               </audio>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -137,7 +124,6 @@ export default function AtmosphereMixerPage() {
               </div>
             </div>
           )}
-
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500 text-center px-4">
               Choose two ambience layers and intensities to mix an atmosphere.

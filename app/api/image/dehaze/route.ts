@@ -1,6 +1,5 @@
 // app/api/image/dehaze/route.ts
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const body = await req.json();
   const {
@@ -10,7 +9,6 @@ export async function POST(req: Request) {
     clarityBoost,
     mode,
   } = body;
-
   const res = await fetch(process.env.IMAGE_DEHAZE_API_URL!, {
     method: "POST",
     headers: {
@@ -25,9 +23,7 @@ export async function POST(req: Request) {
       mode,
     }),
   });
-
   const data = await res.json();
-
   return NextResponse.json({
     url: data?.meta?.url || data?.url || null,
     dehazed: data?.dehazed || null,

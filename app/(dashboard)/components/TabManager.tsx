@@ -1,13 +1,10 @@
 "use client";
-
 import { createContext, useContext, useState } from "react";
-
 export type Tab = {
   id: string;
   title: string;
   path: string;
 };
-
 export type TabsContextType = {
   tabs: Tab[];
   active: string | null;
@@ -15,13 +12,10 @@ export type TabsContextType = {
   switchTab: (path: string) => void;
   closeTab: (path: string) => void;
 };
-
 const TabsContext = createContext<TabsContextType | null>(null);
-
 export function TabsProvider({ children }: { children: React.ReactNode }) {
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [active, setActive] = useState<string | null>(null);
-
   function openTab(title: string, path: string) {
     setTabs((prev) => {
       if (!prev.find((t) => t.path === path)) {
@@ -31,11 +25,9 @@ export function TabsProvider({ children }: { children: React.ReactNode }) {
     });
     setActive(path);
   }
-
   function switchTab(path: string) {
     setActive(path);
   }
-
   function closeTab(path: string) {
     setTabs((prev) => prev.filter((t) => t.path !== path));
     if (active === path) {
@@ -43,7 +35,6 @@ export function TabsProvider({ children }: { children: React.ReactNode }) {
       setActive(remaining.length ? remaining[0].path : null);
     }
   }
-
   return (
     <TabsContext.Provider
       value={{ tabs, active, openTab, switchTab, closeTab }}
@@ -52,7 +43,6 @@ export function TabsProvider({ children }: { children: React.ReactNode }) {
     </TabsContext.Provider>
   );
 }
-
 export function useTabs() {
   const ctx = useContext(TabsContext);
   if (!ctx) throw new Error("useTabs must be used inside TabsProvider");

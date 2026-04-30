@@ -1,7 +1,5 @@
 "use client";
-
 import { useState } from "react";
-
 const AESTHETICS = [
   "Softcore",
   "Afro‑futuristic",
@@ -10,10 +8,8 @@ const AESTHETICS = [
   "Y2K",
   "Cosmic minimal",
 ];
-
 export default function AestheticModelPage() {
   const [selected, setSelected] = useState("Afro‑futuristic");
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 lg:px-6 lg:py-8">
@@ -28,7 +24,6 @@ export default function AestheticModelPage() {
             Create full aesthetic identities, moodboards, rooms, and visual vibes in one click.
           </p>
         </header>
-
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           {/* Left */}
           <section className="space-y-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4">
@@ -54,7 +49,6 @@ export default function AestheticModelPage() {
               Generate Aesthetic Moodboard
             </button>
           </section>
-
           {/* Right */}
           <section className="space-y-3 rounded-2xl border border-slate-800/80 bg-slate-950/80 p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">

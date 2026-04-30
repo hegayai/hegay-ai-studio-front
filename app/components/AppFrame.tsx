@@ -1,7 +1,5 @@
 "use client";
-
 import SystemShell from "./SystemShell";
-
 export default function AppFrame({ children }: { children: React.ReactNode }) {
   return (
     <SystemShell>

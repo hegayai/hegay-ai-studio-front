@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-
 export async function GET() {
   try {
     // Check PostgreSQL service
@@ -13,7 +12,6 @@ export async function GET() {
     } catch {
       postgresStatus = "offline";
     }
-
     // Check Next.js server (port 3000)
     let nextStatus = "offline";
     try {
@@ -22,7 +20,6 @@ export async function GET() {
     } catch {
       nextStatus = "offline";
     }
-
     // Read last backup timestamp
     const backupDir = path.join(
       process.env.USERPROFILE || "",
@@ -30,7 +27,6 @@ export async function GET() {
       "HegayOS",
       "backups"
     );
-
     let lastBackup = "No backups found";
     if (fs.existsSync(backupDir)) {
       const files = fs
@@ -38,21 +34,17 @@ export async function GET() {
         .filter((f) => f.endsWith(".dump"))
         .sort()
         .reverse();
-
       if (files.length > 0) {
         lastBackup = files[0];
       }
     }
-
     // Read last 10 log lines
     const logPath = "C:\\HegayOS\\logs\\startup.log";
     let logs: string[] = [];
-
     if (fs.existsSync(logPath)) {
       const content = fs.readFileSync(logPath, "utf8").split("\n");
       logs = content.slice(-10);
     }
-
     return NextResponse.json({
       postgres: postgresStatus,
       nextjs: nextStatus,

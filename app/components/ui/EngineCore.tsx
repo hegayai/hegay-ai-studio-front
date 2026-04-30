@@ -1,8 +1,6 @@
 "use client";
-
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-
 export type EngineCoreProps = {
   title: string;
   description: string;
@@ -10,7 +8,6 @@ export type EngineCoreProps = {
   left: ReactNode;
   right: ReactNode;
 };
-
 export default function EngineCore({
   title,
   description,
@@ -29,7 +26,6 @@ export default function EngineCore({
         <h1 className="text-lg font-semibold text-slate-100">{title}</h1>
         <p className="mt-1 text-sm text-slate-300">{description}</p>
       </header>
-
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1.1fr),minmax(0,1.3fr)]">
         {left}
         {right}

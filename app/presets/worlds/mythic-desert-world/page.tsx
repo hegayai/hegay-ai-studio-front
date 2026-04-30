@@ -1,7 +1,5 @@
 "use client";
-
 import { UltraAdaptivePresetPage } from "@/components/UltraAdaptivePresetPage";
-
 export default function MythicDesertWorldPage() {
   const template = `
 World Name: {{world_name}}
@@ -25,7 +23,6 @@ Sacred Location: {{sacred_location}}
 Primary Language Vibe: {{language_vibe}}
 Emotional Atmosphere: {{emotional_atmosphere}}
 `;
-
   return (
     <UltraAdaptivePresetPage
       presetId="mythic-desert-world"
@@ -77,7 +74,6 @@ Emotional Atmosphere: {{emotional_atmosphere}}
           defaultValue: "solemn and ecstatic",
           section: "Identity",
         },
-
         // Environment
         {
           key: "climate",
@@ -100,7 +96,6 @@ Emotional Atmosphere: {{emotional_atmosphere}}
           defaultValue: "hidden aquifers beneath crystal dunes",
           section: "Environment",
         },
-
         // People & Culture
         {
           key: "primary_people",
@@ -130,7 +125,6 @@ Emotional Atmosphere: {{emotional_atmosphere}}
           defaultValue: "breathy, sung, and carried by the wind",
           section: "People & Culture",
         },
-
         // Myth & Spirit
         {
           key: "ancestral_force",
@@ -167,7 +161,6 @@ Emotional Atmosphere: {{emotional_atmosphere}}
           defaultValue: "the Whispering Glass Dune",
           section: "Myth & Spirit",
         },
-
         // Structure & Flow
         {
           key: "economic_backbone",

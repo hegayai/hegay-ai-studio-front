@@ -1,10 +1,7 @@
 "use client";
-
 import { useEffect, useState } from "react";
-
 export default function StatusBar() {
   const [time, setTime] = useState("");
-
   /* ---------------------------------------------------------
      LIVE CLOCK
      --------------------------------------------------------- */
@@ -17,12 +14,10 @@ export default function StatusBar() {
       });
       setTime(formatted);
     };
-
     update();
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, []);
-
   return (
     <footer
       className="
@@ -42,18 +37,15 @@ export default function StatusBar() {
           <span className="h-2 w-2 rounded-full bg-[var(--cosmic-blue)] shadow-[0_0_6px_var(--cosmic-blue)]" />
           World‑Soul: Stable
         </span>
-
         <span className="flex items-center gap-1">
           <span className="h-2 w-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(0,255,0,0.6)]" />
           Pantheon: Online
         </span>
-
         <span className="flex items-center gap-1">
           <span className="h-2 w-2 rounded-full bg-yellow-300 shadow-[0_0_6px_rgba(255,255,0,0.6)]" />
           Signal: Clear
         </span>
       </div>
-
       {/* RIGHT — CLOCK */}
       <div className="text-[12px] text-[var(--platinum)] tracking-wide">
         {time}

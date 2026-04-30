@@ -1,7 +1,5 @@
 // app/components/Sidebar.tsx
-
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -14,10 +12,8 @@ import {
   BarChart3,
   Monitor,
 } from "lucide-react";
-
 export default function Sidebar() {
   const pathname = usePathname();
-
   const nav = [
     {
       label: "Dashboard",
@@ -54,7 +50,6 @@ export default function Sidebar() {
       href: "/engines",
       icon: BarChart3,
     },
-
     // ⭐ FULLY ADDED — DESKTOP MODE
     {
       label: "Desktop Mode",
@@ -62,7 +57,6 @@ export default function Sidebar() {
       icon: Monitor,
     },
   ];
-
   return (
     <aside className="fixed left-0 top-0 h-full w-[260px] border-r border-white/10 bg-black/60 backdrop-blur-xl p-6 flex flex-col">
       <div className="mb-10">
@@ -73,11 +67,9 @@ export default function Sidebar() {
           Creative Civilization Engine
         </p>
       </div>
-
       <nav className="space-y-1">
         {nav.map((item) => {
           const active = pathname === item.href;
-
           return (
             <Link
               key={item.href}

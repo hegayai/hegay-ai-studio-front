@@ -1,15 +1,11 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
-
 export default function AmbientSoundEngine() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [enabled, setEnabled] = useState(false);
-
   useEffect(() => {
     if (!audioRef.current) return;
     audioRef.current.loop = true;
-
     if (enabled) {
       audioRef.current
         .play()
@@ -20,11 +16,9 @@ export default function AmbientSoundEngine() {
       audioRef.current.pause();
     }
   }, [enabled]);
-
   return (
     <>
       <audio ref={audioRef} src="/ambient.mp3" />
-
       <div className="fixed bottom-4 left-4 z-40">
         <button
           onClick={() => setEnabled((v) => !v)}

@@ -1,7 +1,5 @@
 "use client";
-
 import React from "react";
-
 type RealmToolPanelProps = {
   title: string;
   description: string;
@@ -13,7 +11,6 @@ type RealmToolPanelProps = {
   }[];
   children?: React.ReactNode; // ✅ FIXED — allow children
 };
-
 export default function RealmToolPanel({
   title,
   description,
@@ -25,13 +22,11 @@ export default function RealmToolPanel({
     <div className={`p-10 rounded-2xl bg-gradient-to-br ${aura} border border-white/10`}>
       <h1 className="text-4xl font-bold mb-4">{title}</h1>
       <p className="text-gray-300 mb-8">{description}</p>
-
       {children && (
         <div className="mb-10">
           {children}
         </div>
       )}
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {tools.map((tool, i) => (
           <div

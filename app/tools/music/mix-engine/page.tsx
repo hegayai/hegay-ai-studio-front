@@ -1,42 +1,31 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function MixEnginePage() {
   const [stems, setStems] = useState<{ name: string; url: string }[]>([]);
   const [newName, setNewName] = useState("");
   const [newUrl, setNewUrl] = useState("");
-
   const [eq, setEq] = useState(0); // -10 to +10
   const [compression, setCompression] = useState(0); // 0 to 100
   const [width, setWidth] = useState(50); // 0 to 100
-
   const [loading, setLoading] = useState(false);
   const [mixUrl, setMixUrl] = useState("");
-
   function addStem() {
     if (!newName.trim() || !newUrl.trim()) return;
-
     setStems([...stems, { name: newName, url: newUrl }]);
     setNewName("");
     setNewUrl("");
   }
-
   async function handleMix() {
     if (stems.length === 0) return;
     setLoading(true);
-
     // 🔮 Placeholder for real mixing API
     await new Promise((r) => setTimeout(r, 1500));
-
     setMixUrl("/placeholder-mix.mp3");
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Mix Engine"
@@ -57,7 +46,6 @@ export default function MixEnginePage() {
               onChange={(e) => setNewName(e.target.value)}
             />
           </div>
-
           <div className="mt-2">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
               Stem URL
@@ -70,7 +58,6 @@ export default function MixEnginePage() {
               onChange={(e) => setNewUrl(e.target.value)}
             />
           </div>
-
           <button
             onClick={addStem}
             disabled={!newName.trim() || !newUrl.trim()}
@@ -78,7 +65,6 @@ export default function MixEnginePage() {
           >
             Add Stem
           </button>
-
           {/* Stem List */}
           {stems.length > 0 && (
             <div className="mt-3 space-y-1">
@@ -92,7 +78,6 @@ export default function MixEnginePage() {
               ))}
             </div>
           )}
-
           {/* EQ */}
           <div className="mt-4">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -107,7 +92,6 @@ export default function MixEnginePage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Compression */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -122,7 +106,6 @@ export default function MixEnginePage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Stereo Width */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -137,7 +120,6 @@ export default function MixEnginePage() {
               className="mt-1 w-full"
             />
           </div>
-
           {/* Mix Button */}
           <button
             onClick={handleMix}
@@ -157,14 +139,12 @@ export default function MixEnginePage() {
               <p>Balancing stems and shaping spatial mix…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && mixUrl && (
             <div className="w-full space-y-3">
               <audio controls className="w-full">
                 <source src={mixUrl} type="audio/mpeg" />
               </audio>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -178,7 +158,6 @@ export default function MixEnginePage() {
               </div>
             </div>
           )}
-
           {/* Empty */}
           {!loading && !mixUrl && (
             <p className="text-xs text-slate-500 text-center px-4">

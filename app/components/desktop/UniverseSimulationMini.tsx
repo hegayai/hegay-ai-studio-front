@@ -1,5 +1,4 @@
 // app/components/desktop/UniverseSimulationMini.tsx
-
 export default function UniverseSimulationMini() {
   return (
     <div className="space-y-2">

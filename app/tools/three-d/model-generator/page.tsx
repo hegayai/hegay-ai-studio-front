@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function ModelGeneratorPage() {
   const [prompt, setPrompt] = useState("");
   const [style, setStyle] = useState("Realistic");
@@ -12,30 +10,22 @@ export default function ModelGeneratorPage() {
   const [format, setFormat] = useState("GLB");
   const [loading, setLoading] = useState(false);
   const [output, setOutput] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real 3D model generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setOutput(
 `Generated 3D Model (Mock)
-
 Style: ${style}
 Polycount: ${polycount}
 Format: ${format}
-
 Prompt:
 ${prompt}
-
 This is placeholder metadata representing the generated 3D model.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="3D Model Generator"
@@ -55,7 +45,6 @@ This is placeholder metadata representing the generated 3D model.`
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Style */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -74,7 +63,6 @@ This is placeholder metadata representing the generated 3D model.`
               <option>Anime</option>
             </select>
           </div>
-
           {/* Polycount */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -90,7 +78,6 @@ This is placeholder metadata representing the generated 3D model.`
               <option>High</option>
             </select>
           </div>
-
           {/* Format */}
           <div className="mt-3">
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -107,7 +94,6 @@ This is placeholder metadata representing the generated 3D model.`
               <option>USDZ</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -127,14 +113,12 @@ This is placeholder metadata representing the generated 3D model.`
               <p>Constructing mesh geometry…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && output && (
             <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
               {output}
             </pre>
           )}
-
           {/* Empty */}
           {!loading && !output && (
             <p className="text-xs text-slate-500 text-center px-4">

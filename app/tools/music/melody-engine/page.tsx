@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function MelodyEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [scale, setScale] = useState("Minor");
@@ -13,24 +11,19 @@ export default function MelodyEnginePage() {
   const [loading, setLoading] = useState(false);
   const [audioUrl, setAudioUrl] = useState("");
   const [notation, setNotation] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real melody generation API
     await new Promise((r) => setTimeout(r, 1500));
-
     setAudioUrl("/placeholder-melody.mp3");
     setNotation(`
 Melody Notation (Mock):
 C4 - D#4 - G4 - Bb4
 C5 - A#4 - G4 - F4
 `);
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Melody Engine"
@@ -50,7 +43,6 @@ C5 - A#4 - G4 - F4
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Scale */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -70,7 +62,6 @@ C5 - A#4 - G4 - F4
               <option>Mixolydian</option>
             </select>
           </div>
-
           {/* Emotion */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -89,7 +80,6 @@ C5 - A#4 - G4 - F4
               <option>Spiritual</option>
             </select>
           </div>
-
           {/* Length */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -104,7 +94,6 @@ C5 - A#4 - G4 - F4
               className="mt-1 w-full"
             />
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -124,18 +113,15 @@ C5 - A#4 - G4 - F4
               <p>Shaping melodic line…</p>
             </div>
           )}
-
           {/* Output */}
           {!loading && audioUrl && (
             <div className="w-full space-y-3">
               <audio controls className="w-full">
                 <source src={audioUrl} type="audio/mpeg" />
               </audio>
-
               <pre className="text-xs text-slate-200 whitespace-pre-line bg-white/5 border border-white/10 rounded-lg p-3">
                 {notation}
               </pre>
-
               <div className="flex gap-2">
                 <button className="rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-[0.7rem] text-slate-100 hover:bg-white/10 transition">
                   Download
@@ -149,7 +135,6 @@ C5 - A#4 - G4 - F4
               </div>
             </div>
           )}
-
           {/* Empty State */}
           {!loading && !audioUrl && (
             <p className="text-xs text-slate-500 text-center px-4">

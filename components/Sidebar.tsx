@@ -1,9 +1,7 @@
 "use client";
-
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 const navItems = [
   { label: "Dashboard", href: "/dashboard" },
   { label: "Ascension Layer", href: "/ascension" },
@@ -13,10 +11,8 @@ const navItems = [
   { label: "Economy Realm", href: "/realms/economy" },
   { label: "Education Realm", href: "/realms/education" },
 ];
-
 export default function Sidebar() {
   const pathname = usePathname();
-
   return (
     <motion.aside
       initial={{ opacity: 0, x: -20, filter: "blur(6px)" }}
@@ -34,17 +30,14 @@ export default function Sidebar() {
         >
           HEGAY AI
         </motion.h1>
-
         <p className="mt-1 text-sm text-slate-400">
           Creative Civilization OS
         </p>
       </div>
-
       {/* NAVIGATION */}
       <nav className="mt-6 flex flex-col space-y-1 px-4">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
-
           return (
             <Link key={item.href} href={item.href}>
               <motion.div
@@ -64,14 +57,12 @@ export default function Sidebar() {
                     transition={{ duration: 0.35, ease: "easeOut" }}
                   />
                 )}
-
                 <span className="relative z-10">{item.label}</span>
               </motion.div>
             </Link>
           );
         })}
       </nav>
-
       {/* COSMIC FOOTER */}
       <div className="absolute bottom-0 left-0 w-full px-6 py-6">
         <motion.div

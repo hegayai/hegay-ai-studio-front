@@ -1,5 +1,4 @@
 // app/components/desktop/MultiverseNavigatorMini.tsx
-
 export default function MultiverseNavigatorMini() {
   return (
     <div className="space-y-2">

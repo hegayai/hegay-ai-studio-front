@@ -1,8 +1,6 @@
 "use client";
-
 import RealmIntro from "@/app/components/ui/RealmIntro";
 import RealmToolPanel from "@/app/components/ui/RealmToolPanel";
-
 export default function VideoRealmPage() {
   return (
     <main className="space-y-8">
@@ -11,7 +9,6 @@ export default function VideoRealmPage() {
         description="The motion‑imagination engine of your Creative OS — cinematics, sequences, transitions, and visual storytelling."
         aura="from-red-500/40 to-purple-500/40"
       />
-
       <RealmToolPanel
         title="Video Tools"
         description="Tools for generating cinematic sequences, transitions, edits, and visual storytelling structures."

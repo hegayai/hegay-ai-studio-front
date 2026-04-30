@@ -1,8 +1,6 @@
 "use client";
-
 export default function CosmicHUDStrip({ active }: { active: boolean }) {
   if (!active) return null;
-
   return (
     <div className="fixed top-0 left-0 right-0 z-[9997] pointer-events-none">
       <div
@@ -10,7 +8,6 @@ export default function CosmicHUDStrip({ active }: { active: boolean }) {
       >
         CONTAINMENT MODE ACTIVE
       </div>
-
       <style jsx>{`
         @keyframes hudGlow {
           0% {

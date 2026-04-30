@@ -1,8 +1,6 @@
 // app/(dashboard)/archive/page.tsx
-
 import React from "react";
 import { Archive, GitBranch, Clock, Layers, Sparkles } from "lucide-react";
-
 export default function ArchivePage() {
   return (
     <main className="px-8 py-10 space-y-10">
@@ -17,7 +15,6 @@ export default function ArchivePage() {
           and world you’ve shaped lives here.
         </p>
       </header>
-
       {/* Archive Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         <ArchiveCard
@@ -63,7 +60,6 @@ export default function ArchivePage() {
           color="from-[#5A3E2B] to-[#8C5F3A]"
         />
       </section>
-
       {/* Lineage Overview Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-4">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
@@ -75,21 +71,18 @@ export default function ArchivePage() {
           shifts. The lineage system preserves your creative history and allows
           you to restore or fork any moment.
         </p>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
           <StatCard label="Total Versions" value="112" icon={Layers} />
           <StatCard label="Active Threads" value="17" icon={GitBranch} />
           <StatCard label="Restorable Points" value="54" icon={Clock} />
         </div>
       </section>
-
       {/* Timeline Panel */}
       <section className="rounded-2xl border border-white/5 bg-black/60 p-6 space-y-6">
         <h2 className="text-sm font-semibold tracking-wide flex items-center gap-2">
           <span className="h-1 w-6 rounded-full bg-gradient-to-r from-[#F5D48A] to-[#FFB85C]" />
           Recent Lineage Activity
         </h2>
-
         <div className="space-y-4">
           <TimelineRow
             label="Hybrid City‑Verse updated to v12"
@@ -112,9 +105,7 @@ export default function ArchivePage() {
     </main>
   );
 }
-
 /* ───────────────── COMPONENTS ───────────────── */
-
 function ArchiveCard({
   name,
   version,
@@ -156,7 +147,6 @@ function ArchiveCard({
     </div>
   );
 }
-
 function StatCard({
   label,
   value,
@@ -178,7 +168,6 @@ function StatCard({
     </div>
   );
 }
-
 function TimelineRow({
   label,
   time,

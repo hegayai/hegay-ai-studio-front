@@ -1,10 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import EngineCore from "@/app/components/ui/EngineCore";
 import EnginePanel from "@/app/components/ui/EnginePanel";
 import EngineOutput from "@/app/components/ui/EngineOutput";
-
 export default function DiasporaStoryEnginePage() {
   const [theme, setTheme] = useState("Migration");
   const [tone, setTone] = useState("Warm");
@@ -12,25 +10,18 @@ export default function DiasporaStoryEnginePage() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [story, setStory] = useState("");
-
   async function handleGenerate() {
     if (!prompt.trim()) return;
     setLoading(true);
-
     // 🔮 Placeholder for real diaspora story generation API
     await new Promise((r) => setTimeout(r, 1200));
-
     setStory(
       `A ${tone.toLowerCase()} diaspora story shaped by ${theme.toLowerCase()} and centered on ${focus.toLowerCase()}:
-
 ${prompt}
-
 This narrative reflects the emotional memory, cultural continuity, and ancestral resonance carried across borders and generations.`
     );
-
     setLoading(false);
   }
-
   return (
     <EngineCore
       title="Diaspora Story Engine"
@@ -50,7 +41,6 @@ This narrative reflects the emotional memory, cultural continuity, and ancestral
               onChange={(e) => setPrompt(e.target.value)}
             />
           </div>
-
           {/* Theme */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -69,7 +59,6 @@ This narrative reflects the emotional memory, cultural continuity, and ancestral
               <option>Memory</option>
             </select>
           </div>
-
           {/* Tone */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -88,7 +77,6 @@ This narrative reflects the emotional memory, cultural continuity, and ancestral
               <option>Epic</option>
             </select>
           </div>
-
           {/* Focus */}
           <div>
             <label className="text-[0.7rem] uppercase tracking-[0.18em] text-slate-400">
@@ -107,7 +95,6 @@ This narrative reflects the emotional memory, cultural continuity, and ancestral
               <option>Spirituality</option>
             </select>
           </div>
-
           {/* Button */}
           <button
             onClick={handleGenerate}
@@ -126,13 +113,11 @@ This narrative reflects the emotional memory, cultural continuity, and ancestral
               <p>Weaving cultural memory…</p>
             </div>
           )}
-
           {!loading && story && (
             <pre className="text-xs text-slate-200 whitespace-pre-line">
               {story}
             </pre>
           )}
-
           {!loading && !story && (
             <p className="text-xs text-slate-500 text-center px-4">
               Enter a story seed to generate a diaspora narrative.

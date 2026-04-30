@@ -1,13 +1,11 @@
 import { ModelCallInput, ModelCallResult } from "../callModel";
 import { formatPrompt } from "../utils/format";
-
 export async function callGroq({
   model,
   systemPrompt = "",
   prompt,
 }: ModelCallInput): Promise<ModelCallResult> {
   const formatted = formatPrompt(systemPrompt, prompt);
-
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -19,9 +17,7 @@ export async function callGroq({
       messages: [{ role: "user", content: formatted }],
     }),
   });
-
   const data = await res.json();
-
   return {
     output: data?.choices?.[0]?.message?.content ?? "No output returned.",
     provider: "groq",

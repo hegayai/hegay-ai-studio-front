@@ -1,5 +1,4 @@
 "use client";
-
 export default function CultureRealmPage() {
   return (
     <main className="min-h-screen w-full bg-black text-slate-100 relative overflow-hidden p-6">
@@ -7,7 +6,6 @@ export default function CultureRealmPage() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="cosmic-particles" />
       </div>
-
       <div className="relative z-10 max-w-6xl mx-auto space-y-8">
         <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-black via-[#050712] to-black p-8 shadow-[0_30px_80px_rgba(0,0,0,0.9)] relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.16),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(56,189,248,0.16),_transparent_55%)]" />
@@ -23,7 +21,6 @@ export default function CultureRealmPage() {
             </p>
           </div>
         </section>
-
         <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <CultureCard
             title="Story Threads"
@@ -38,7 +35,6 @@ export default function CultureRealmPage() {
             desc="Patterns of resilience, resistance, joy, and grief encoded as cultural frequency."
           />
         </section>
-
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <CultureCard
             title="Music & Rhythm"
@@ -53,7 +49,6 @@ export default function CultureRealmPage() {
     </main>
   );
 }
-
 function CultureCard({ title, desc }: { title: string; desc: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-black/70 backdrop-blur-2xl p-6 shadow-[0_18px_45px_rgba(0,0,0,0.85)] hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(244,114,182,0.35)] transition-all duration-300">

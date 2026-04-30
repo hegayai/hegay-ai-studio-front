@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const body = await req.json();
   const { content, style, strength, preserveColor } = body;
-
   const res = await fetch(process.env.IMAGE_STYLE_TRANSFER_API_URL!, {
     method: "POST",
     headers: {
@@ -17,9 +15,7 @@ export async function POST(req: Request) {
       preserveColor,
     }),
   });
-
   const data = await res.json();
-
   return NextResponse.json({
     image: {
       url: data.url,

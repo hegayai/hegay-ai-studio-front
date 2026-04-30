@@ -1,23 +1,18 @@
 "use client";
-
 import { useState, useEffect } from "react";
-
 export default function NotificationCenter() {
   const [open, setOpen] = useState(false);
   const [logs, setLogs] = useState<
     { id: number; message: string; time: Date }[]
   >([]);
-
   useEffect(() => {
     function togglePanel() {
       setOpen((prev) => !prev);
     }
-
     document.addEventListener("toggle-notifications", togglePanel);
     return () =>
       document.removeEventListener("toggle-notifications", togglePanel);
   }, []);
-
   useEffect(() => {
     function handleLog(e: CustomEvent<{ message: string }>) {
       setLogs((prev) => [
@@ -25,12 +20,10 @@ export default function NotificationCenter() {
         ...prev,
       ]);
     }
-
     document.addEventListener("log-event", handleLog as EventListener);
     return () =>
       document.removeEventListener("log-event", handleLog as EventListener);
   }, []);
-
   return (
     <div
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -39,11 +32,9 @@ export default function NotificationCenter() {
     >
       <div className="bg-black/60 backdrop-blur-xl border-b border-white/10 p-6 h-[60vh] overflow-y-auto">
         <h2 className="text-2xl font-bold mb-4">Notification Center</h2>
-
         {logs.length === 0 && (
           <div className="text-white/50 text-sm">No notifications yet</div>
         )}
-
         <div className="flex flex-col gap-4">
           {logs.map((log) => (
             <div

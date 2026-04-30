@@ -1,16 +1,12 @@
 "use client";
-
 import { GlowShell } from "@/components/MotionProvider";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { generatePreset } from "@/lib/presetGenerator";
-
 export default function PresetDetailPage() {
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
-
   const presetId = "mythic-desert-world"; // ← change per preset
-
   const template = `
 World Type: Mythic Desert World
 Tone: Ancient, spiritual, wind‑carved
@@ -20,14 +16,12 @@ Key Features:
 • Wind‑borne rituals and nomadic tribes
 • Mythic storms revealing hidden truths
 `;
-
   async function handleGenerate() {
     setLoading(true);
     const result = await generatePreset(presetId, template);
     setOutput(result);
     setLoading(false);
   }
-
   return (
     <div className="min-h-screen w-full">
       <div className="mx-auto max-w-5xl pt-10 pb-20 px-6">
@@ -44,7 +38,6 @@ Key Features:
             One‑click world blueprint
           </p>
         </motion.div>
-
         <GlowShell>
           <div className="space-y-10">
             <section>
@@ -55,7 +48,6 @@ Key Features:
 {template}
               </pre>
             </section>
-
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
@@ -65,7 +57,6 @@ Key Features:
             >
               {loading ? "Generating..." : "Generate"}
             </motion.button>
-
             {output && (
               <motion.div
                 initial={{ opacity: 0, y: 12 }}

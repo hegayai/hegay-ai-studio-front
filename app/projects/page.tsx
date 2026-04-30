@@ -1,5 +1,4 @@
 "use client";
-
 const PROJECTS = [
   {
     id: "hegay-origin-beta",
@@ -20,7 +19,6 @@ const PROJECTS = [
     models: ["Mood", "Dream"],
   },
 ];
-
 export default function ProjectsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
@@ -42,7 +40,6 @@ export default function ProjectsPage() {
             New Project
           </button>
         </header>
-
         {/* List */}
         <section className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">

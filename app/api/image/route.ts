@@ -1,7 +1,5 @@
 // app/api/image/route.ts
-
 import { NextResponse } from "next/server";
-
 export async function POST(req: Request) {
   const body = await req.json();
   const {
@@ -14,11 +12,9 @@ export async function POST(req: Request) {
     cfgScale = 7,
     seed,
   } = body;
-
   if (!prompt) {
     return NextResponse.json({ error: "prompt is required" }, { status: 400 });
   }
-
   // 🔥 Example: generic external image API using multipart/form-data
   // Replace IMAGE_API_URL + headers with your real provider.
   const form = new FormData();
@@ -30,7 +26,6 @@ export async function POST(req: Request) {
   if (seed !== undefined) form.append("seed", String(seed));
   if (provider) form.append("provider", provider);
   if (model) form.append("model", model);
-
   const res = await fetch(process.env.IMAGE_API_URL as string, {
     method: "POST",
     headers: {
@@ -39,7 +34,6 @@ export async function POST(req: Request) {
     },
     body: form,
   });
-
   if (!res.ok) {
     const text = await res.text();
     return NextResponse.json(
@@ -47,23 +41,19 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-
   // Expecting provider to return JSON with an image URL or base64
   const data = await res.json();
-
   const imageUrl =
     data.url ||
     data.image_url ||
     (Array.isArray(data.images) && data.images[0]?.url) ||
     "";
-
   if (!imageUrl) {
     return NextResponse.json(
       { error: "Image URL missing in provider response" },
       { status: 500 }
     );
   }
-
   return NextResponse.json({
     image: {
       url: imageUrl,
