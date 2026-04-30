@@ -1,6 +1,10 @@
+// app/api/brand/generate/route.ts
+
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/src/app/ai/providers/fal";
+
+// ⭐ Correct provider import path
+import { fal } from "@/app/ai/providers/fal";
 
 export const runtime = "nodejs";
 
@@ -8,49 +12,46 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const {
-      name,
-      description,
-      industry,
-      style = "modern" 
-      // "modern" | "minimal" | "bold" | "playful" | "luxury" | "tech" | "cinematic"
-    } = body;
+    const { name, description, tone, audience } = body;
 
-    if (!name || !description) {
+    if (!name) {
       return NextResponse.json(
-        { error: "Brand name and description are required" },
+        { error: "Brand name is required" },
         { status: 400 }
       );
     }
 
     const result = await modelRouter({
-      model: "brand-kit-generate",
+      model: "brand-generator",
       input: {
         name,
         description,
-        industry,
-        style
+        tone,
+        audience,
       },
       provider: fal,
-      type: "text"
+      type: "business",
     });
 
-    if (!result?.brandKit) {
+    if (!result) {
       return NextResponse.json(
-        { error: "Brand kit generation failed", raw: result },
+        { error: "Brand generation failed" },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      brandKit: result.brandKit
+      success: true,
+      brand: result.brand || null,
+      tagline: result.tagline || null,
+      palette: result.palette || null,
+      voice: result.voice || null,
     });
-
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Brand kit generation error",
-        details: String(error)
+        error: "Brand generation error",
+        details: String(error),
       },
       { status: 500 }
     );
