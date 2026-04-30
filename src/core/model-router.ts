@@ -1,12 +1,22 @@
 import { callModel } from "@/app/ai/callModel";
 
-export async function modelRouter(provider: string, model: string, systemPrompt: string, userPrompt: string) {
+export async function modelRouter({
+  provider = "local",
+  model,
+  systemPrompt,
+  prompt,
+}: {
+  provider?: string;
+  model: string;
+  systemPrompt?: string;
+  prompt: string;
+}) {
   try {
     const result = await callModel({
       provider,
       model,
       systemPrompt,
-      userPrompt,
+      prompt,
     });
 
     return result;
