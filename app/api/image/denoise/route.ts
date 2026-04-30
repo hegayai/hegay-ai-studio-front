@@ -1,52 +1,59 @@
+// app/api/image/denoise/route.ts
+
 import { NextResponse } from "next/server";
 
-// ⭐ Import your provider
-import { fal } from "@/src/app/ai/providers/fal";
+// ⭐ Correct provider import path
+import { fal } from "@/app/ai/providers/fal";
 
-// ⭐ Import your unified model router
+// ⭐ Unified model router
 import { modelRouter } from "@/src/core/model-router";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const form = await req.formData();
 
-    const {
-      image,
-      strength,
-      preserveDetail,
-      mode
-    } = body;
+    const file = form.get("file") as File | null;
+    const strength = Number(form.get("strength") || 0.5);
 
-    // ⭐ Unified provider-based denoise call
+    if (!file) {
+      return NextResponse.json(
+        { error: "No image file uploaded" },
+        { status: 400 }
+      );
+    }
+
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
+
     const result = await modelRouter({
       model: "image-denoise",
       input: {
-        image,
+        file: fileBuffer,
+        filename: file.name,
         strength,
-        preserveDetail,
-        mode
       },
       provider: fal,
-      type: "image"
+      type: "image",
     });
 
-    if (!result?.url) {
+    if (!result) {
       return NextResponse.json(
-        { error: "Image denoise failed", raw: result },
+        { error: "Image denoising failed" },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      url: result.url,
-      denoised: result.denoised || null
+      success: true,
+      output: result.output || null,
+      metadata: result.metadata || null,
     });
-
   } catch (error) {
     return NextResponse.json(
       {
         error: "Image denoise error",
-        details: String(error)
+        details: String(error),
       },
       { status: 500 }
     );
