@@ -1,48 +1,46 @@
 import { NextResponse } from "next/server";
-// ⭐ Correct provider import
-// ⭐ Correct model router import
 import { modelRouter } from "@/src/core/model-router";
+
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
+    const { image, lightDirection, intensity } = await req.json();
+
+    if (!image) {
+      return NextResponse.json(
+        { error: "Image is required" },
+        { status: 400 }
+      );
+    }
+
+    const combinedPrompt = JSON.stringify({
       image,
       lightDirection,
-      intensity,
-      color,
-      softness,
-      ambient,
-      mode
-    } = body;
-    // ⭐ Unified provider-based relight call
-    const result = await modelRouter({
-      model: "image-relight",
-      input: {
-        image,
-        lightDirection,
-        intensity,
-        color,
-        softness,
-        ambient,
-        mode
-      },
-      provider: fal,
-      type: "image"
+      intensity
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-relight",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Image relight failed", raw: result },
+        { error: "Relight generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      relight: result.relight || null
+      url: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Image relight error",
+        error: "Relight route error",
         details: String(error)
       },
       { status: 500 }

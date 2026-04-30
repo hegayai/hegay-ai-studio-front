@@ -1,45 +1,73 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
-export async function POST() {
+
+export async function GET() {
   try {
+    // Find the next scheduled or queued job
     const job = await prisma.job.findFirst({
       where: {
-        task: "social-post",
         status: "queued"
       },
-      orderBy: { scheduledAt: "asc" }
+      orderBy: {
+        scheduledAt: "asc"
+      }
     });
+
     if (!job) {
       return NextResponse.json({ message: "No scheduled posts" });
     }
-    await prisma.job.update({
-      where: { id: job.id },
-      data: { status: "processing" }
-    });
-    // Provider-based posting (placeholder)
+
+    // Prepare payload for the model
+    const combinedPrompt = JSON.stringify(job.payload);
+
+    // Run the model
     const result = await modelRouter({
+      provider: "fal",
       model: "social-post",
-      input: job.payload,
-      provider: fal,
-      type: "agent"
+      prompt: combinedPrompt
     });
+
+    if (!result?.output) {
+      await prisma.job.update({
+        where: { id: job.id },
+        data: {
+          status: "failed",
+          error: "Model returned no output",
+          updatedAt: new Date()
+        }
+      });
+
+      return NextResponse.json(
+        { error: "Social post generation failed", raw: result },
+        { status: 500 }
+      );
+    }
+
+    // Mark job as completed
     await prisma.job.update({
       where: { id: job.id },
       data: {
         status: "completed",
-        result
+        result: result.output,
+        completedAt: new Date(),
+        updatedAt: new Date()
       }
     });
+
     return NextResponse.json({
-      posted: true,
-      jobId: job.id,
-      result
+      message: "Post generated",
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
-      { error: "Social posting error", details: String(error) },
+      {
+        error: "Social post route error",
+        details: String(error)
+      },
       { status: 500 }
     );
   }

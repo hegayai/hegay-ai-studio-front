@@ -1,49 +1,47 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
-    const prompt = form.get("prompt") as string | null;
-    const style = form.get("style") as string | null; 
-    // e.g. "tiktok", "reels", "fast-cut", "cinematic", "story"
-    const duration = Number(form.get("duration") || 10); // default 10s vertical short
-    const ratio = form.get("ratio") as string | null; 
-    // "9:16" | "4:5" | "1:1"
+    const { prompt, style, duration, format } = await req.json();
+
     if (!prompt) {
       return NextResponse.json(
-        { error: "Prompt is required for Shorts generation" },
+        { error: "Prompt is required" },
         { status: 400 }
       );
     }
-    // ⭐ Unified provider-based Shorts video generation
-    const result = await modelRouter({
-      model: "video-shorts",
-      input: {
-        prompt,
-        style,
-        duration,
-        ratio: ratio || "9:16"
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      prompt,
+      style: style || "fast-cut",
+      duration: duration || "15",
+      format: format || "9:16"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-shorts",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Shorts generation failed", raw: result },
+        { error: "Short‑form video generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      duration,
-      ratio: ratio || "9:16",
-      style: style || "default"
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Shorts generation error",
+        error: "Video shorts route error",
         details: String(error)
       },
       { status: 500 }

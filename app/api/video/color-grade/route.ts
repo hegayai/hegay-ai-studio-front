@@ -1,45 +1,50 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const file = form.get("file") as File | null;
-    const grade = (form.get("grade") as string) || "cinematic";
-    const intensity = Number(form.get("intensity") || 0.8);
+    const file = form.get("file") as File;
+    const grade = form.get("grade") as string;
+
     if (!file) {
       return NextResponse.json(
-        { error: "No video file uploaded" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const result = await modelRouter({
-      model: "video-color-grade",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        grade,
-        intensity
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      grade
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-color-grade",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Video color grading failed", raw: result },
+        { error: "Color grading failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      grade,
-      intensity
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video color grading error",
+        error: "Video color‑grade route error",
         details: String(error)
       },
       { status: 500 }

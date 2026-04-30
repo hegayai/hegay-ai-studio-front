@@ -1,55 +1,46 @@
 import { NextResponse } from "next/server";
-// Provider architecture
-// Unified model router
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
+    const { text, from, to } = await req.json();
+
+    if (!text || !from || !to) {
+      return NextResponse.json(
+        { error: "Text, source language, and target language are required" },
+        { status: 400 }
+      );
+    }
+
+    const combinedPrompt = JSON.stringify({
       text,
-      from = "auto",   // auto-detect by default
-      to,               // target language (any worldwide language)
-      format = "srt"    // "srt" | "text"
-    } = body;
-    if (!text) {
-      return NextResponse.json(
-        { error: "Text or subtitles are required" },
-        { status: 400 }
-      );
-    }
-    if (!to) {
-      return NextResponse.json(
-        { error: "Target language 'to' is required" },
-        { status: 400 }
-      );
-    }
-    // Unified provider-based subtitle translation
-    const result = await modelRouter({
-      model: "subtitle-translate",
-      input: {
-        text,
-        from,
-        to,
-        format
-      },
-      provider: fal,
-      type: "text"
+      from,
+      to
     });
-    if (!result?.translated) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "subtitle-translate",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Subtitle translation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      translated: result.translated,
-      detectedLanguage: result.detectedLanguage || null
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Subtitle translation error",
+        error: "Subtitle translation route error",
         details: String(error)
       },
       { status: 500 }

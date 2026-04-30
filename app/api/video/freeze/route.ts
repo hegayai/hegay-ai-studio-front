@@ -1,52 +1,55 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const time = Number(form.get("time") || 1.0);
-    const duration = Number(form.get("duration") || 2.0);
+
+    const video = form.get("video") as File;
+    const time = form.get("time") as string;
+    const hold = form.get("hold") as string;
+    const mode = form.get("mode") as string;
+
     if (!video) {
       return NextResponse.json(
-        { error: "A video file is required for freeze-frame" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
-    if (time < 0 || duration <= 0) {
-      return NextResponse.json(
-        { error: "Invalid time or duration values" },
-        { status: 400 }
-      );
-    }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
-    // ⭐ Unified provider-based freeze-frame
-    const result = await modelRouter({
-      model: "video-freeze",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        time,
-        duration
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      time: time || "00:00:01",
+      hold: hold || "2",
+      mode: mode || "freeze"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-freeze",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Freeze-frame generation failed", raw: result },
+        { error: "Video freeze effect failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      time,
-      duration
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Freeze-frame error",
+        error: "Video freeze route error",
         details: String(error)
       },
       { status: 500 }

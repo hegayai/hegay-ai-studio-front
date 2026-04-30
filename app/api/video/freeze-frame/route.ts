@@ -1,42 +1,50 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const file = form.get("file") as File | null;
-    const timestamp = Number(form.get("timestamp") || 1.0);
+    const file = form.get("file") as File;
+    const timestamp = form.get("timestamp") as string;
+
     if (!file) {
       return NextResponse.json(
-        { error: "No video file uploaded" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const result = await modelRouter({
-      model: "video-freeze-frame",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        timestamp
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      timestamp: timestamp || "00:00:01"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-freeze-frame",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Freeze-frame failed", raw: result },
+        { error: "Freeze‑frame generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      timestamp
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Freeze-frame error",
+        error: "Video freeze‑frame route error",
         details: String(error)
       },
       { status: 500 }

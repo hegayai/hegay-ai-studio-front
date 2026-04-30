@@ -1,57 +1,55 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const watermark = form.get("watermark") as File | null;
-    const position = form.get("position") as string | null;
-    // "top-left" | "top-right" | "bottom-left" | "bottom-right" | "center"
-    const opacity = Number(form.get("opacity") || 0.8);
-    if (!video) {
+
+    const video = form.get("video") as File;
+    const watermark = form.get("watermark") as File;
+    const position = form.get("position") as string;
+
+    if (!video || !watermark) {
       return NextResponse.json(
-        { error: "A video file is required for watermarking" },
+        { error: "Both video and watermark files are required" },
         { status: 400 }
       );
     }
-    if (!watermark) {
-      return NextResponse.json(
-        { error: "A watermark image is required" },
-        { status: 400 }
-      );
-    }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
     const watermarkBuffer = Buffer.from(await watermark.arrayBuffer());
-    // ⭐ Unified provider-based watermarking
-    const result = await modelRouter({
-      model: "video-watermark",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        watermark: watermarkBuffer,
-        watermarkFilename: watermark.name,
-        position: position || "bottom-right",
-        opacity
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      watermark: watermarkBuffer.toString("base64"),
+      watermarkFilename: watermark.name,
+      position: position || "top-right"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-watermark",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Watermarking failed", raw: result },
+        { error: "Video watermarking failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      position: position || "bottom-right",
-      opacity
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Watermark processing error",
+        error: "Video watermark route error",
         details: String(error)
       },
       { status: 500 }

@@ -1,44 +1,51 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const mode = form.get("mode") as string | null;
-    // e.g. "upscale", "restore", "denoise", "smooth", "old-film"
+
+    const video = form.get("video") as File;
+    const mode = form.get("mode") as string;
+
     if (!video) {
       return NextResponse.json(
-        { error: "A video file is required for restoration" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
-    // ⭐ Unified provider-based video restoration
-    const result = await modelRouter({
-      model: "video-restore",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        mode: mode || "restore"
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      mode: mode || "restore"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-restore",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Video restoration failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      mode: mode || "restore"
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video restoration error",
+        error: "Video restore route error",
         details: String(error)
       },
       { status: 500 }

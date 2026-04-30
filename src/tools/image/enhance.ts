@@ -1,6 +1,5 @@
 import type { Engine, EngineInput, EngineOutput, ToolContext } from "../types";
-import { runModel } from "../bridge/model-router";
-import { fal } from "@/app/ai/providers/fal";
+import { callFal } from "@/app/ai/providers/fal";
 
 export const enhanceEngine: Engine = {
   kind: "image",
@@ -11,12 +10,30 @@ export const enhanceEngine: Engine = {
       return { success: false, error: "Missing image" };
     }
 
-    return runModel(
-      "image-enhance",
-      fal,
-      "image",
-      { image: input.image },
-      ctx
-    );
+    try {
+      const result = await callFal({
+        provider: "fal",
+        model: "image-enhance",
+        prompt: "",
+        systemPrompt: "",
+        image: input.image
+      });
+
+      return {
+        success: true,
+        data: result,
+        meta: {
+          provider: "fal",
+          model: "image-enhance",
+          requestId: ctx.requestId
+        }
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        error: err?.message ?? "Image enhancement failed",
+        meta: { requestId: ctx.requestId }
+      };
+    }
   }
 };

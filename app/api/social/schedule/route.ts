@@ -1,23 +1,22 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
-      platform,
-      content,
-      hashtags,
-      scheduledAt
-    } = body;
-    if (!platform || !content || !scheduledAt) {
+    const { platform, content, hashtags, scheduledAt } = await req.json();
+
+    if (!platform || !content) {
       return NextResponse.json(
-        { error: "Platform, content, and scheduledAt are required" },
+        { error: "Platform and content are required" },
         { status: 400 }
       );
     }
+
     const job = await prisma.job.create({
       data: {
+        workflowId: "social-post",   // ⭐ REQUIRED FIELD
         task: "social-post",
         payload: {
           platform,
@@ -28,13 +27,18 @@ export async function POST(req: Request) {
         status: "queued"
       }
     });
+
     return NextResponse.json({
-      scheduled: true,
+      message: "Post scheduled",
       jobId: job.id
     });
+
   } catch (error) {
     return NextResponse.json(
-      { error: "Social scheduling error", details: String(error) },
+      {
+        error: "Social schedule route error",
+        details: String(error)
+      },
       { status: 500 }
     );
   }

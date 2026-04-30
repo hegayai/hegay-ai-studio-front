@@ -1,22 +1,47 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { lore, seed } = body;
-    const result = await modelRouter({
-      model: "mythic-generator",
-      input: {
-        lore,
-        seed,
-      },
-      provider: fal,
-      type: "text",
+    const { lore, seed } = await req.json();
+
+    if (!lore) {
+      return NextResponse.json(
+        { error: "Lore prompt is required" },
+        { status: 400 }
+      );
+    }
+
+    const combinedPrompt = JSON.stringify({
+      lore,
+      seed
     });
-    return NextResponse.json(result);
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "mythic-generator",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
+      return NextResponse.json(
+        { error: "Mythic generation failed", raw: result },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      output: result.output
+    });
+
   } catch (error) {
     return NextResponse.json(
-      { error: "Mythic generation error", details: String(error) },
+      {
+        error: "Mythic generator route error",
+        details: String(error)
+      },
       { status: 500 }
     );
   }

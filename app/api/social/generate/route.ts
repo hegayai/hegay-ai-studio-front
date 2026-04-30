@@ -1,39 +1,48 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
-      platform,   // "tiktok" | "instagram" | "youtube" | "twitter" | "linkedin"
-      topic,      // text or summary
-      style = "default"
-    } = body;
+    const { platform, topic, style } = await req.json();
+
     if (!platform || !topic) {
       return NextResponse.json(
         { error: "Platform and topic are required" },
         { status: 400 }
       );
     }
-    const result = await modelRouter({
-      model: "social-generate",
-      input: { platform, topic, style },
-      provider: fal,
-      type: "text"
+
+    const combinedPrompt = JSON.stringify({
+      platform,
+      topic,
+      style
     });
-    if (!result?.content) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "social-generate",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Social content generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      content: result.content,
-      hashtags: result.hashtags || []
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
-      { error: "Social generation error", details: String(error) },
+      {
+        error: "Social generator route error",
+        details: String(error)
+      },
       { status: 500 }
     );
   }

@@ -1,52 +1,53 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const start = Number(form.get("start") || 0);
-    const end = Number(form.get("end") || 5);
+
+    const video = form.get("video") as File;
+    const start = form.get("start") as string;
+    const end = form.get("end") as string;
+
     if (!video) {
       return NextResponse.json(
-        { error: "A video file is required for trimming" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
-    if (end <= start) {
-      return NextResponse.json(
-        { error: "End time must be greater than start time" },
-        { status: 400 }
-      );
-    }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
-    // ⭐ Unified provider-based video trimming
-    const result = await modelRouter({
-      model: "video-trim",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        start,
-        end
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      start: start || "00:00:00",
+      end: end || "00:00:05"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-trim",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Video trimming failed", raw: result },
+        { error: "Video trim failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      start,
-      end
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video trimming error",
+        error: "Video trim route error",
         details: String(error)
       },
       { status: 500 }

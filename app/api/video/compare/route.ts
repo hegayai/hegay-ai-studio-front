@@ -1,49 +1,55 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const videoA = form.get("videoA") as File | null;
-    const videoB = form.get("videoB") as File | null;
-    const detail = Number(form.get("detail") || 0.7);
-    // 0.0–1.0 (higher = more detailed comparison)
+
+    const videoA = form.get("videoA") as File;
+    const videoB = form.get("videoB") as File;
+    const detail = form.get("detail") as string;
+
     if (!videoA || !videoB) {
       return NextResponse.json(
-        { error: "Two video files (videoA and videoB) are required" },
+        { error: "Both videoA and videoB files are required" },
         { status: 400 }
       );
     }
+
     const bufferA = Buffer.from(await videoA.arrayBuffer());
     const bufferB = Buffer.from(await videoB.arrayBuffer());
-    // ⭐ Unified provider-based comparison
-    const result = await modelRouter({
-      model: "video-compare",
-      input: {
-        videoA: bufferA,
-        videoAFilename: videoA.name,
-        videoB: bufferB,
-        videoBFilename: videoB.name,
-        detail
-      },
-      provider: fal,
-      type: "json"
+
+    const combinedPrompt = JSON.stringify({
+      videoA: bufferA.toString("base64"),
+      videoAFilename: videoA.name,
+      videoB: bufferB.toString("base64"),
+      videoBFilename: videoB.name,
+      detail
     });
-    if (!result?.differences) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-compare",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Video comparison failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      differences: result.differences,
-      score: result.score || null,
-      detail
+      comparison: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video comparison error",
+        error: "Video compare route error",
         details: String(error)
       },
       { status: 500 }

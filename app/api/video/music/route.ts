@@ -1,52 +1,47 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
-    const audio = form.get("audio") as File | null;
-    const prompt = form.get("prompt") as string | null;
-    const style = form.get("style") as string | null;
-    // e.g. "visualizer", "neon", "cinematic", "abstract", "album-art"
-    if (!audio && !prompt) {
+    const { prompt, style, duration, mood } = await req.json();
+
+    if (!prompt) {
       return NextResponse.json(
-        { error: "Either audio or prompt is required" },
+        { error: "Prompt is required" },
         { status: 400 }
       );
     }
-    let audioBuffer: Buffer | null = null;
-    if (audio) {
-      audioBuffer = Buffer.from(await audio.arrayBuffer());
-    }
-    const duration = Number(form.get("duration") || 15);
-    // ⭐ Unified provider-based music video generation
-    const result = await modelRouter({
-      model: "video-music",
-      input: {
-        prompt,
-        style,
-        duration,
-        audio: audioBuffer,
-        audioFilename: audio?.name || null
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      prompt,
+      style: style || "cinematic",
+      duration: duration || "10",
+      mood: mood || "epic"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-music",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Music video generation failed", raw: result },
+        { error: "Video music generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      duration,
-      style: style || "default"
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Music video generation error",
+        error: "Video music route error",
         details: String(error)
       },
       { status: 500 }

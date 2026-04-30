@@ -4,16 +4,16 @@ import type { EngineInput, EngineOutput, ToolContext } from "../types";
 export async function runModel(
   model: string,
   provider: any,
-  type: "image" | "video" | "text" | "audio",
+  _type: "image" | "video" | "text" | "audio",
   input: EngineInput,
   ctx: ToolContext
 ): Promise<EngineOutput> {
   try {
     const result = await modelRouter({
-      model,
-      input,
       provider,
-      type
+      model,
+      systemPrompt: String(input.systemPrompt ?? ""),
+      prompt: String(input.prompt ?? "")
     });
 
     return {
@@ -24,7 +24,8 @@ export async function runModel(
   } catch (err: any) {
     return {
       success: false,
-      error: String(err)
+      error: String(err),
+      meta: { requestId: ctx.requestId }
     };
   }
 }

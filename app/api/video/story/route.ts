@@ -1,45 +1,46 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
-    const script = form.get("script") as string | null;
-    const style = form.get("style") as string | null; 
-    // e.g. "cinematic", "children", "epic", "documentary", "emotional"
-    const duration = Number(form.get("duration") || 12);
+    const { script, style, duration } = await req.json();
+
     if (!script) {
       return NextResponse.json(
-        { error: "Story script is required" },
+        { error: "Script is required" },
         { status: 400 }
       );
     }
-    // ⭐ Unified provider-based story video generation
-    const result = await modelRouter({
-      model: "video-story",
-      input: {
-        script,
-        style,
-        duration
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      script,
+      style: style || "cinematic",
+      duration: duration || "30"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-story",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Story video generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      duration,
-      style: style || "default"
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Story video generation error",
+        error: "Video story route error",
         details: String(error)
       },
       { status: 500 }

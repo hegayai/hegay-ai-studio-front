@@ -1,21 +1,26 @@
-export const OSBrain = {
-  suggestRelatedRealms(input: string) {
-    const map = {
-      god: "pantheon",
-      deity: "pantheon",
-      world: "origin",
-      universe: "universe",
-      music: "music",
-      voice: "radio",
-      code: "code",
-      model: "three",
-      game: "game",
-      myth: "mythic",
-      product: "marketplace",
-      business: "business",
-    };
+const map = {
+  god: "god",
+  deity: "deity",
+  world: "world",
+  universe: "universe",
+  music: "music",
+  voice: "voice",
+  code: "code",
+  model: "model",
+  game: "game",
+  myth: "myth",
+  product: "product",
+  business: "business",
+} as const;
 
-    const key = Object.keys(map).find((k) => input.toLowerCase().includes(k));
+type MapKey = keyof typeof map;
+
+export const brain = {
+  classify(input: string): string | null {
+    const key = (Object.keys(map) as MapKey[]).find((k) =>
+      input.toLowerCase().includes(k)
+    );
+
     return key ? map[key] : null;
   },
 };

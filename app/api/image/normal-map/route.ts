@@ -1,36 +1,46 @@
 import { NextResponse } from "next/server";
-// ⭐ Correct provider import
-// ⭐ Correct model router import
 import { modelRouter } from "@/src/core/model-router";
+
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { image, method, intensity } = body;
-    // ⭐ Unified provider-based normal map generation
-    const result = await modelRouter({
-      model: "image-normal-map",
-      input: {
-        image,
-        method,
-        intensity
-      },
-      provider: fal,
-      type: "image"
+    const { image, method, intensity } = await req.json();
+
+    if (!image) {
+      return NextResponse.json(
+        { error: "Image is required" },
+        { status: 400 }
+      );
+    }
+
+    const combinedPrompt = JSON.stringify({
+      image,
+      method,
+      intensity
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-normal-map",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Normal map generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      normalMap: result.normalMap || null
+      url: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Normal map error",
+        error: "Normal map route error",
         details: String(error)
       },
       { status: 500 }

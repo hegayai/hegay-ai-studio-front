@@ -1,48 +1,53 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const time = Number(form.get("time") || 1.0);
-    // extract frame at timestamp (seconds)
-    const mode = form.get("mode") as string | null;
-    // "best" | "timestamp" | "auto"
+
+    const video = form.get("video") as File;
+    const time = form.get("time") as string;
+    const format = form.get("format") as string;
+
     if (!video) {
       return NextResponse.json(
-        { error: "A video file is required to extract a thumbnail" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
-    // ⭐ Unified provider-based thumbnail extraction
-    const result = await modelRouter({
-      model: "video-thumbnail",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        time,
-        mode: mode || "best"
-      },
-      provider: fal,
-      type: "image"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      time: time || "00:00:01",
+      format: format || "jpg"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-thumbnail",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Thumbnail extraction failed", raw: result },
+        { error: "Thumbnail generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      time,
-      mode: mode || "best"
+      thumbnail: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Thumbnail extraction error",
+        error: "Video thumbnail route error",
         details: String(error)
       },
       { status: 500 }

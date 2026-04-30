@@ -1,51 +1,51 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const target = form.get("target") as string | null;
-    // e.g. "en", "es", "fr", "de", "pt", "zh"
+
+    const video = form.get("video") as File;
+    const target = form.get("target") as string;
+
     if (!video) {
       return NextResponse.json(
-        { error: "A video file is required for translation" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
-    if (!target) {
-      return NextResponse.json(
-        { error: "A target language is required" },
-        { status: 400 }
-      );
-    }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
-    // ⭐ Unified provider-based translation
-    const result = await modelRouter({
-      model: "video-translate",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        target
-      },
-      provider: fal,
-      type: "json"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      target: target || "en"
     });
-    if (!result?.text) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-translate",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Translation failed", raw: result },
+        { error: "Video translation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      text: result.text,
-      segments: result.segments || [],
-      target
+      translation: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video translation error",
+        error: "Video translate route error",
         details: String(error)
       },
       { status: 500 }

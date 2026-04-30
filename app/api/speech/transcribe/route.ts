@@ -1,51 +1,50 @@
 import { NextResponse } from "next/server";
-// ⭐ Provider architecture
-// ⭐ Unified model router
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const mode = form.get("mode") as string; // "transcribe" | "translate"
-    const language = form.get("language") as string | null;
-    const file = form.get("file") as File | null;
+    const file = form.get("file") as File;
+    const mode = form.get("mode") as string;
+
     if (!file) {
       return NextResponse.json(
-        { error: "No audio file uploaded" },
+        { error: "Audio file is required" },
         { status: 400 }
       );
     }
-    // Convert file to buffer
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    // ⭐ Unified provider-based speech transcription
-    const result = await modelRouter({
-      model: "speech-transcribe",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        mode,
-        language
-      },
-      provider: fal,
-      type: "audio"
+
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      mode
     });
-    if (!result?.text) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "speech-transcribe",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Speech transcription failed", raw: result },
+        { error: "Transcription failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      text: result.text,
-      words: result.words || null,          // timestamped words
-      segments: result.segments || null,    // diarized segments
-      language: result.language || null     // detected language
+      text: result.output
     });
+
   } catch (error) {
-    console.error("Speech transcription error:", error);
     return NextResponse.json(
       {
-        error: "Speech transcription failed",
+        error: "Speech transcription route error",
         details: String(error)
       },
       { status: 500 }

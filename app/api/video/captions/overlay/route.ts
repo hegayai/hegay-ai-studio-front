@@ -1,45 +1,50 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const file = form.get("file") as File | null;
-    const style = (form.get("style") as string) || "dynamic";
-    const language = (form.get("language") as string) || "auto";
+    const file = form.get("file") as File;
+    const style = form.get("style") as string;
+
     if (!file) {
       return NextResponse.json(
-        { error: "No video file uploaded" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const result = await modelRouter({
-      model: "video-caption-overlay",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        style,
-        language
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      style
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-caption-overlay",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Caption overlay failed", raw: result },
+        { error: "Caption overlay generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      style,
-      language
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Caption overlay error",
+        error: "Caption overlay route error",
         details: String(error)
       },
       { status: 500 }

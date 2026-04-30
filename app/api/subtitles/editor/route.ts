@@ -1,50 +1,46 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
-      text,          // raw text or SRT
-      action,        // "segment" | "merge" | "retime" | "rewrite" | "clean"
-      language,      // optional
-      style,         // for rewrite: "cinematic" | "formal" | "casual" | "concise" | "emotional"
-      maxLength,     // max characters per subtitle line
-      maxDuration    // max seconds per subtitle block
-    } = body;
-    if (!text) {
+    const { text, action, language } = await req.json();
+
+    if (!text || !action) {
       return NextResponse.json(
-        { error: "Text or subtitles are required" },
+        { error: "Text and action are required" },
         { status: 400 }
       );
     }
-    // Unified provider-based subtitle editing
-    const result = await modelRouter({
-      model: "subtitle-editor",
-      input: {
-        text,
-        action,
-        language,
-        style,
-        maxLength,
-        maxDuration
-      },
-      provider: fal,
-      type: "text"
+
+    const combinedPrompt = JSON.stringify({
+      text,
+      action,
+      language
     });
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "subtitle-editor",
+      prompt: combinedPrompt
+    });
+
     if (!result?.output) {
       return NextResponse.json(
-        { error: "Subtitle editor failed", raw: result },
+        { error: "Subtitle editing failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
       output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Subtitle editor error",
+        error: "Subtitle editor route error",
         details: String(error)
       },
       { status: 500 }

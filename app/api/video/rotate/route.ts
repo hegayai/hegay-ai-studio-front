@@ -1,42 +1,51 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const file = form.get("file") as File | null;
-    const degrees = Number(form.get("degrees") || 90);
+
+    const file = form.get("file") as File;
+    const degrees = form.get("degrees") as string;
+
     if (!file) {
       return NextResponse.json(
-        { error: "No video file uploaded" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const result = await modelRouter({
-      model: "video-rotate",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        degrees
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      degrees: degrees || "90"
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-rotate",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
         { error: "Video rotation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      degrees
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video rotation error",
+        error: "Video rotate route error",
         details: String(error)
       },
       { status: 500 }

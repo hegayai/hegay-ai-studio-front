@@ -1,49 +1,46 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
-    const mode = form.get("mode") as string; 
-    // "script" | "image" | "product" | "brand"
-    const script = form.get("script") as string | null;
-    const image = form.get("image") as File | null;
-    const brand = form.get("brand") as string | null;
-    const product = form.get("product") as string | null;
-    // Convert image if provided
-    let imageBuffer: Buffer | null = null;
-    if (image) {
-      imageBuffer = Buffer.from(await image.arrayBuffer());
-    }
-    // Unified provider-based Ads Video Generation
-    const result = await modelRouter({
-      model: "video-ads",
-      input: {
-        mode,
-        script,
-        brand,
-        product,
-        image: imageBuffer,
-        imageFilename: image?.name || null
-      },
-      provider: fal,
-      type: "video"
-    });
-    if (!result?.videoUrl) {
+    const { mode, script, brand } = await req.json();
+
+    if (!mode || !script) {
       return NextResponse.json(
-        { error: "Ads video generation failed", raw: result },
+        { error: "Mode and script are required" },
+        { status: 400 }
+      );
+    }
+
+    const combinedPrompt = JSON.stringify({
+      mode,
+      script,
+      brand
+    });
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-ads",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
+      return NextResponse.json(
+        { error: "Video ad generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      videoUrl: result.videoUrl,
-      duration: result.duration || null,
-      format: result.format || "mp4"
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Ads video generation error",
+        error: "Video ads route error",
         details: String(error)
       },
       { status: 500 }

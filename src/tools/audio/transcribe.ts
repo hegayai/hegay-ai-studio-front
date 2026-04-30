@@ -1,22 +1,36 @@
 import type { Engine, EngineInput, EngineOutput, ToolContext } from "../types";
-import { runModel } from "../bridge/model-router";
-import { fal } from "@/app/ai/providers/fal";
+import { callFal } from "@/app/ai/providers/fal";
 
 export const transcribeEngine: Engine = {
   kind: "audio",
-  name: "audio.transcribe",
+  name: "transcribe",
 
   async run(input: EngineInput, ctx: ToolContext): Promise<EngineOutput> {
-    if (!input.file) {
-      return { success: false, error: "Missing audio file" };
-    }
+    try {
+      const result = await callFal({
+        provider: "fal",
+        model: "speech-transcribe",
+        prompt: String(input.prompt ?? ""),
+        systemPrompt: String(input.systemPrompt ?? ""),
+      });
 
-    return runModel(
-      "audio-transcribe",
-      fal,
-      "audio",
-      { file: input.file },
-      ctx
-    );
-  }
+      return {
+        success: true,
+        data: result.output,
+        meta: {
+          provider: "fal",
+          model: "speech-transcribe",
+          requestId: ctx.requestId,
+        },
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        error: error?.message ?? "Transcription failed",
+        meta: {
+          requestId: ctx.requestId,
+        },
+      };
+    }
+  },
 };

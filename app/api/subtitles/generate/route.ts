@@ -1,47 +1,52 @@
 import { NextResponse } from "next/server";
-// ⭐ Provider architecture
-// ⭐ Unified model router
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
+    const file = form.get("file") as File;
     const mode = form.get("mode") as string;
-    const language = form.get("language") as string;
-    const file = form.get("file") as File | null;
+
     if (!file) {
       return NextResponse.json(
-        { error: "No file uploaded" },
+        { error: "Video or audio file is required" },
         { status: 400 }
       );
     }
-    // ⭐ Convert file to ArrayBuffer → Uint8Array
+
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    // ⭐ Unified provider-based transcription
-    const result = await modelRouter({
-      model: "subtitle-transcribe",
-      input: {
-        file: fileBuffer,
-        filename: file.name,
-        mode,
-        language
-      },
-      provider: fal,
-      type: "audio"
+
+    const combinedPrompt = JSON.stringify({
+      file: fileBuffer.toString("base64"),
+      filename: file.name,
+      mode
     });
-    if (!result?.text) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "subtitle-transcribe",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Transcription failed", raw: result },
+        { error: "Subtitle generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      text: result.text
+      subtitles: result.output
     });
-  } catch (err) {
-    console.error("Subtitle generation error:", err);
+
+  } catch (error) {
     return NextResponse.json(
-      { error: "Subtitle generation failed", details: String(err) },
+      {
+        error: "Subtitle generation route error",
+        details: String(error)
+      },
       { status: 500 }
     );
   }

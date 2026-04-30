@@ -1,75 +1,36 @@
-// lib/jobQueue.ts
 import { prisma } from "@/src/core/db/client";
-/**
- * Enqueue a new job for a workflow.
- */
-export async function enqueueJob(workflowId: string, payload: any = {}) {
+
+export async function enqueueJob(
+  workflowId: string,
+  payload: any = {},
+  task: string = "default"
+) {
   return prisma.job.create({
     data: {
       workflowId,
+      task,          // REQUIRED by Prisma schema
       payload,
       status: "queued",
     },
   });
 }
-/**
- * Mark a job as running.
- */
-export async function startJob(id: string) {
+
+export async function updateJobResult(jobId: string, result: any) {
   return prisma.job.update({
-    where: { id },
+    where: { id: jobId },
     data: {
-      status: "running",
-      runAt: new Date(),
-    },
-  });
-}
-/**
- * Mark a job as completed and store the result.
- */
-export async function completeJob(id: string, result: any) {
-  return prisma.job.update({
-    where: { id },
-    data: {
+      result,
       status: "completed",
-      result, // Prisma 7 + updated schema supports this now
-      completedAt: new Date(),
     },
   });
 }
-/**
- * Mark a job as failed and store the error message.
- */
-export async function failJob(id: string, error: string) {
+
+export async function failJob(jobId: string, error: any) {
   return prisma.job.update({
-    where: { id },
+    where: { id: jobId },
     data: {
+      error: String(error),
       status: "failed",
-      error,
-      completedAt: new Date(),
     },
-  });
-}
-/**
- * Fetch a single job by ID.
- */
-export async function getJob(id: string) {
-  return prisma.job.findUnique({
-    where: { id },
-  });
-}
-/**
- * List jobs, optionally filtered by workflowId or status.
- */
-export async function listJobs(filters?: {
-  workflowId?: string;
-  status?: string;
-}) {
-  return prisma.job.findMany({
-    where: {
-      workflowId: filters?.workflowId,
-      status: filters?.status,
-    },
-    orderBy: { createdAt: "desc" },
   });
 }

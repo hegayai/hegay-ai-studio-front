@@ -1,45 +1,51 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const video = form.get("video") as File | null;
-    const language = form.get("language") as string | null;
-    // e.g. "en", "es", "fr", "de", "pt", "zh", "auto"
+
+    const video = form.get("video") as File;
+    const language = form.get("language") as string;
+
     if (!video) {
       return NextResponse.json(
-        { error: "A video file is required for transcription" },
+        { error: "Video file is required" },
         { status: 400 }
       );
     }
+
     const videoBuffer = Buffer.from(await video.arrayBuffer());
-    // ⭐ Unified provider-based transcription
-    const result = await modelRouter({
-      model: "video-transcribe",
-      input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        language: language || "auto"
-      },
-      provider: fal,
-      type: "json"
+
+    const combinedPrompt = JSON.stringify({
+      video: videoBuffer.toString("base64"),
+      videoFilename: video.name,
+      language: language || "auto"
     });
-    if (!result?.text) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "video-transcribe",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "Transcription failed", raw: result },
+        { error: "Video transcription failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      text: result.text,
-      segments: result.segments || [],
-      language: language || "auto"
+      transcript: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Transcription error",
+        error: "Video transcribe route error",
         details: String(error)
       },
       { status: 500 }

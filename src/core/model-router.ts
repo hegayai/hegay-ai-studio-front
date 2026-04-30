@@ -1,12 +1,13 @@
 import { callModel } from "@/app/ai/callModel";
+import type { Provider } from "@/app/ai/callModel";
 
 export async function modelRouter({
-  provider = "local",
+  provider,
   model,
   systemPrompt,
   prompt,
 }: {
-  provider?: string;
+  provider?: Provider;
   model: string;
   systemPrompt?: string;
   prompt: string;
@@ -20,8 +21,8 @@ export async function modelRouter({
     });
 
     return result;
-  } catch (err: any) {
-    console.error("Model Router Error:", err);
-    throw new Error(err.message || "Model router failed");
+  } catch (error) {
+    console.error("Model router error:", error);
+    throw error;
   }
 }

@@ -1,45 +1,46 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
-    const prompt = form.get("prompt") as string | null;
-    const style = form.get("style") as string | null; 
-    // e.g. "cinematic", "nature", "urban", "abstract", "slow-motion"
-    const duration = Number(form.get("duration") || 6);
+    const { prompt, style, duration } = await req.json();
+
     if (!prompt) {
       return NextResponse.json(
-        { error: "Prompt is required for B-roll generation" },
+        { error: "Prompt is required" },
         { status: 400 }
       );
     }
-    // ⭐ Unified provider-based B-roll video generation
-    const result = await modelRouter({
-      model: "broll-video",
-      input: {
-        prompt,
-        style,
-        duration
-      },
-      provider: fal,
-      type: "video"
+
+    const combinedPrompt = JSON.stringify({
+      prompt,
+      style,
+      duration
     });
-    if (!result?.url) {
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "broll-video",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
       return NextResponse.json(
-        { error: "B-roll generation failed", raw: result },
+        { error: "B‑roll generation failed", raw: result },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      url: result.url,
-      duration: result.duration || duration,
-      style: style || "default"
+      output: result.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
-        error: "B-roll generation error",
+        error: "B‑roll route error",
         details: String(error)
       },
       { status: 500 }

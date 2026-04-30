@@ -1,22 +1,47 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { description, seed } = body;
-    const result = await modelRouter({
-      model: "universe-map-generator",
-      input: {
-        description,
-        seed,
-      },
-      provider: fal,
-      type: "image",
+    const { description, seed } = await req.json();
+
+    if (!description) {
+      return NextResponse.json(
+        { error: "Description is required" },
+        { status: 400 }
+      );
+    }
+
+    const combinedPrompt = JSON.stringify({
+      description,
+      seed
     });
-    return NextResponse.json(result);
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "universe-map-generator",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
+      return NextResponse.json(
+        { error: "Universe map generation failed", raw: result },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      map: result.output
+    });
+
   } catch (error) {
     return NextResponse.json(
-      { error: "Universe map generation error", details: String(error) },
+      {
+        error: "Universe map route error",
+        details: String(error)
+      },
       { status: 500 }
     );
   }
