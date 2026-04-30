@@ -1,53 +1,61 @@
+// app/api/audio/transform/route.ts
+
 import { NextResponse } from "next/server";
 
-// ⭐ Import your provider
-import { fal } from "@/src/app/ai/providers/fal";
+// ⭐ Import your provider (correct path)
+import { fal } from "@/app/ai/providers/fal";
 
 // ⭐ Import your unified model router
 import { modelRouter } from "@/src/core/model-router";
 
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const form = await req.formData();
 
-    const {
-      audio,
-      style,
-      enhance,
-      model,
-      mode
-    } = body;
+    const file = form.get("file") as File | null;
+    const transformType = (form.get("transformType") as string) || "denoise";
+    const intensity = Number(form.get("intensity") || 0.5);
 
-    // ⭐ Unified provider-based audio transform
+    if (!file) {
+      return NextResponse.json(
+        { error: "No audio file uploaded" },
+        { status: 400 }
+      );
+    }
+
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
+
     const result = await modelRouter({
       model: "audio-transform",
       input: {
-        audio,
-        style,
-        enhance,
-        model,
-        mode
+        file: fileBuffer,
+        filename: file.name,
+        transformType,
+        intensity,
       },
       provider: fal,
-      type: "audio"
+      type: "audio",
     });
 
-    if (!result?.url) {
+    if (!result) {
       return NextResponse.json(
-        { error: "Audio transform failed", raw: result },
+        { error: "Audio transformation failed" },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      url: result.url
+      success: true,
+      output: result.output || null,
+      metadata: result.metadata || null,
     });
-
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Audio transform error",
-        details: String(error)
+        error: "Audio transformation error",
+        details: String(error),
       },
       { status: 500 }
     );
