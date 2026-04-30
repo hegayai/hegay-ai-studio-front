@@ -1,45 +1,31 @@
 import { NextResponse } from "next/server";
-// ⭐ Correct provider import
-// ⭐ Correct model router import
 import { modelRouter } from "@/src/core/model-router";
+
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
-      image,
-      mask,
-      prompt,
-      strength
-    } = body;
-    // ⭐ Unified provider-based inpainting
-    const result = await modelRouter({
-      model: "image-inpaint",
-      input: {
-        image,
-        mask,
-        prompt,
-        strength
-      },
-      provider: fal,
-      type: "image"
-    });
-    if (!result?.url) {
-      return NextResponse.json(
-        { error: "Image inpaint failed", raw: result },
-        { status: 500 }
-      );
+    const { image, mask, prompt, mode } = await req.json();
+
+    if (!image || !mask) {
+      return NextResponse.json({ error: "Image and mask are required" }, { status: 400 });
     }
-    return NextResponse.json({
-      url: result.url,
-      inpainted: result.inpainted || null
+
+    const combinedPrompt = JSON.stringify({ image, mask, prompt, mode });
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-inpaint",
+      prompt: combinedPrompt
     });
+
+    if (!result?.output) {
+      return NextResponse.json({ error: "Inpaint failed", raw: result }, { status: 500 });
+    }
+
+    return NextResponse.json({ url: result.output });
+
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Image inpaint error",
-        details: String(error)
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Inpaint error", details: String(error) }, { status: 500 });
   }
 }

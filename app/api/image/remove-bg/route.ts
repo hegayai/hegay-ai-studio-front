@@ -1,47 +1,29 @@
 import { NextResponse } from "next/server";
-// ⭐ Correct provider import
-// ⭐ Correct model router import
 import { modelRouter } from "@/src/core/model-router";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const {
-      image,
-      mode,
-      refine,
-      feather,
-      replaceColor
-    } = body;
-    // ⭐ Unified provider-based background removal
-    const result = await modelRouter({
-      model: "image-remove-bg",
-      input: {
-        image,
-        mode,
-        refine,
-        feather,
-        replaceColor
-      },
-      provider: fal,
-      type: "image"
-    });
-    if (!result?.url) {
-      return NextResponse.json(
-        { error: "Background removal failed", raw: result },
-        { status: 500 }
-      );
+    const { image, mode } = await req.json();
+
+    if (!image) {
+      return NextResponse.json({ error: "Missing image" }, { status: 400 });
     }
-    return NextResponse.json({
-      url: result.url,
-      cutout: result.cutout || null
+
+    const combinedPrompt = JSON.stringify({ image, mode });
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-remove-bg",
+      prompt: combinedPrompt
     });
+
+    if (!result?.output) {
+      return NextResponse.json({ error: "Background removal failed", raw: result }, { status: 500 });
+    }
+
+    return NextResponse.json({ url: result.output });
+
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Background removal error",
-        details: String(error)
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Remove BG error", details: String(error) }, { status: 500 });
   }
 }

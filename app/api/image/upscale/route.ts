@@ -1,39 +1,29 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { image, scale = 2 } = body;
+    const { image, scale = 2, mode } = await req.json();
+
     if (!image) {
-      return NextResponse.json(
-        { error: "Missing image" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing image" }, { status: 400 });
     }
+
+    const combinedPrompt = JSON.stringify({ image, scale, mode });
+
     const result = await modelRouter({
+      provider: "fal",
       model: "image-upscale",
-      input: { image, scale },
-      provider: fal,
-      type: "image"
+      prompt: combinedPrompt
     });
-    if (!result?.url) {
-      return NextResponse.json(
-        { error: "Upscale failed", raw: result },
-        { status: 500 }
-      );
+
+    if (!result?.output) {
+      return NextResponse.json({ error: "Upscale failed", raw: result }, { status: 500 });
     }
-    return NextResponse.json({
-      url: result.url,
-      scale
-    });
+
+    return NextResponse.json({ url: result.output });
+
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Upscale error",
-        details: String(error)
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Upscale error", details: String(error) }, { status: 500 });
   }
 }

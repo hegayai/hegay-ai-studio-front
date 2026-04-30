@@ -5,20 +5,13 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { image } = body;
+    const { image } = await req.json();
 
     if (!image) {
-      return NextResponse.json(
-        { error: "Missing image" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing image" }, { status: 400 });
     }
 
-    // Convert enhance parameters into a single prompt string
-    const combinedPrompt = JSON.stringify({
-      image
-    });
+    const combinedPrompt = JSON.stringify({ image });
 
     const result = await modelRouter({
       provider: "fal",
@@ -27,23 +20,12 @@ export async function POST(req: Request) {
     });
 
     if (!result?.output) {
-      return NextResponse.json(
-        { error: "Image enhance failed", raw: result },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Image enhance failed", raw: result }, { status: 500 });
     }
 
-    return NextResponse.json({
-      url: result.output
-    });
+    return NextResponse.json({ url: result.output });
 
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Image enhance error",
-        details: String(error)
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Image enhance error", details: String(error) }, { status: 500 });
   }
 }

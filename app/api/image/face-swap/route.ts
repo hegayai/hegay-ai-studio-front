@@ -1,31 +1,29 @@
-// app/api/image/face-swap/route.ts
 import { NextResponse } from "next/server";
+import { modelRouter } from "@/src/core/model-router";
+
 export async function POST(req: Request) {
-  const body = await req.json();
-  const {
-    sourceFace,
-    targetImage,
-    blend,
-    enhance,
-    mode,
-  } = body;
-  const res = await fetch(process.env.IMAGE_FACE_SWAP_API_URL!, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${process.env.IMAGE_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      sourceFace,
-      targetImage,
-      blend,
-      enhance,
-      mode,
-    }),
-  });
-  const data = await res.json();
-  return NextResponse.json({
-    url: data?.meta?.url || data?.url || null,
-    swapped: data?.swapped || null,
-  });
+  try {
+    const { sourceFace, targetFace, mode } = await req.json();
+
+    if (!sourceFace || !targetFace) {
+      return NextResponse.json({ error: "Source and target faces are required" }, { status: 400 });
+    }
+
+    const combinedPrompt = JSON.stringify({ sourceFace, targetFace, mode });
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-face-swap",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
+      return NextResponse.json({ error: "Face swap failed", raw: result }, { status: 500 });
+    }
+
+    return NextResponse.json({ url: result.output });
+
+  } catch (error) {
+    return NextResponse.json({ error: "Face swap error", details: String(error) }, { status: 500 });
+  }
 }

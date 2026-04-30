@@ -1,31 +1,29 @@
-// app/api/image/face-restore/route.ts
 import { NextResponse } from "next/server";
+import { modelRouter } from "@/src/core/model-router";
+
 export async function POST(req: Request) {
-  const body = await req.json();
-  const {
-    image,
-    mode,
-    strength,
-    enhanceEyes,
-    enhanceSkin,
-  } = body;
-  const res = await fetch(process.env.IMAGE_FACE_RESTORE_API_URL!, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${process.env.IMAGE_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      image,
-      mode,
-      strength,
-      enhanceEyes,
-      enhanceSkin,
-    }),
-  });
-  const data = await res.json();
-  return NextResponse.json({
-    url: data?.meta?.url || data?.url || null,
-    restored: data?.restored || null,
-  });
+  try {
+    const { image, mode } = await req.json();
+
+    if (!image) {
+      return NextResponse.json({ error: "Missing image" }, { status: 400 });
+    }
+
+    const combinedPrompt = JSON.stringify({ image, mode });
+
+    const result = await modelRouter({
+      provider: "fal",
+      model: "image-face-restore",
+      prompt: combinedPrompt
+    });
+
+    if (!result?.output) {
+      return NextResponse.json({ error: "Face restore failed", raw: result }, { status: 500 });
+    }
+
+    return NextResponse.json({ url: result.output });
+
+  } catch (error) {
+    return NextResponse.json({ error: "Face restore error", details: String(error) }, { status: 500 });
+  }
 }

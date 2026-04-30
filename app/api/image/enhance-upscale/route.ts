@@ -5,17 +5,12 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { image } = body;
+    const { image } = await req.json();
 
     if (!image) {
-      return NextResponse.json(
-        { error: "Missing image" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing image" }, { status: 400 });
     }
 
-    // Step 1 — Enhance
     const enhancePrompt = JSON.stringify({ image });
 
     const enhanced = await modelRouter({
@@ -25,17 +20,10 @@ export async function POST(req: Request) {
     });
 
     if (!enhanced?.output) {
-      return NextResponse.json(
-        { error: "Enhance failed", raw: enhanced },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Enhance failed", raw: enhanced }, { status: 500 });
     }
 
-    // Step 2 — Upscale
-    const upscalePrompt = JSON.stringify({
-      image: enhanced.output,
-      scale: 2
-    });
+    const upscalePrompt = JSON.stringify({ image: enhanced.output, scale: 2 });
 
     const upscaled = await modelRouter({
       provider: "fal",
@@ -44,10 +32,7 @@ export async function POST(req: Request) {
     });
 
     if (!upscaled?.output) {
-      return NextResponse.json(
-        { error: "Upscale failed", raw: upscaled },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Upscale failed", raw: upscaled }, { status: 500 });
     }
 
     return NextResponse.json({
@@ -56,12 +41,6 @@ export async function POST(req: Request) {
     });
 
   } catch (error) {
-    return NextResponse.json(
-      {
-        error: "Enhance + Upscale error",
-        details: String(error)
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Enhance + Upscale error", details: String(error) }, { status: 500 });
   }
 }

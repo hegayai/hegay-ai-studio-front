@@ -13,17 +13,17 @@ export async function POST(req: Request) {
 
     const result = await modelRouter({
       provider: "fal",
-      model: "image-restore",
+      model: "image-segment",
       prompt: combinedPrompt
     });
 
     if (!result?.output) {
-      return NextResponse.json({ error: "Restore failed", raw: result }, { status: 500 });
+      return NextResponse.json({ error: "Segmentation failed", raw: result }, { status: 500 });
     }
 
-    return NextResponse.json({ url: result.output });
+    return NextResponse.json({ mask: result.output });
 
   } catch (error) {
-    return NextResponse.json({ error: "Restore error", details: String(error) }, { status: 500 });
+    return NextResponse.json({ error: "Segmentation error", details: String(error) }, { status: 500 });
   }
 }
