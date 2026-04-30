@@ -1,35 +1,30 @@
-"use client";
+// app/realms/[realm]/layout.tsx
 
-import React from "react";
-import dynamic from "next/dynamic";
+import { ReactNode } from "react";
 
-const panels: Record<string, any> = {
-  pantheon: dynamic(() => import("@/src/components/tools/realms/pantheon/PantheonToolPanel")),
-  marketplace: dynamic(() => import("@/src/components/tools/realms/marketplace/MarketplaceToolPanel")),
-  origin: dynamic(() => import("@/src/components/tools/realms/origin/OriginToolPanel")),
-  universe: dynamic(() => import("@/src/components/tools/realms/universe/UniverseToolPanel")),
-  radio: dynamic(() => import("@/src/components/tools/realms/radio/RadioToolPanel")),
-  music: dynamic(() => import("@/src/components/tools/realms/music/MusicToolPanel")),
-  code: dynamic(() => import("@/src/components/tools/realms/code/CodeToolPanel")),
-  three: dynamic(() => import("@/src/components/tools/realms/three/ThreeToolPanel")),
-  game: dynamic(() => import("@/src/components/tools/realms/game/GameToolPanel")),
-  mythic: dynamic(() => import("@/src/components/tools/realms/mythic/MythicToolPanel")),
-  business: dynamic(() => import("@/src/components/tools/realms/business/BusinessToolPanel")),
-};
+interface RealmLayoutProps {
+  children: ReactNode;
+  params: {
+    realm: string;   // MUST be a plain string, not a Promise
+  };
+}
 
-export default function RealmLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { realm: string };
-}) {
-  const Panel = panels[params.realm];
+export default function RealmLayout({ children, params }: RealmLayoutProps) {
+  const { realm } = params;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 p-10">
-      <div className="lg:col-span-3">{children}</div>
-      <div className="lg:col-span-1">{Panel && <Panel />}</div>
+    <div className="min-h-screen flex flex-col">
+      {/* Top Bar */}
+      <div className="p-4 border-b border-white/10 bg-black/20 backdrop-blur">
+        <h1 className="text-2xl font-semibold tracking-tight capitalize">
+          Realm: {realm}
+        </h1>
+      </div>
+
+      {/* Page Content */}
+      <div className="flex-1 p-6">
+        {children}
+      </div>
     </div>
   );
 }
