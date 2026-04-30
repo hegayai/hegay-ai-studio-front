@@ -1,49 +1,60 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
+
 export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { image } = body;
+
     if (!image) {
       return NextResponse.json(
         { error: "Missing image" },
         { status: 400 }
       );
     }
+
     // Step 1 — Enhance
+    const enhancePrompt = JSON.stringify({ image });
+
     const enhanced = await modelRouter({
+      provider: "fal",
       model: "image-enhance",
-      input: { image },
-      provider: fal,
-      type: "image"
+      prompt: enhancePrompt
     });
-    if (!enhanced?.url) {
+
+    if (!enhanced?.output) {
       return NextResponse.json(
         { error: "Enhance failed", raw: enhanced },
         { status: 500 }
       );
     }
+
     // Step 2 — Upscale
-    const upscaled = await modelRouter({
-      model: "image-upscale",
-      input: {
-        image: enhanced.url,
-        scale: 2
-      },
-      provider: fal,
-      type: "image"
+    const upscalePrompt = JSON.stringify({
+      image: enhanced.output,
+      scale: 2
     });
-    if (!upscaled?.url) {
+
+    const upscaled = await modelRouter({
+      provider: "fal",
+      model: "image-upscale",
+      prompt: upscalePrompt
+    });
+
+    if (!upscaled?.output) {
       return NextResponse.json(
         { error: "Upscale failed", raw: upscaled },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
-      enhanced: enhanced.url,
-      upscaled: upscaled.url
+      enhanced: enhanced.output,
+      upscaled: upscaled.output
     });
+
   } catch (error) {
     return NextResponse.json(
       {
