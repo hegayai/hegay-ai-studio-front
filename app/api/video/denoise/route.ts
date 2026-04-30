@@ -7,26 +7,23 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
+    const file = form.get("file") as File | null;
+    const strength = Number(form.get("strength") || 0.5);
 
-    const video = form.get("video") as File | null;
-    const strength = Number(form.get("strength") || 0.6);
-    // strength: 0.0–1.0 (default 0.6)
-
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for denoising" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    // ⭐ Unified provider-based video denoising
     const result = await modelRouter({
       model: "video-denoise",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name,
+        file: fileBuffer,
+        filename: file.name,
         strength
       },
       provider: fal,
@@ -35,7 +32,7 @@ export async function POST(req: Request) {
 
     if (!result?.url) {
       return NextResponse.json(
-        { error: "Video denoising failed", raw: result },
+        { error: "Video denoise failed", raw: result },
         { status: 500 }
       );
     }
@@ -48,7 +45,7 @@ export async function POST(req: Request) {
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video denoising error",
+        error: "Video denoise error",
         details: String(error)
       },
       { status: 500 }

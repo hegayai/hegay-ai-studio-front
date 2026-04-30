@@ -8,30 +8,26 @@ export async function POST(req: Request) {
   try {
     const form = await req.formData();
 
-    const video = form.get("video") as File | null;
-    const ratio = form.get("ratio") as string | null;
-    // "9:16" | "1:1" | "4:5" | "16:9"
+    const file = form.get("file") as File | null;
+    const aspect = (form.get("aspect") as string) || "9:16";
+    const focus = (form.get("focus") as string) || "center";
 
-    const mode = form.get("mode") as string | null;
-    // "auto" | "subject" | "center" | "dynamic"
-
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for reframing" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    // ⭐ Unified provider-based video reframing
     const result = await modelRouter({
       model: "video-reframe",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        ratio: ratio || "9:16",
-        mode: mode || "auto"
+        file: fileBuffer,
+        filename: file.name,
+        aspect,
+        focus
       },
       provider: fal,
       type: "video"
@@ -46,8 +42,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       url: result.url,
-      ratio: ratio || "9:16",
-      mode: mode || "auto"
+      aspect,
+      focus
     });
 
   } catch (error) {

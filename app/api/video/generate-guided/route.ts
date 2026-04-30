@@ -1,42 +1,27 @@
 import { NextResponse } from "next/server";
-
-// ⭐ Import your provider
-import { fal } from "@/src/app/ai/providers/fal";
-
-// ⭐ Import your unified model router
 import { modelRouter } from "@/src/core/model-router";
+import { fal } from "@/app/ai/providers/fal";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+    const { prompt, duration = 5, style = "cinematic" } = body;
 
-    const {
-      prompt,
-      video,
-      strength,
-      preserveMotion,
-      style,
-      model,
-      seed,
-      steps,
-      cfgScale,
-      mode
-    } = body;
+    if (!prompt) {
+      return NextResponse.json(
+        { error: "Missing prompt" },
+        { status: 400 }
+      );
+    }
 
-    // ⭐ Unified provider-based guided video generation
     const result = await modelRouter({
       model: "video-generate-guided",
       input: {
         prompt,
-        video,
-        strength,
-        preserveMotion,
-        style,
-        model,
-        seed,
-        steps,
-        cfgScale,
-        mode
+        duration,
+        style
       },
       provider: fal,
       type: "video"
@@ -50,7 +35,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      url: result.url
+      url: result.url,
+      prompt,
+      duration,
+      style
     });
 
   } catch (error) {

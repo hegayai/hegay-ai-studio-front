@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/src/app/ai/providers/fal";
+
+// ⭐ Correct provider import
+import { fal } from "@/app/ai/providers/fal";
 
 export const runtime = "nodejs";
 
@@ -10,9 +12,8 @@ export async function POST(req: Request) {
 
     const title = form.get("title") as string | null;
     const style = (form.get("style") as string) || "youtube";
-    // "youtube" | "tiktok" | "cinematic" | "bold" | "minimal" | "neon"
     const brandColor = (form.get("brandColor") as string) || "#FF0000";
-    const image = form.get("image") as File | null; // optional face or frame
+    const image = form.get("image") as File | null;
 
     if (!title) {
       return NextResponse.json(

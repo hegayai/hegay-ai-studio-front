@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-// ⭐ Import your provider
-import { fal } from "@/src/app/ai/providers/fal";
+// ⭐ Correct provider import
+import { fal } from "@/app/ai/providers/fal";
 
-// ⭐ Import your unified model router
+// ⭐ Correct model router import
 import { modelRouter } from "@/src/core/model-router";
 
 export async function POST(req: Request) {

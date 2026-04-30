@@ -8,33 +8,23 @@ export async function POST(req: Request) {
   try {
     const form = await req.formData();
 
-    const video = form.get("video") as File | null;
-    const factor = Number(form.get("factor") || 1.0);
-    // factor < 1.0 = slow motion
-    // factor > 1.0 = speed up
+    const file = form.get("file") as File | null;
+    const factor = Number(form.get("factor") || 1.5); // speed multiplier
 
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for speed adjustment" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    if (factor <= 0) {
-      return NextResponse.json(
-        { error: "Speed factor must be greater than 0" },
-        { status: 400 }
-      );
-    }
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
-
-    // ⭐ Unified provider-based speed adjustment
     const result = await modelRouter({
       model: "video-speed",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name,
+        file: fileBuffer,
+        filename: file.name,
         factor
       },
       provider: fal,
@@ -43,7 +33,7 @@ export async function POST(req: Request) {
 
     if (!result?.url) {
       return NextResponse.json(
-        { error: "Video speed adjustment failed", raw: result },
+        { error: "Video speed change failed", raw: result },
         { status: 500 }
       );
     }
@@ -56,7 +46,7 @@ export async function POST(req: Request) {
   } catch (error) {
     return NextResponse.json(
       {
-        error: "Video speed adjustment error",
+        error: "Video speed change error",
         details: String(error)
       },
       { status: 500 }

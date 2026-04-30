@@ -1,36 +1,34 @@
-"use client";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center text-center px-6 py-20">
-      <div className="text-[11px] uppercase tracking-[0.35em] text-[var(--diamond-white)]/55 mb-3">
+    <div className="flex flex-col gap-6 max-w-3xl">
+      <h1 className="text-3xl font-semibold tracking-tight">
         Hegay OS Supreme
-      </div>
-
-      <h1 className="text-[32px] lg:text-[40px] font-semibold text-[var(--platinum)] mb-4">
-        Ascension Layer · Origin Realm
       </h1>
 
-      <p className="text-[14px] text-[var(--diamond-white)]/70 max-w-xl mb-8">
-        Welcome to the creative civilization operating system.  
-        This is your entry point into the World‑Soul, Pantheon, Realms,  
-        and the infinite expansion architecture of Hegay OS Supreme.
+      <h2 className="text-lg opacity-80">
+        Ascension Layer · Origin Realm
+      </h2>
+
+      <p className="opacity-70 leading-relaxed">
+        Welcome to the creative civilization operating system. This is your
+        entry point into the World‑Soul, Pantheon, Realms, and the infinite
+        expansion architecture of Hegay OS Supreme.
       </p>
 
-      <div className="flex gap-4">
-        <a
-          href="/dashboard"
-          className="px-5 py-2 rounded-xl bg-[var(--cosmic-blue)] text-black font-medium hover:bg-[var(--cosmic-blue)]/80 transition"
-        >
-          Enter Dashboard
-        </a>
+      <div className="flex gap-4 mt-4">
+        <Link href="/dashboard">
+          <button className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition">
+            Enter Dashboard
+          </button>
+        </Link>
 
-        <a
-          href="/control-room"
-          className="px-5 py-2 rounded-xl border border-[var(--cosmic-blue)]/40 text-[var(--platinum)] hover:bg-[var(--cosmic-blue)]/10 transition"
-        >
-          Control Room
-        </a>
+        <Link href="/dashboard">
+          <button className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition">
+            Control Room
+          </button>
+        </Link>
       </div>
     </div>
   );

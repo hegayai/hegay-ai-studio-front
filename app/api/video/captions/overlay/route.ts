@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { modelRouter } from "@/src/core/model-router";
-import { fal } from "@/src/app/ai/providers/fal";
+import { fal } from "@/app/ai/providers/fal";
 
 export const runtime = "nodejs";
 
@@ -9,9 +9,7 @@ export async function POST(req: Request) {
     const form = await req.formData();
 
     const file = form.get("file") as File | null;
-    const subtitles = form.get("subtitles") as string | null; // SRT or VTT
-    const style = (form.get("style") as string) || "tiktok"; 
-    // "tiktok" | "cinematic" | "karaoke" | "bold" | "neon" | "minimal"
+    const style = (form.get("style") as string) || "dynamic";
     const language = (form.get("language") as string) || "auto";
 
     if (!file) {
@@ -21,22 +19,13 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!subtitles) {
-      return NextResponse.json(
-        { error: "Subtitles (SRT or VTT) are required" },
-        { status: 400 }
-      );
-    }
-
     const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    // ⭐ Provider-based caption overlay (Vercel-safe)
     const result = await modelRouter({
       model: "video-caption-overlay",
       input: {
         file: fileBuffer,
         filename: file.name,
-        subtitles,
         style,
         language
       },
@@ -52,7 +41,9 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      url: result.url
+      url: result.url,
+      style,
+      language
     });
 
   } catch (error) {

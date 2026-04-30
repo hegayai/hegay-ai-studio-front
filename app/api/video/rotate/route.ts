@@ -8,33 +8,24 @@ export async function POST(req: Request) {
   try {
     const form = await req.formData();
 
-    const video = form.get("video") as File | null;
-    const angle = Number(form.get("angle") || 90);
-    // allowed: 0, 90, 180, 270
+    const file = form.get("file") as File | null;
+    const degrees = Number(form.get("degrees") || 90);
 
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for rotation" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    if (![0, 90, 180, 270].includes(angle)) {
-      return NextResponse.json(
-        { error: "Angle must be one of: 0, 90, 180, 270" },
-        { status: 400 }
-      );
-    }
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
-
-    // ⭐ Unified provider-based rotation
     const result = await modelRouter({
       model: "video-rotate",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        angle
+        file: fileBuffer,
+        filename: file.name,
+        degrees
       },
       provider: fal,
       type: "video"
@@ -49,7 +40,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       url: result.url,
-      angle
+      degrees
     });
 
   } catch (error) {

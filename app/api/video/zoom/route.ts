@@ -8,38 +8,26 @@ export async function POST(req: Request) {
   try {
     const form = await req.formData();
 
-    const video = form.get("video") as File | null;
-    const amount = Number(form.get("amount") || 1.2);
-    // amount > 1.0 = zoom in
-    // amount < 1.0 = zoom out
+    const file = form.get("file") as File | null;
+    const factor = Number(form.get("factor") || 1.2);
+    const focus = (form.get("focus") as string) || "center";
 
-    const smooth = Number(form.get("smooth") || 0.8);
-    // smoothing factor 0.0–1.0
-
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for zoom processing" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    if (amount <= 0) {
-      return NextResponse.json(
-        { error: "Zoom amount must be greater than 0" },
-        { status: 400 }
-      );
-    }
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
-
-    // ⭐ Unified provider-based zoom processing
     const result = await modelRouter({
       model: "video-zoom",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        amount,
-        smooth
+        file: fileBuffer,
+        filename: file.name,
+        factor,
+        focus
       },
       provider: fal,
       type: "video"
@@ -54,8 +42,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       url: result.url,
-      amount,
-      smooth
+      factor,
+      focus
     });
 
   } catch (error) {

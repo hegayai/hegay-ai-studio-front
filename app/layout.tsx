@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import AppFrame from "./components/AppFrame";
+import type { Metadata } from "next";
+import { Providers } from "./providers";
+import { OsShell } from "./os-shell";
 
 export const metadata: Metadata = {
-  title: "Hegay OS Supreme",
-  description: "Creative Civilization Operating System for Origin Systems, Pantheons, and Infinite Expansion.",
+  title: "Hegay OS Studio",
+  description: "Cinematic creative operating system.",
 };
 
 export default function RootLayout({
@@ -13,15 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className="
-          antialiased
-          bg-black
-          text-[var(--platinum)]
-        "
-      >
-        <AppFrame>{children}</AppFrame>
+    <html lang="en">
+      <body className="bg-black text-white antialiased">
+        <Providers>
+          <OsShell>{children}</OsShell>
+        </Providers>
       </body>
     </html>
   );

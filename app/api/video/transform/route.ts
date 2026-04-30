@@ -1,36 +1,35 @@
 import { NextResponse } from "next/server";
-
-// ⭐ Import your provider
-import { fal } from "@/src/app/ai/providers/fal";
-
-// ⭐ Import your unified model router
 import { modelRouter } from "@/src/core/model-router";
+import { fal } from "@/app/ai/providers/fal";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const form = await req.formData();
 
-    const {
-      video,
-      style,
-      motionStrength,
-      colorGrade,
-      detailEnhance,
-      model,
-      mode
-    } = body;
+    const file = form.get("file") as File | null;
+    const transform = (form.get("transform") as string) || "resize";
+    const width = Number(form.get("width") || 1080);
+    const height = Number(form.get("height") || 1920);
 
-    // ⭐ Unified provider-based video transform
+    if (!file) {
+      return NextResponse.json(
+        { error: "No video file uploaded" },
+        { status: 400 }
+      );
+    }
+
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
+
     const result = await modelRouter({
       model: "video-transform",
       input: {
-        video,
-        style,
-        motionStrength,
-        colorGrade,
-        detailEnhance,
-        model,
-        mode
+        file: fileBuffer,
+        filename: file.name,
+        transform,
+        width,
+        height
       },
       provider: fal,
       type: "video"
@@ -44,7 +43,10 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      url: result.url
+      url: result.url,
+      transform,
+      width,
+      height
     });
 
   } catch (error) {

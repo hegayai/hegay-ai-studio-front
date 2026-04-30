@@ -1,24 +1,28 @@
 import { NextResponse } from "next/server";
-import path from "path";
-
-export const runtime = "nodejs";
+import { modelRouter } from "@/src/core/model-router";
+import { fal } from "@/app/ai/providers/fal";
 
 export async function POST(req: Request) {
   try {
-    const form = await req.formData();
+    const body = await req.json();
+    const { prompt, genre, duration } = body;
 
-    const prompt = form.get("prompt") as string;
-    const style = form.get("style") as string;
-    const duration = form.get("duration") as string;
+    const result = await modelRouter({
+      model: "music-generator",
+      input: {
+        prompt,
+        genre,
+        duration,
+      },
+      provider: fal,
+      type: "audio",
+    });
 
-    // -----------------------------------------------------
-    // SIMULATED GENERATION (Replace with real model later)
-    // -----------------------------------------------------
-    const url = "/generated-music.mp3";
-
-    return NextResponse.json({ url });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: "Music generation failed" }, { status: 500 });
+    return NextResponse.json(result);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Music generation error", details: String(error) },
+      { status: 500 }
+    );
   }
 }

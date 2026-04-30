@@ -1,0 +1,500 @@
+﻿Folder PATH listing
+Volume serial number is B21A-F2FC
+C:.
+ª   .env
+ª   .env.local
+ª   .gitignore
+ª   AGENTS.md
+ª   app-tree.txt
+ª   CLAUDE.md
+ª   create-dbs.sql
+ª   create.sql
+ª   create_shadow.sql
+ª   eslint.config.mjs
+ª   next-env.d.ts
+ª   next.config.ts
+ª   npx
+ª   package-lock.json
+ª   package.json
+ª   postcss.config.mjs
+ª   project-structure-1.txt
+ª   project-structure-part1.txt
+ª   project-structure.txt
+ª   project-tree.txt
+ª   README.md
+ª   small-tree.txt
+ª   src-structure.txt
+ª   start-hegay-os.bat
+ª   structure.txt
+ª   tailwind.config.js
+ª   tsconfig.json
+ª   
++---.next
+ª   ª   app-path-routes-manifest.json
+ª   ª   build-manifest.json
+ª   ª   BUILD_ID
+ª   ª   export-marker.json
+ª   ª   fallback-build-manifest.json
+ª   ª   images-manifest.json
+ª   ª   next-minimal-server.js.nft.json
+ª   ª   next-server.js.nft.json
+ª   ª   package.json
+ª   ª   prerender-manifest.json
+ª   ª   required-server-files.js
+ª   ª   required-server-files.json
+ª   ª   routes-manifest.json
+ª   ª   trace
+ª   ª   trace-build
+ª   ª   turbopack
+ª   ª   
+ª   +---build
+ª   ª   ª   package.json
+ª   ª   ª   postcss.js
+ª   ª   ª   postcss.js.map
+ª   ª   ª   
+ª   ª   +---chunks
+ª   ª           node_modules_13sb.px._.js
+ª   ª           node_modules_13sb.px._.js.map
+ª   ª           [root-of-the-server]__0d-m0h0._.js
+ª   ª           [root-of-the-server]__0d-m0h0._.js.map
+ª   ª           [root-of-the-server]__0ubbtyl._.js
+ª   ª           [root-of-the-server]__0ubbtyl._.js.map
+ª   ª           [turbopack-node]_transforms_postcss_ts_06e.r3r._.js
+ª   ª           [turbopack-node]_transforms_postcss_ts_06e.r3r._.js.map
+ª   ª           [turbopack]_runtime.js
+ª   ª           [turbopack]_runtime.js.map
+ª   ª           
+ª   +---cache
+ª   ª       .previewinfo
+ª   ª       .rscinfo
+ª   ª       .tsbuildinfo
+ª   ª       
+ª   +---dev
+ª   ª   ª   build-manifest.json
+ª   ª   ª   fallback-build-manifest.json
+ª   ª   ª   package.json
+ª   ª   ª   prerender-manifest.json
+ª   ª   ª   routes-manifest.json
+ª   ª   ª   trace
+ª   ª   ª   
+ª   ª   +---build
+ª   ª   ª   ª   package.json
+ª   ª   ª   ª   postcss.js
+ª   ª   ª   ª   postcss.js.map
+ª   ª   ª   ª   
+ª   ª   ª   +---chunks
+ª   ª   ª           node_modules_13sb.px._.js
+ª   ª   ª           node_modules_13sb.px._.js.map
+ª   ª   ª           [root-of-the-server]__0d-m0h0._.js
+ª   ª   ª           [root-of-the-server]__0d-m0h0._.js.map
+ª   ª   ª           [root-of-the-server]__0ubbtyl._.js
+ª   ª   ª           [root-of-the-server]__0ubbtyl._.js.map
+ª   ª   ª           [turbopack-node]_transforms_postcss_ts_06e.r3r._.js
+ª   ª   ª           [turbopack-node]_transforms_postcss_ts_06e.r3r._.js.map
+ª   ª   ª           [turbopack]_runtime.js
+ª   ª   ª           [turbopack]_runtime.js.map
+ª   ª   ª           
+ª   ª   +---cache
+ª   ª   ª   ª   .rscinfo
+ª   ª   ª   ª   chrome-devtools-workspace-uuid
+ª   ª   ª   ª   next-devtools-config.json
+ª   ª   ª   ª   
+ª   ª   ª   +---turbopack
+ª   ª   ª       +---c573e8c4
+ª   ª   ª               00000003.sst
+ª   ª   ª               00000004.sst
+ª   ª   ª               00000005.meta
+ª   ª   ª               00000008.meta
+ª   ª   ª               00000014.sst
+ª   ª   ª               00000015.sst
+ª   ª   ª               00000016.meta
+ª   ª   ª               00000019.meta
+ª   ª   ª               00000025.sst
+ª   ª   ª               00000026.sst
+ª   ª   ª               00000027.meta
+ª   ª   ª               00000030.meta
+ª   ª   ª               00000036.sst
+ª   ª   ª               00000037.sst
+ª   ª   ª               00000038.meta
+ª   ª   ª               00000041.meta
+ª   ª   ª               00000047.sst
+ª   ª   ª               00000048.meta
+ª   ª   ª               00000056.sst
+ª   ª   ª               00000057.sst
+ª   ª   ª               00000058.meta
+ª   ª   ª               00000059.meta
+ª   ª   ª               00000064.sst
+ª   ª   ª               00000065.sst
+ª   ª   ª               00000066.meta
+ª   ª   ª               00000069.meta
+ª   ª   ª               00000072.sst
+ª   ª   ª               00000073.sst
+ª   ª   ª               00000074.meta
+ª   ª   ª               00000077.meta
+ª   ª   ª               00000080.sst
+ª   ª   ª               00000081.meta
+ª   ª   ª               00000086.sst
+ª   ª   ª               00000087.meta
+ª   ª   ª               00000092.sst
+ª   ª   ª               00000093.sst
+ª   ª   ª               00000094.meta
+ª   ª   ª               00000095.meta
+ª   ª   ª               00000100.sst
+ª   ª   ª               00000101.sst
+ª   ª   ª               00000102.meta
+ª   ª   ª               00000105.meta
+ª   ª   ª               00000108.sst
+ª   ª   ª               00000109.meta
+ª   ª   ª               00000114.sst
+ª   ª   ª               00000115.meta
+ª   ª   ª               00000120.sst
+ª   ª   ª               00000121.meta
+ª   ª   ª               00000126.sst
+ª   ª   ª               00000127.meta
+ª   ª   ª               00000132.sst
+ª   ª   ª               00000133.meta
+ª   ª   ª               00000138.sst
+ª   ª   ª               00000139.sst
+ª   ª   ª               00000140.meta
+ª   ª   ª               00000141.meta
+ª   ª   ª               00000146.sst
+ª   ª   ª               00000147.meta
+ª   ª   ª               00000152.sst
+ª   ª   ª               00000153.meta
+ª   ª   ª               00000161.sst
+ª   ª   ª               00000162.sst
+ª   ª   ª               00000163.meta
+ª   ª   ª               00000164.meta
+ª   ª   ª               00000176.sst
+ª   ª   ª               00000177.sst
+ª   ª   ª               00000178.meta
+ª   ª   ª               00000179.meta
+ª   ª   ª               00000184.sst
+ª   ª   ª               00000185.meta
+ª   ª   ª               00000190.sst
+ª   ª   ª               00000191.sst
+ª   ª   ª               00000192.meta
+ª   ª   ª               00000193.meta
+ª   ª   ª               00000198.sst
+ª   ª   ª               00000199.meta
+ª   ª   ª               00000204.sst
+ª   ª   ª               00000205.meta
+ª   ª   ª               00000210.sst
+ª   ª   ª               00000211.meta
+ª   ª   ª               00000216.sst
+ª   ª   ª               00000217.meta
+ª   ª   ª               00000222.sst
+ª   ª   ª               00000223.meta
+ª   ª   ª               00000228.sst
+ª   ª   ª               00000229.sst
+ª   ª   ª               00000230.meta
+ª   ª   ª               00000231.meta
+ª   ª   ª               00000240.sst
+ª   ª   ª               00000241.meta
+ª   ª   ª               00000246.sst
+ª   ª   ª               00000247.meta
+ª   ª   ª               00000252.sst
+ª   ª   ª               00000253.meta
+ª   ª   ª               00000261.sst
+ª   ª   ª               00000262.sst
+ª   ª   ª               00000263.meta
+ª   ª   ª               00000264.meta
+ª   ª   ª               00000269.sst
+ª   ª   ª               00000270.sst
+ª   ª   ª               00000271.meta
+ª   ª   ª               00000274.meta
+ª   ª   ª               00000277.sst
+ª   ª   ª               00000278.meta
+ª   ª   ª               00000286.sst
+ª   ª   ª               00000287.sst
+ª   ª   ª               00000288.meta
+ª   ª   ª               00000290.meta
+ª   ª   ª               00000301.sst
+ª   ª   ª               00000302.sst
+ª   ª   ª               00000303.meta
+ª   ª   ª               00000305.meta
+ª   ª   ª               00000312.sst
+ª   ª   ª               00000313.sst
+ª   ª   ª               00000314.meta
+ª   ª   ª               00000317.meta
+ª   ª   ª               00000327.sst
+ª   ª   ª               00000328.sst
+ª   ª   ª               00000329.meta
+ª   ª   ª               00000331.meta
+ª   ª   ª               00000343.sst
+ª   ª   ª               00000344.sst
+ª   ª   ª               00000345.meta
+ª   ª   ª               00000346.meta
+ª   ª   ª               00000351.sst
+ª   ª   ª               00000352.meta
+ª   ª   ª               00000360.sst
+ª   ª   ª               00000361.sst
+ª   ª   ª               00000362.meta
+ª   ª   ª               00000365.meta
+ª   ª   ª               00000368.sst
+ª   ª   ª               00000369.sst
+ª   ª   ª               00000370.meta
+ª   ª   ª               00000373.meta
+ª   ª   ª               00000376.sst
+ª   ª   ª               00000377.meta
+ª   ª   ª               00000382.sst
+ª   ª   ª               00000383.meta
+ª   ª   ª               00000388.sst
+ª   ª   ª               00000389.meta
+ª   ª   ª               00000394.sst
+ª   ª   ª               00000395.meta
+ª   ª   ª               00000400.sst
+ª   ª   ª               00000401.sst
+ª   ª   ª               00000402.meta
+ª   ª   ª               00000403.meta
+ª   ª   ª               00000415.sst
+ª   ª   ª               00000416.sst
+ª   ª   ª               00000417.meta
+ª   ª   ª               00000418.meta
+ª   ª   ª               00000423.sst
+ª   ª   ª               00000424.meta
+ª   ª   ª               00000429.sst
+ª   ª   ª               00000430.meta
+ª   ª   ª               00000438.sst
+ª   ª   ª               00000439.sst
+ª   ª   ª               00000440.meta
+ª   ª   ª               00000441.meta
+ª   ª   ª               00000451.sst
+ª   ª   ª               00000452.meta
+ª   ª   ª               00000457.sst
+ª   ª   ª               00000460.meta
+ª   ª   ª               00000466.sst
+ª   ª   ª               00000467.sst
+ª   ª   ª               00000468.meta
+ª   ª   ª               00000469.meta
+ª   ª   ª               00000474.sst
+ª   ª   ª               00000475.meta
+ª   ª   ª               00000480.sst
+ª   ª   ª               00000481.meta
+ª   ª   ª               00000486.sst
+ª   ª   ª               00000487.sst
+ª   ª   ª               00000488.meta
+ª   ª   ª               00000489.meta
+ª   ª   ª               00000494.sst
+ª   ª   ª               00000495.sst
+ª   ª   ª               00000496.meta
+ª   ª   ª               00000497.meta
+ª   ª   ª               00000502.sst
+ª   ª   ª               00000503.meta
+ª   ª   ª               00000508.sst
+ª   ª   ª               00000509.meta
+ª   ª   ª               00000512.sst
+ª   ª   ª               00000513.sst
+ª   ª   ª               00000514.meta
+ª   ª   ª               00000517.sst
+ª   ª   ª               00000518.sst
+ª   ª   ª               00000519.meta
+ª   ª   ª               00000520.meta
+ª   ª   ª               00000523.sst
+ª   ª   ª               00000524.sst
+ª   ª   ª               00000525.sst
+ª   ª   ª               00000526.meta
+ª   ª   ª               00000527.meta
+ª   ª   ª               00000528.meta
+ª   ª   ª               00000531.sst
+ª   ª   ª               00000532.sst
+ª   ª   ª               00000533.meta
+ª   ª   ª               00000534.meta
+ª   ª   ª               00000537.sst
+ª   ª   ª               00000538.sst
+ª   ª   ª               00000539.meta
+ª   ª   ª               00000540.meta
+ª   ª   ª               00000543.sst
+ª   ª   ª               00000544.sst
+ª   ª   ª               00000545.meta
+ª   ª   ª               00000546.meta
+ª   ª   ª               00000549.sst
+ª   ª   ª               00000550.sst
+ª   ª   ª               00000551.sst
+ª   ª   ª               00000552.meta
+ª   ª   ª               00000553.meta
+ª   ª   ª               00000555.meta
+ª   ª   ª               00000557.sst
+ª   ª   ª               00000558.sst
+ª   ª   ª               00000559.sst
+ª   ª   ª               00000560.meta
+ª   ª   ª               00000561.meta
+ª   ª   ª               00000563.meta
+ª   ª   ª               00000564.sst
+ª   ª   ª               00000565.sst
+ª   ª   ª               00000566.sst
+ª   ª   ª               00000567.meta
+ª   ª   ª               00000569.sst
+ª   ª   ª               00000570.sst
+ª   ª   ª               00000571.sst
+ª   ª   ª               00000572.meta
+ª   ª   ª               00000573.meta
+ª   ª   ª               00000574.meta
+ª   ª   ª               00000575.sst
+ª   ª   ª               00000576.sst
+ª   ª   ª               00000577.sst
+ª   ª   ª               00000578.meta
+ª   ª   ª               00000579.meta
+ª   ª   ª               00000580.meta
+ª   ª   ª               00000581.sst
+ª   ª   ª               00000582.sst
+ª   ª   ª               00000583.sst
+ª   ª   ª               00000584.meta
+ª   ª   ª               00000585.meta
+ª   ª   ª               00000586.meta
+ª   ª   ª               00000587.sst
+ª   ª   ª               00000588.sst
+ª   ª   ª               00000589.sst
+ª   ª   ª               00000590.sst
+ª   ª   ª               00000591.meta
+ª   ª   ª               00000592.meta
+ª   ª   ª               00000593.meta
+ª   ª   ª               00000594.meta
+ª   ª   ª               00000595.sst
+ª   ª   ª               00000596.sst
+ª   ª   ª               00000597.sst
+ª   ª   ª               00000598.meta
+ª   ª   ª               00000599.meta
+ª   ª   ª               00000600.meta
+ª   ª   ª               00000601.sst
+ª   ª   ª               00000602.sst
+ª   ª   ª               00000603.sst
+ª   ª   ª               00000604.meta
+ª   ª   ª               00000605.meta
+ª   ª   ª               00000606.meta
+ª   ª   ª               00000607.sst
+ª   ª   ª               00000608.sst
+ª   ª   ª               00000609.sst
+ª   ª   ª               00000610.meta
+ª   ª   ª               00000611.meta
+ª   ª   ª               00000612.meta
+ª   ª   ª               00000613.sst
+ª   ª   ª               00000614.sst
+ª   ª   ª               00000615.sst
+ª   ª   ª               00000616.sst
+ª   ª   ª               00000617.meta
+ª   ª   ª               00000618.meta
+ª   ª   ª               00000619.meta
+ª   ª   ª               00000620.meta
+ª   ª   ª               00000621.sst
+ª   ª   ª               00000622.sst
+ª   ª   ª               00000623.sst
+ª   ª   ª               00000624.meta
+ª   ª   ª               00000625.meta
+ª   ª   ª               00000626.meta
+ª   ª   ª               00000627.sst
+ª   ª   ª               00000628.sst
+ª   ª   ª               00000629.sst
+ª   ª   ª               00000630.meta
+ª   ª   ª               00000631.meta
+ª   ª   ª               00000632.meta
+ª   ª   ª               CURRENT
+ª   ª   ª               LOG
+ª   ª   ª               
+ª   ª   +---logs
+ª   ª   ª       next-development.log
+ª   ª   ª       
+ª   ª   +---node_modules
+ª   ª   ª   +---@prisma
+ª   ª   ª       +---client-2c3a283f134fdcb6
+ª   ª   ª           ª   default.d.ts
+ª   ª   ª           ª   default.js
+ª   ª   ª           ª   edge.d.ts
+ª   ª   ª           ª   edge.js
+ª   ª   ª           ª   extension.d.ts
+ª   ª   ª           ª   extension.js
+ª   ª   ª           ª   index-browser.js
+ª   ª   ª           ª   index.d.ts
+ª   ª   ª           ª   index.js
+ª   ª   ª           ª   LICENSE
+ª   ª   ª           ª   package.json
+ª   ª   ª           ª   react-native.d.ts
+ª   ª   ª           ª   react-native.js
+ª   ª   ª           ª   README.md
+ª   ª   ª           ª   sql.d.ts
+ª   ª   ª           ª   sql.js
+ª   ª   ª           ª   sql.mjs
+ª   ª   ª           ª   wasm.d.ts
+ª   ª   ª           ª   wasm.js
+ª   ª   ª           ª   
+ª   ª   ª           +---generator-build
+ª   ª   ª           ª       index.js
+ª   ª   ª           ª       
+ª   ª   ª           +---runtime
+ª   ª   ª           ª       binary.d.ts
+ª   ª   ª           ª       binary.js
+ª   ª   ª           ª       edge-esm.js
+ª   ª   ª           ª       edge.js
+ª   ª   ª           ª       index-browser.d.ts
+ª   ª   ª           ª       index-browser.js
+ª   ª   ª           ª       library.d.ts
+ª   ª   ª           ª       library.js
+ª   ª   ª           ª       query_engine_bg.mysql.js
+ª   ª   ª           ª       query_engine_bg.mysql.wasm
+ª   ª   ª           ª       query_engine_bg.postgresql.js
+ª   ª   ª           ª       query_engine_bg.postgresql.wasm
+ª   ª   ª           ª       query_engine_bg.sqlite.js
+ª   ª   ª           ª       query_engine_bg.sqlite.wasm
+ª   ª   ª           ª       react-native.d.ts
+ª   ª   ª           ª       react-native.js
+ª   ª   ª           ª       wasm.js
+ª   ª   ª           ª       
+ª   ª   ª           +---scripts
+ª   ª   ª                   colors.js
+ª   ª   ª                   default-deno-edge.ts
+ª   ª   ª                   default-index.d.ts
+ª   ª   ª                   default-index.js
+ª   ª   ª                   postinstall.d.ts
+ª   ª   ª                   postinstall.js
+ª   ª   ª                   
+ª   ª   +---server
+ª   ª   ª   ª   app-paths-manifest.json
+ª   ª   ª   ª   interception-route-rewrite-manifest.js
+ª   ª   ª   ª   middleware-build-manifest.js
+ª   ª   ª   ª   middleware-manifest.json
+ª   ª   ª   ª   next-font-manifest.js
+ª   ª   ª   ª   next-font-manifest.json
+ª   ª   ª   ª   pages-manifest.json
+ª   ª   ª   ª   server-reference-manifest.js
+ª   ª   ª   ª   server-reference-manifest.json
+ª   ª   ª   ª   
+ª   ª   ª   +---app
+ª   ª   ª   ª   ª   page.js
+ª   ª   ª   ª   ª   page.js.map
+ª   ª   ª   ª   ª   page_client-reference-manifest.js
+ª   ª   ª   ª   ª   
+ª   ª   ª   ª   +---(dashboard)
+ª   ª   ª   ª   ª   +---archive
+ª   ª   ª   ª   ª   ª   ª   page.js
+ª   ª   ª   ª   ª   ª   ª   page.js.map
+ª   ª   ª   ª   ª   ª   ª   page_client-reference-manifest.js
+ª   ª   ª   ª   ª   ª   ª   
+ª   ª   ª   ª   ª   ª   +---page
+ª   ª   ª   ª   ª   ª           app-paths-manifest.json
+ª   ª   ª   ª   ª   ª           build-manifest.json
+ª   ª   ª   ª   ª   ª           next-font-manifest.json
+ª   ª   ª   ª   ª   ª           react-loadable-manifest.json
+ª   ª   ª   ª   ª   ª           server-reference-manifest.json
+ª   ª   ª   ª   ª   ª           
+ª   ª   ª   ª   ª   +---ascension
+ª   ª   ª   ª   ª   ª   ª   page.js
+ª   ª   ª   ª   ª   ª   ª   page.js.map
+ª   ª   ª   ª   ª   ª   ª   page_client-reference-manifest.js
+ª   ª   ª   ª   ª   ª   ª   
+ª   ª   ª   ª   ª   ª   +---page
+ª   ª   ª   ª   ª   ª           app-paths-manifest.json
+ª   ª   ª   ª   ª   ª           build-manifest.json
+ª   ª   ª   ª   ª   ª           next-font-manifest.json
+ª   ª   ª   ª   ª   ª           react-loadable-manifest.json
+ª   ª   ª   ª   ª   ª           server-reference-manifest.json
+ª   ª   ª   ª   ª   ª           
+ª   ª   ª   ª   ª   +---civilizations
+ª   ª   ª   ª   ª   ª   ª   page.js
+ª   ª   ª   ª   ª   ª   ª   page.js.map
+ª   ª   ª   ª   ª   ª   ª   page_client-reference-manifest.js
+ª   ª   ª   ª   ª   ª   ª   
+ª   ª   ª   ª   ª   ª   +---page
+ª   ª   ª   ª   ª   ª           app-paths-manifest.json
+ª   ª   ª   ª   ª   ª           build-manifest.json
+ª   ª   ª   ª   ª   ª           next-font-manifest.json
+ª   ª   ª   ª   ª   ª           react-loadable-manifest.json

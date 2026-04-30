@@ -1,0 +1,34 @@
+"use client";
+
+import { useState } from "react";
+import { createMarketplaceItem } from "./actions";
+import { MarketplaceForm } from "./components/MarketplaceForm";
+
+export default function MarketplaceRealm() {
+  const [result, setResult] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(data: any) {
+    setLoading(true);
+    const res = await createMarketplaceItem(data);
+    setResult(res);
+    setLoading(false);
+  }
+
+  return (
+    <div className="p-10 max-w-3xl mx-auto space-y-10">
+      <h1 className="text-4xl font-semibold">Marketplace Realm</h1>
+
+      <MarketplaceForm onSubmit={handleSubmit} loading={loading} />
+
+      {result && (
+        <div className="p-4 border rounded-lg bg-gray-50">
+          <h2 className="text-xl font-medium mb-2">Response</h2>
+          <pre className="text-sm whitespace-pre-wrap">
+            {JSON.stringify(result, null, 2)}
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+}

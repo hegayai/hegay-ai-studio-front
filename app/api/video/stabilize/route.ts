@@ -7,27 +7,22 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
+    const file = form.get("file") as File | null;
 
-    const video = form.get("video") as File | null;
-    const strength = Number(form.get("strength") || 0.7);
-    // strength: 0.0–1.0 (default 0.7)
-
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for stabilization" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    // ⭐ Unified provider-based video stabilization
     const result = await modelRouter({
       model: "video-stabilize",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name,
-        strength
+        file: fileBuffer,
+        filename: file.name
       },
       provider: fal,
       type: "video"
@@ -41,8 +36,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      url: result.url,
-      strength
+      url: result.url
     });
 
   } catch (error) {

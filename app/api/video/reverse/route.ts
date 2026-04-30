@@ -8,23 +8,22 @@ export async function POST(req: Request) {
   try {
     const form = await req.formData();
 
-    const video = form.get("video") as File | null;
+    const file = form.get("file") as File | null;
 
-    if (!video) {
+    if (!file) {
       return NextResponse.json(
-        { error: "A video file is required for reversing" },
+        { error: "No video file uploaded" },
         { status: 400 }
       );
     }
 
-    const videoBuffer = Buffer.from(await video.arrayBuffer());
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    // ⭐ Unified provider-based reverse processing
     const result = await modelRouter({
       model: "video-reverse",
       input: {
-        video: videoBuffer,
-        videoFilename: video.name
+        file: fileBuffer,
+        filename: file.name
       },
       provider: fal,
       type: "video"
