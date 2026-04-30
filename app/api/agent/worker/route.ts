@@ -1,44 +1,49 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/src/core/db/client";
 import { modelRouter } from "@/src/core/model-router";
-export async function POST() {
+
+export async function POST(req: Request) {
   try {
-    // Claim next queued job
-    const job = await prisma.job.findFirst({
-      where: { status: "queued" },
-      orderBy: { createdAt: "asc" }
+    const body = await req.json();
+    const { jobId } = body;
+
+    // Fetch job
+    const job = await prisma.job.findUnique({
+      where: { id: jobId },
     });
+
     if (!job) {
-      return NextResponse.json({ message: "No jobs available" });
+      return NextResponse.json(
+        { error: "Job not found" },
+        { status: 404 }
+      );
     }
-    // Mark as processing
-    await prisma.job.update({
-      where: { id: job.id },
-      data: { status: "processing" }
-    });
-    // Run the job
+
+    // Execute the job using the unified model router
     const result = await modelRouter({
+      provider: "fal",
       model: "agent-worker",
-      input: job.payload,
-      provider: fal,
-      type: "agent"
+      prompt: JSON.stringify(job.payload),
     });
-    // Save result
+
+    // Update job result
     await prisma.job.update({
-      where: { id: job.id },
+      where: { id: jobId },
       data: {
         status: "completed",
-        result
-      }
+        result,
+        completedAt: new Date(),
+      },
     });
+
     return NextResponse.json({
-      jobId: job.id,
-      status: "completed",
-      result
+      success: true,
+      result,
     });
+
   } catch (error) {
     return NextResponse.json(
-      { error: "Worker agent error", details: String(error) },
+      { error: "Agent worker error", details: String(error) },
       { status: 500 }
     );
   }
