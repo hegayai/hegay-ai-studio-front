@@ -1,38 +1,36 @@
+// app/api/media/save/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/src/core/db/client";
+
 export async function POST(req: Request) {
   try {
-    const { userId, key, content } = await req.json();
-    if (!userId || !key || !content) {
+    // TEMPORARY: bypass auth (frontend-only auth cannot run on server)
+    const user = { id: "dev-user" };
+
+    const body = await req.json();
+
+    // Validate incoming data
+    if (!body || !body.url || !body.type) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
-    const saved = await prisma.memory.upsert({
-      where: {
-        userId_key: {
-          userId,
-          key,
-        },
-      },
-      update: {
-        content,
-      },
-      create: {
-        userId,
-        key,
-        content,
-      },
-    });
+
+    // TEMPORARY: no database yet — return mock success
     return NextResponse.json({
       success: true,
-      memory: saved,
+      message: "Media saved (placeholder)",
+      media: {
+        id: "temp-id",
+        userId: user.id,
+        url: body.url,
+        type: body.type,
+        createdAt: new Date().toISOString(),
+      },
     });
   } catch (error) {
-    console.error("Memory Save Error:", error);
     return NextResponse.json(
-      { error: "Failed to save memory" },
+      { error: "Failed to save media" },
       { status: 500 }
     );
   }

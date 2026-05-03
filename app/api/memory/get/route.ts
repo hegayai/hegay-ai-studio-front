@@ -1,26 +1,19 @@
+// app/api/memory/get/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/src/core/db/client";
-import { getCurrentUser } from "@/lib/auth";
+
 export async function GET(req: Request) {
   try {
-    const user = await getCurrentUser(req);
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
-    }
-    const memories = await prisma.memory.findMany({
-      where: { userId: user.id },
-      orderBy: { createdAt: "desc" },
-    });
+    // TEMPORARY: bypass auth (frontend-only auth cannot run on server)
+    const user = { id: "dev-user" };
+
+    // TEMPORARY: no database yet — return empty memory
     return NextResponse.json({
       success: true,
-      memories,
+      memory: [],
     });
-  } catch (err: any) {
+  } catch (error) {
     return NextResponse.json(
-      { error: err.message || "Failed to load memory data" },
+      { error: "Failed to load memory" },
       { status: 500 }
     );
   }

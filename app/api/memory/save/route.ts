@@ -1,36 +1,33 @@
+// app/api/memory/save/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/src/core/db/client";
+
 export async function POST(req: Request) {
   try {
-    const { userId, key, content } = await req.json();
-    if (!userId || !key || !content) {
+    // TEMPORARY: bypass auth (frontend-only auth cannot run on server)
+    const user = { id: "dev-user" };
+
+    const body = await req.json();
+
+    if (!body || !body.key || !body.content) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Missing key or content" },
         { status: 400 }
       );
     }
-    const saved = await prisma.memory.upsert({
-      where: {
-        userId_key: {
-          userId,
-          key,
-        },
-      },
-      update: {
-        content,
-      },
-      create: {
-        userId,
-        key,
-        content,
-      },
-    });
+
+    // TEMPORARY: no database yet — return mock saved memory
     return NextResponse.json({
       success: true,
-      memory: saved,
+      message: "Memory saved (placeholder)",
+      memory: {
+        id: "temp-memory-id",
+        userId: user.id,
+        key: body.key,
+        content: body.content,
+        createdAt: new Date().toISOString(),
+      },
     });
   } catch (error) {
-    console.error("Memory Save Error:", error);
     return NextResponse.json(
       { error: "Failed to save memory" },
       { status: 500 }

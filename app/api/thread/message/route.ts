@@ -1,34 +1,27 @@
+// app/api/thread/message/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/src/core/db/client";
-import { getCurrentUser } from "@/lib/auth";
+
 export async function POST(req: Request) {
   try {
-    const user = await getCurrentUser(req);
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-    const { threadId, content } = await req.json();
-    if (!threadId || !content) {
+    const body = await req.json();
+
+    if (!body || !body.message) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Message is required" },
         { status: 400 }
       );
     }
-    const message = await prisma.message.create({
-      data: {
-        threadId,
-        role: "user",
-        content,
-      },
-    });
+
+    // TEMPORARY: mock thread response
     return NextResponse.json({
       success: true,
-      message,
+      reply: "This is a placeholder thread response.",
+      message: body.message,
+      createdAt: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Thread Message Error:", error);
     return NextResponse.json(
-      { error: "Failed to send message" },
+      { error: "Failed to process message" },
       { status: 500 }
     );
   }
