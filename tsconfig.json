@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/studio/command-center/page.tsx.bak", "prisma.config.mjs"  ],
+, "app/studio/command-center/page.tsx", "prisma.config.mjs"  ],
   "exclude": ["node_modules"]
 }

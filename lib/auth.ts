@@ -1,109 +1,73 @@
-import { prisma } from "@/src/core/db/client";
-import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
-import { PLAN_LIMITS, PlanId } from "@/src/config/plans";
-const SECRET = process.env.AUTH_SECRET || "default_secret_key";
+// hegay-ai-studio/lib/auth.ts
+// Frontend-only auth helpers for Flask backend
+// No bcrypt, no Prisma, no hashing — backend handles all security
+
+import axios from "axios";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:10000";
+
 // ------------------------------------------------------
-// COOKIE SESSION AUTH (Dashboard)
+// LOGIN
 // ------------------------------------------------------
-export async function createSession(userId: string) {
-  const token = jwt.sign({ userId }, SECRET, { expiresIn: "7d" });
-  // Next.js 15/16: cookies() must be awaited
-  const cookieStore = await cookies();
-  cookieStore.set("session", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-  });
-  return token;
-}
-export async function getCurrentUserFromCookie() {
+export async function login(email: string, password: string) {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("session")?.value;
-    if (!token) return null;
-    const decoded = jwt.verify(token, SECRET) as { userId: string };
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
+    const response = await axios.post(`${API_URL}/auth/login`, {
+      email,
+      password,
     });
-    return user || null;
-  } catch {
-    return null;
+
+    const { access_token, refresh_token, user } = response.data;
+
+    // Store tokens in browser
+    localStorage.setItem("access_token", access_token);
+    localStorage.setItem("refresh_token", refresh_token);
+
+    return user;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.error || "Login failed");
   }
 }
-export async function clearSession() {
-  const cookieStore = await cookies();
-  cookieStore.set("session", "", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    expires: new Date(0),
-  });
-}
+
 // ------------------------------------------------------
-// BEARER TOKEN AUTH (API Routes)
+// SIGNUP
 // ------------------------------------------------------
-export async function getCurrentUser(req: Request) {
+export async function signup(email: string, password: string) {
   try {
-    const auth = req.headers.get("authorization");
-    if (!auth) return null;
-    const token = auth.replace("Bearer ", "").trim();
-    if (!token) return null;
-    const session = await prisma.session.findUnique({
-      where: { token },
-      include: { user: true },
+    const response = await axios.post(`${API_URL}/auth/signup`, {
+      email,
+      password,
     });
-    if (!session) return null;
-    if (session.expiresAt < new Date()) return null;
-    return session.user;
-  } catch {
-    return null;
+
+    return response.data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.error || "Signup failed");
   }
 }
+
 // ------------------------------------------------------
-// USAGE: GET TODAY'S USAGE ROW (OR CREATE IT)
+// LOGOUT
 // ------------------------------------------------------
-export async function getTodayUsage(userId: string) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  let usage = await prisma.usage.findFirst({
-    where: { userId, date: today },
-  });
-  if (!usage) {
-    usage = await prisma.usage.create({
-      data: {
-        userId,
-        date: today,
-        imagesUsed: 0,
-        videosUsed: 0,
+export function logout() {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+}
+
+// ------------------------------------------------------
+// GET CURRENT USER (from backend)
+// ------------------------------------------------------
+export async function getCurrentUser() {
+  const token = localStorage.getItem("access_token");
+  if (!token) return null;
+
+  try {
+    const response = await axios.get(`${API_URL}/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
+
+    return response.data.user;
+  } catch {
+    return null;
   }
-  return usage;
-}
-// ------------------------------------------------------
-// LIMIT CHECKS
-// ------------------------------------------------------
-export function canGenerateImage(
-  planId: PlanId,
-  usage: { imagesUsed: number }
-) {
-  const limits = PLAN_LIMITS[planId];
-  return usage.imagesUsed < limits.maxImagesPerDay;
-}
-export function canGenerateVideo(
-  planId: PlanId,
-  usage: { videosUsed: number }
-) {
-  const limits = PLAN_LIMITS[planId];
-  return usage.videosUsed < limits.maxVideosPerDay;
-}
-export function validateVideoDuration(
-  planId: PlanId,
-  requestedSeconds: number
-) {
-  const limits = PLAN_LIMITS[planId];
-  return requestedSeconds <= limits.maxVideoSeconds;
 }

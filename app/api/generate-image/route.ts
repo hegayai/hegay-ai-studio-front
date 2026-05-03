@@ -1,13 +1,16 @@
 import { NextResponse } from "next/server";
+
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
+
     if (!prompt || prompt.trim().length === 0) {
       return NextResponse.json(
         { error: "Prompt is required." },
         { status: 400 }
       );
     }
+
     const response = await fetch(
       "https://api.deepinfra.com/v1/inference/black-forest-labs/flux-1-dev",
       {
@@ -21,13 +24,16 @@ export async function POST(req: Request) {
         }),
       }
     );
+
     const result = await response.json();
+
     if (!result?.images?.[0]) {
       return NextResponse.json(
         { error: "No image returned from DeepInfra." },
         { status: 500 }
       );
     }
+
     return NextResponse.json({
       imageUrl: result.images[0],
     });
