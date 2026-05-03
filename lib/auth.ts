@@ -71,3 +71,24 @@ export async function getCurrentUser() {
     return null;
   }
 }
+
+// ------------------------------------------------------
+// PLACEHOLDER: GET TODAY USAGE (frontend-safe)
+// ------------------------------------------------------
+export async function getTodayUsage() {
+  // Frontend cannot calculate usage — backend must do it.
+  // This placeholder prevents build errors.
+  return {
+    video: 0,
+    images: 0,
+    tokens: 0,
+  };
+}
+
+// ------------------------------------------------------
+// PLACEHOLDER: CAN GENERATE VIDEO (frontend-safe)
+// ------------------------------------------------------
+export function canGenerateVideo(user: any, usage: any) {
+  // Always allow for now — backend enforces real limits.
+  return true;
+}
