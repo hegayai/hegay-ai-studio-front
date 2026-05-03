@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    // TEMPORARY: mock user profile
+    // TEMPORARY: mock profile
     return NextResponse.json({
       success: true,
       user: {
