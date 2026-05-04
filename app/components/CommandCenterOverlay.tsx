@@ -1,23 +1,33 @@
 "use client";
+
 import { useEffect, useState } from "react";
+
 export default function CommandCenterOverlay() {
   const [open, setOpen] = useState(false);
+
   /* ---------------------------------------------------------
      KEYBOARD SHORTCUT: ⌘ + Shift + C  (or Ctrl + Shift + C)
      --------------------------------------------------------- */
   useEffect(() => {
+    // Guard browser APIs for build safety
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
     const handler = (e: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const isMac = navigator.platform?.toUpperCase().includes("MAC") ?? false;
       const mod = isMac ? e.metaKey : e.ctrlKey;
+
       if (mod && e.shiftKey && e.key.toLowerCase() === "c") {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        setOpen(prev => !prev);
       }
     };
+
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
+
   if (!open) return null;
+
   return (
     <div
       className="
@@ -42,10 +52,12 @@ export default function CommandCenterOverlay() {
         <div className="text-xs uppercase tracking-[0.35em] text-[var(--cosmic-blue)] mb-3">
           Command Center
         </div>
+
         <div className="text-[14px] leading-relaxed mb-6">
           The Command Center is active.  
           Use this portal to navigate, orchestrate, and command the creative OS.
         </div>
+
         <button
           onClick={() => setOpen(false)}
           className="

@@ -1,16 +1,26 @@
 "use client";
+
 import { useState } from "react";
+
 export default function CommandCenterButton() {
   const [hover, setHover] = useState(false);
+
   const openCommandCenter = () => {
+    // Guard browser APIs for build safety
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
+    const isMac = navigator.platform?.toUpperCase().includes("MAC") ?? false;
+
     const event = new KeyboardEvent("keydown", {
       key: "c",
       shiftKey: true,
-      metaKey: navigator.platform.toUpperCase().includes("MAC"),
-      ctrlKey: !navigator.platform.toUpperCase().includes("MAC"),
+      metaKey: isMac,
+      ctrlKey: !isMac,
     });
+
     window.dispatchEvent(event);
   };
+
   return (
     <button
       onClick={openCommandCenter}
@@ -27,10 +37,9 @@ export default function CommandCenterButton() {
       "
       style={{
         transform: hover ? "scale(1.06)" : "scale(1)",
-        background:
-          hover
-            ? "rgba(255,255,255,0.12)"
-            : "rgba(255,255,255,0.06)",
+        background: hover
+          ? 'rgba(255,255,255,0.12)'
+          : 'rgba(255,255,255,0.06)',
       }}
     >
       ⌘ Command Center

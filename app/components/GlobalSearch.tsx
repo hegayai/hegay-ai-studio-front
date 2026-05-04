@@ -1,14 +1,18 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
+
 type SearchItem = {
   label: string;
   type: string;
   path: string;
 };
+
 export default function GlobalSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+
   /* ---------------------------------------------------------
      SEARCH INDEX (expand anytime)
      --------------------------------------------------------- */
@@ -19,28 +23,37 @@ export default function GlobalSearch() {
     { label: "Pantheon", type: "Realm", path: "/pantheon" },
     { label: "Command Center", type: "System", path: "/command" },
   ];
+
   /* ---------------------------------------------------------
      KEYBOARD SHORTCUT: ⌘K / Ctrl+K
      --------------------------------------------------------- */
   useEffect(() => {
+    // Guard browser APIs for build safety
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
     const handler = (e: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const isMac = navigator.platform?.toUpperCase().includes("MAC") ?? false;
       const mod = isMac ? e.metaKey : e.ctrlKey;
+
       if (mod && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        setOpen(prev => !prev);
       }
     };
+
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
+
   /* ---------------------------------------------------------
      FILTERED RESULTS
      --------------------------------------------------------- */
-  const filtered = items.filter((item) =>
+  const filtered = items.filter(item =>
     item.label.toLowerCase().includes(query.toLowerCase())
   );
+
   if (!open) return null;
+
   return (
     <div
       className="
@@ -75,6 +88,7 @@ export default function GlobalSearch() {
             mb-4
           "
         />
+
         {/* RESULTS */}
         <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1">
           {filtered.length === 0 && (
@@ -82,7 +96,8 @@ export default function GlobalSearch() {
               No results found
             </div>
           )}
-          {filtered.map((item) => (
+
+          {filtered.map(item => (
             <Link
               key={item.label}
               href={item.path}
@@ -103,6 +118,7 @@ export default function GlobalSearch() {
                   {item.type}
                 </div>
               </div>
+
               <span className="text-[10px] text-[var(--diamond-white)]/30">
                 {item.path}
               </span>

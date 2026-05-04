@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+
 export default function NotificationCenter() {
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState([
@@ -22,20 +24,44 @@ export default function NotificationCenter() {
       tone: "text-amber-300",
     },
   ]);
+
   const dismiss = (id: number) => {
-    setNotifications((prev) => prev.filter((n) => n.id !== id));
+    setNotifications(prev => prev.filter(n => n.id !== id));
   };
+
+  /* ---------------------------------------------------------
+     OPTIONAL: KEYBOARD SHORTCUT (if you want ⌘N / Ctrl+N)
+     --------------------------------------------------------- */
+  useEffect(() => {
+    // Guard browser APIs for build safety
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
+    const handler = (e: KeyboardEvent) => {
+      const isMac = navigator.platform?.toUpperCase().includes("MAC") ?? false;
+      const mod = isMac ? e.metaKey : e.ctrlKey;
+
+      if (mod && e.key.toLowerCase() === "n") {
+        e.preventDefault();
+        setOpen(prev => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   return (
     <>
       {/* Toggle Button */}
       <div className="fixed top-4 right-4 z-40">
         <button
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => setOpen(prev => !prev)}
           className="rounded-full border border-white/10 bg-black/70 backdrop-blur-2xl px-4 py-2 text-[11px] text-slate-300 shadow-[0_18px_45px_rgba(0,0,0,0.85)] hover:bg-white/5 transition-all"
         >
           {open ? "Close Notifications" : "Notifications"}
         </button>
       </div>
+
       {/* Panel */}
       {open && (
         <div className="fixed top-16 right-4 w-80 z-50 rounded-2xl border border-white/10 bg-black/80 backdrop-blur-2xl shadow-[0_30px_80px_rgba(0,0,0,0.9)] animate-fade-in-scale overflow-hidden">
@@ -45,6 +71,7 @@ export default function NotificationCenter() {
               Notification Center
             </div>
           </div>
+
           {/* Notifications */}
           <div className="max-h-[70vh] overflow-y-auto">
             {notifications.length === 0 && (
@@ -52,7 +79,8 @@ export default function NotificationCenter() {
                 No notifications.
               </div>
             )}
-            {notifications.map((note) => (
+
+            {notifications.map(note => (
               <div
                 key={note.id}
                 className="border-b border-white/5 px-4 py-3 hover:bg-white/5 transition-all"
@@ -66,6 +94,7 @@ export default function NotificationCenter() {
                       {note.body}
                     </div>
                   </div>
+
                   <button
                     onClick={() => dismiss(note.id)}
                     className="text-[10px] text-slate-500 hover:text-slate-300 transition-all ml-3"

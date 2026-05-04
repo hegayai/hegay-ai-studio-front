@@ -219,6 +219,125 @@ html.minimal-motion .blur {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes cosmic-grid-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-40px, -30px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-cosmic-grid-drift {
+  animation: cosmic-grid-drift 26s ease-in-out infinite;
+}
+
+/* ---------------------------------------------------------
+   COSMIC WARP TRANSITION ENGINE
+   --------------------------------------------------------- */
+
+.cosmic-warp-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.cosmic-warp-overlay.active {
+  opacity: 1;
+}
+
+/* Flash burst */
+.cosmic-warp-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.9),
+    rgba(74,107,255,0.4),
+    transparent 70%
+  );
+  opacity: 0;
+  animation: warpFlash 0.45s ease forwards;
+}
+
+/* Expanding ring */
+.cosmic-warp-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.35);
+  transform: scale(0.2);
+  opacity: 0;
+  animation: warpRing 0.45s ease forwards;
+}
+
+/* Distortion layer */
+.cosmic-warp-distortion {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(18px) brightness(1.4);
+  opacity: 0;
+  animation: warpDistort 0.45s ease forwards;
+}
+
+@keyframes warpFlash {
+  0% { opacity: 0; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+
+@keyframes warpRing {
+  0% { opacity: 0.4; transform: scale(0.2); }
+  100% { opacity: 0; transform: scale(2.8); }
+}
+
+@keyframes warpDistort {
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ---------------------------------------------------------
+   COSMIC PANEL SYSTEM — EDGES + GLOW
+   --------------------------------------------------------- */
+
+.cosmic-panel-glow {
+  box-shadow:
+    0 0 25px rgba(74,107,255,0.25),
+    0 0 45px rgba(107,74,255,0.25),
+    0 0 6px rgba(255,255,255,0.25);
+}
+
+/* Top + bottom cosmic edges */
+.cosmic-panel-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+.cosmic-panel-edge-top {
+  top: 0;
+}
+
+.cosmic-panel-edge-bottom {
+  bottom: 0;
+}
+
 /* ---------------------------------------------------------
    END OF HEGAY OS SUPREME v4.0 GLOBAL CSS
    --------------------------------------------------------- */

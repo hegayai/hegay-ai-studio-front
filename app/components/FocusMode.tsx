@@ -1,42 +1,59 @@
 "use client";
+
 import { createContext, useContext, useEffect, useState } from "react";
+
 type FocusContextType = {
   enabled: boolean;
   toggle: () => void;
 };
+
 const FocusContext = createContext<FocusContextType>({
   enabled: false,
   toggle: () => {},
 });
+
 export function useFocusMode() {
   return useContext(FocusContext);
 }
-export default function FocusModeProvider({ children }: { children: React.ReactNode }) {
+
+export default function FocusModeProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [enabled, setEnabled] = useState(false);
+
   /* ---------------------------------------------------------
      LOAD USER PREFERENCE
      --------------------------------------------------------- */
   useEffect(() => {
-    const stored = localStorage.getItem("hegay-focus-mode");
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+
+    const stored = window.localStorage.getItem("hegay-focus-mode");
     if (stored === "true") {
       setEnabled(true);
       document.documentElement.classList.add("focus-mode");
     }
   }, []);
+
   /* ---------------------------------------------------------
      APPLY MODE
      --------------------------------------------------------- */
   const toggle = () => {
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+
     const next = !enabled;
     setEnabled(next);
+
     if (next) {
       document.documentElement.classList.add("focus-mode");
-      localStorage.setItem("hegay-focus-mode", "true");
+      window.localStorage.setItem("hegay-focus-mode", "true");
     } else {
       document.documentElement.classList.remove("focus-mode");
-      localStorage.setItem("hegay-focus-mode", "false");
+      window.localStorage.setItem("hegay-focus-mode", "false");
     }
   };
+
   return (
     <FocusContext.Provider value={{ enabled, toggle }}>
       {children}
@@ -44,11 +61,13 @@ export default function FocusModeProvider({ children }: { children: React.ReactN
     </FocusContext.Provider>
   );
 }
+
 /* ---------------------------------------------------------
    FOCUS OVERLAY
    --------------------------------------------------------- */
 function FocusOverlay({ enabled }: { enabled: boolean }) {
   if (!enabled) return null;
+
   return (
     <div
       className="

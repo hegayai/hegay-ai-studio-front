@@ -1,48 +1,50 @@
-// app/dashboard/page.tsx
+"use client";
+
 import Link from "next/link";
+import CosmicContainerLayout from "@/components/cosmic/CosmicContainerLayout";
+import CosmicPanel from "@/components/cosmic/CosmicPanelSystem";
+import { DriftUp } from "@/components/cosmic/CosmicMotionTokens";
 
-export default function Dashboard() {
+export default function DashboardSelector() {
   return (
-    <main className="min-h-screen bg-black text-white p-10">
-      <h1 className="text-3xl font-bold">Creator Dashboard</h1>
+    <CosmicContainerLayout center padding="p-10 md:p-16">
+      <div className="grid gap-10 grid-cols-1 md:grid-cols-2 max-w-4xl w-full">
 
-      <p className="text-gray-400 mt-3">Your creative universe at a glance.</p>
+        {/* CREATOR DASHBOARD */}
+        <DriftUp>
+          <CosmicPanel padding="p-10">
+            <h2 className="text-2xl font-bold mb-4">Creator Dashboard</h2>
+            <p className="opacity-70 leading-relaxed mb-6">
+              Access your personal command center. Manage universes, engines,
+              realms, diagnostics, and creative civilization systems.
+            </p>
+            <Link
+              href="/dashboard/personal"
+              className="btn-primary w-full text-center"
+            >
+              Enter Creator Dashboard
+            </Link>
+          </CosmicPanel>
+        </DriftUp>
 
-      <div className="grid mt-8 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <DashboardCard title="Quick Launch">
-          <div className="flex flex-col gap-3">
-            <Link href="/admin/desktop" className="btn">Open Hegay OS</Link>
-            <Link href="/admin/tools/playground" className="btn">Model Playground</Link>
-            <Link href="/admin/tools/prompt-studio" className="btn">Prompt Studio</Link>
-            <Link href="/admin/tools/assets" className="btn">Asset Manager</Link>
-          </div>
-        </DashboardCard>
+        {/* USER DASHBOARD */}
+        <DriftUp>
+          <CosmicPanel padding="p-10">
+            <h2 className="text-2xl font-bold mb-4">User Dashboard</h2>
+            <p className="opacity-70 leading-relaxed mb-6">
+              Access tools, assets, prompts, projects, and activity across the
+              Hegay OS ecosystem.
+            </p>
+            <Link
+              href="/dashboard/user"
+              className="btn-secondary w-full text-center"
+            >
+              Enter User Dashboard
+            </Link>
+          </CosmicPanel>
+        </DriftUp>
 
-        <DashboardCard title="Recent Projects">
-          <p className="text-gray-400">Your latest creations will appear here.</p>
-        </DashboardCard>
-
-        <DashboardCard title="Saved Assets">
-          <p className="text-gray-400">Your stored images, prompts, and files.</p>
-        </DashboardCard>
-
-        <DashboardCard title="Prompt Library">
-          <p className="text-gray-400">Your saved creative prompts.</p>
-        </DashboardCard>
-
-        <DashboardCard title="Activity Timeline">
-          <p className="text-gray-400">Your recent actions and OS activity.</p>
-        </DashboardCard>
       </div>
-    </main>
-  );
-}
-
-function DashboardCard({ title, children }) {
-  return (
-    <div className="bg-neutral-900 border border-neutral-700 p-6 rounded-xl">
-      <h3 className="text-xl font-semibold">{title}</h3>
-      <div className="mt-4">{children}</div>
-    </div>
+    </CosmicContainerLayout>
   );
 }

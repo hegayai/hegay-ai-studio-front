@@ -1,15 +1,32 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+
 type Command = {
   label: string;
   action: () => void;
   group: string;
 };
+
 export default function CommandBar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+
+  /* ---------------------------------------------------------
+     SAFE HELPERS
+     --------------------------------------------------------- */
+  const safeIsMac = () => {
+    if (typeof navigator === "undefined") return false;
+    return navigator.platform?.toUpperCase().includes("MAC") ?? false;
+  };
+
+  const safeToggleClass = (cls: string) => {
+    if (typeof document === "undefined") return;
+    document.documentElement.classList.toggle(cls);
+  };
+
   /* ---------------------------------------------------------
      COMMAND REGISTRY
      --------------------------------------------------------- */
@@ -20,33 +37,42 @@ export default function CommandBar() {
     { label: "Open Timeline", group: "Navigation", action: () => router.push("/timeline") },
     { label: "Open Archive", group: "Navigation", action: () => router.push("/archive") },
     { label: "Open Signals", group: "Navigation", action: () => router.push("/signals") },
-    { label: "Toggle Minimal Motion", group: "System", action: () => {
-        document.documentElement.classList.toggle("minimal-motion");
-      }
+    {
+      label: "Toggle Minimal Motion",
+      group: "System",
+      action: () => safeToggleClass("minimal-motion"),
     },
   ];
+
   /* ---------------------------------------------------------
      KEYBOARD SHORTCUTS
      --------------------------------------------------------- */
   useEffect(() => {
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
     const handler = (e: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const isMac = safeIsMac();
       const mod = isMac ? e.metaKey : e.ctrlKey;
+
       if (mod && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        setOpen(prev => !prev);
       }
     };
+
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
+
   /* ---------------------------------------------------------
      FILTERED COMMANDS
      --------------------------------------------------------- */
-  const filtered = commands.filter((cmd) =>
+  const filtered = commands.filter(cmd =>
     cmd.label.toLowerCase().includes(query.toLowerCase())
   );
+
   if (!open) return null;
+
   return (
     <div
       className="
@@ -81,18 +107,21 @@ export default function CommandBar() {
             border-b border-white/10
           "
         />
+
         {/* RESULTS */}
         <div className="mt-3 max-h-72 overflow-y-auto pr-1 space-y-4">
-          {["Navigation", "System"].map((group) => {
-            const groupItems = filtered.filter((cmd) => cmd.group === group);
+          {["Navigation", "System"].map(group => {
+            const groupItems = filtered.filter(cmd => cmd.group === group);
             if (groupItems.length === 0) return null;
+
             return (
               <div key={group}>
                 <div className="text-[10px] uppercase tracking-wider text-[var(--diamond-white)]/40 mb-1 px-1">
                   {group}
                 </div>
+
                 <div className="space-y-1">
-                  {groupItems.map((cmd) => (
+                  {groupItems.map(cmd => (
                     <button
                       key={cmd.label}
                       onClick={() => {

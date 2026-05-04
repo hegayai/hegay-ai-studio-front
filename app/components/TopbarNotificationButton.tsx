@@ -1,15 +1,25 @@
 "use client";
+
 import { useState } from "react";
+
 export default function TopbarNotificationButton() {
   const [hover, setHover] = useState(false);
+
   const openNotifications = () => {
+    // Guard browser APIs for build safety
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
+    const isMac = navigator.platform?.toUpperCase().includes("MAC") ?? false;
+
     const event = new KeyboardEvent("keydown", {
       key: "n",
-      metaKey: navigator.platform.toUpperCase().includes("MAC"),
-      ctrlKey: !navigator.platform.toUpperCase().includes("MAC"),
+      metaKey: isMac,
+      ctrlKey: !isMac,
     });
+
     window.dispatchEvent(event);
   };
+
   return (
     <button
       onClick={openNotifications}
@@ -25,10 +35,9 @@ export default function TopbarNotificationButton() {
       "
       style={{
         transform: hover ? "scale(1.08)" : "scale(1)",
-        background:
-          hover
-            ? 'rgba(255,255,255,0.12)'
-            : 'rgba(255,255,255,0.06)',
+        background: hover
+          ? "rgba(255,255,255,0.12)"
+          : "rgba(255,255,255,0.06)",
       }}
     >
       <span className="text-[15px]">🔔</span>

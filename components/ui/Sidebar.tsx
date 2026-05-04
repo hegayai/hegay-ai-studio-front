@@ -8,8 +8,10 @@ import {
   FiLayers,
   FiSettings,
 } from "react-icons/fi";
+
 export default function Sidebar() {
   const pathname = usePathname();
+
   const nav = [
     { label: "Dashboard", href: "/dashboard", icon: FiHome },
     { label: "Studio", href: "/studio", icon: FiGrid },
@@ -17,14 +19,18 @@ export default function Sidebar() {
     { label: "Realms", href: "/realms", icon: FiLayers },
     { label: "Settings", href: "/settings", icon: FiSettings },
   ];
+
   return (
     <aside className="sticky top-0 h-screen w-56 border-r border-white/10 bg-black/40 backdrop-blur-xl p-4 flex flex-col gap-4">
       <h1 className="text-sm font-semibold text-slate-200 tracking-wide px-2">
         Hegay OS
       </h1>
+
       <nav className="flex flex-col gap-1">
         {nav.map(({ label, href, icon: Icon }) => {
-          const active = pathname.startsWith(href);
+          // ⭐ FIX: null-safe pathname
+          const active = pathname?.startsWith(href) ?? false;
+
           return (
             <Link
               key={href}

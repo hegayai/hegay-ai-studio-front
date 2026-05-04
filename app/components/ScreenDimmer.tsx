@@ -1,42 +1,59 @@
 "use client";
+
 import { createContext, useContext, useEffect, useState } from "react";
+
 type DimmerContextType = {
   dimmed: boolean;
   toggle: () => void;
 };
+
 const DimmerContext = createContext<DimmerContextType>({
   dimmed: false,
   toggle: () => {},
 });
+
 export function useScreenDimmer() {
   return useContext(DimmerContext);
 }
-export default function ScreenDimmerProvider({ children }: { children: React.ReactNode }) {
+
+export default function ScreenDimmerProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [dimmed, setDimmed] = useState(false);
+
   /* ---------------------------------------------------------
      LOAD USER PREFERENCE
      --------------------------------------------------------- */
   useEffect(() => {
-    const stored = localStorage.getItem("hegay-screen-dimmer");
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+
+    const stored = window.localStorage.getItem("hegay-screen-dimmer");
     if (stored === "true") {
       setDimmed(true);
       document.documentElement.classList.add("screen-dimmed");
     }
   }, []);
+
   /* ---------------------------------------------------------
      APPLY MODE
      --------------------------------------------------------- */
   const toggle = () => {
+    if (typeof window === "undefined" || typeof document === "undefined") return;
+
     const next = !dimmed;
     setDimmed(next);
+
     if (next) {
       document.documentElement.classList.add("screen-dimmed");
-      localStorage.setItem("hegay-screen-dimmer", "true");
+      window.localStorage.setItem("hegay-screen-dimmer", "true");
     } else {
       document.documentElement.classList.remove("screen-dimmed");
-      localStorage.setItem("hegay-screen-dimmer", "false");
+      window.localStorage.setItem("hegay-screen-dimmer", "false");
     }
   };
+
   return (
     <DimmerContext.Provider value={{ dimmed, toggle }}>
       {children}
@@ -44,11 +61,13 @@ export default function ScreenDimmerProvider({ children }: { children: React.Rea
     </DimmerContext.Provider>
   );
 }
+
 /* ---------------------------------------------------------
    DIMMER OVERLAY
    --------------------------------------------------------- */
 function DimmerOverlay({ dimmed }: { dimmed: boolean }) {
   if (!dimmed) return null;
+
   return (
     <div
       className="

@@ -1,60 +1,98 @@
 "use client";
+
 import { useEffect, useState } from "react";
+
 type Command = {
   name: string;
   action: () => void;
 };
+
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+
+  /* ---------------------------------------------------------
+     SAFE HELPERS
+     --------------------------------------------------------- */
+  const safeIsMac = () => {
+    if (typeof navigator === "undefined") return false;
+    return navigator.platform?.toUpperCase().includes("MAC") ?? false;
+  };
+
+  const safeNavigate = (path: string) => {
+    if (typeof window === "undefined") return;
+    window.location.href = path;
+  };
+
+  const safeDispatch = (event: KeyboardEvent) => {
+    if (typeof window === "undefined") return;
+    window.dispatchEvent(event);
+  };
+
+  const safeToggleClass = (cls: string) => {
+    if (typeof document === "undefined") return;
+    document.documentElement.classList.toggle(cls);
+  };
+
+  /* ---------------------------------------------------------
+     COMMANDS
+     --------------------------------------------------------- */
   const commands: Command[] = [
-    { name: "Go to Dashboard", action: () => (window.location.href = "/") },
-    { name: "Go to Studio", action: () => (window.location.href = "/studio") },
+    { name: "Go to Dashboard", action: () => safeNavigate("/") },
+    { name: "Go to Studio", action: () => safeNavigate("/studio") },
     { name: "Open Command Center", action: () => triggerCommandCenter() },
-    { name: "Toggle Focus Mode", action: () => toggleClass("focus-mode") },
-    { name: "Toggle Screen Dimmer", action: () => toggleClass("screen-dimmed") },
-    { name: "Toggle Minimal Motion", action: () => toggleClass("minimal-motion") },
+    { name: "Toggle Focus Mode", action: () => safeToggleClass("focus-mode") },
+    { name: "Toggle Screen Dimmer", action: () => safeToggleClass("screen-dimmed") },
+    { name: "Toggle Minimal Motion", action: () => safeToggleClass("minimal-motion") },
   ];
+
   /* ---------------------------------------------------------
      KEYBOARD SHORTCUT: ⌘K / Ctrl+K
      --------------------------------------------------------- */
   useEffect(() => {
+    if (typeof window === "undefined" || typeof navigator === "undefined") return;
+
     const handler = (e: KeyboardEvent) => {
-      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const isMac = safeIsMac();
       const mod = isMac ? e.metaKey : e.ctrlKey;
+
       if (mod && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        setOpen(prev => !prev);
       }
     };
+
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
+
   /* ---------------------------------------------------------
      COMMAND CENTER TRIGGER
      --------------------------------------------------------- */
   const triggerCommandCenter = () => {
+    if (typeof navigator === "undefined") return;
+
+    const isMac = safeIsMac();
+
     const event = new KeyboardEvent("keydown", {
       key: "c",
       shiftKey: true,
-      metaKey: navigator.platform.toUpperCase().includes("MAC"),
-      ctrlKey: !navigator.platform.toUpperCase().includes("MAC"),
+      metaKey: isMac,
+      ctrlKey: !isMac,
     });
-    window.dispatchEvent(event);
+
+    safeDispatch(event);
   };
-  /* ---------------------------------------------------------
-     TOGGLE CLASS HELPERS
-     --------------------------------------------------------- */
-  const toggleClass = (cls: string) => {
-    document.documentElement.classList.toggle(cls);
-  };
+
   /* ---------------------------------------------------------
      FILTERED COMMANDS
      --------------------------------------------------------- */
-  const filtered = commands.filter((cmd) =>
+  const filtered = commands.filter(cmd =>
     cmd.name.toLowerCase().includes(query.toLowerCase())
   );
+
   if (!open) return null;
+
   return (
     <div
       className="
@@ -89,6 +127,7 @@ export default function CommandPalette() {
             mb-4
           "
         />
+
         {/* COMMAND LIST */}
         <div className="flex flex-col gap-2 max-h-64 overflow-y-auto pr-1">
           {filtered.length === 0 && (
@@ -96,6 +135,7 @@ export default function CommandPalette() {
               No matching commands
             </div>
           )}
+
           {filtered.map((cmd, i) => (
             <button
               key={i}
