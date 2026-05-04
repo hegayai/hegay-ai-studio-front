@@ -4,12 +4,24 @@
 
 import axios from "axios";
 
+// ------------------------------------------------------
+// TYPES
+// ------------------------------------------------------
+export interface AuthUser {
+  id: string;
+  email: string;
+  name?: string;
+  plan?: string;
+  created_at?: string;
+  [key: string]: any; // allow backend to send extra fields safely
+}
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:10000";
 
 // ------------------------------------------------------
 // LOGIN
 // ------------------------------------------------------
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<AuthUser> {
   try {
     const response = await axios.post(`${API_URL}/auth/login`, {
       email,
@@ -22,7 +34,7 @@ export async function login(email: string, password: string) {
     localStorage.setItem("access_token", access_token);
     localStorage.setItem("refresh_token", refresh_token);
 
-    return user;
+    return user as AuthUser;
   } catch (error: any) {
     throw new Error(error.response?.data?.error || "Login failed");
   }
@@ -55,7 +67,7 @@ export function logout() {
 // ------------------------------------------------------
 // GET CURRENT USER (from backend)
 // ------------------------------------------------------
-export async function getCurrentUser() {
+export async function getCurrentUser(): Promise<AuthUser | null> {
   const token = localStorage.getItem("access_token");
   if (!token) return null;
 
@@ -66,7 +78,7 @@ export async function getCurrentUser() {
       },
     });
 
-    return response.data.user;
+    return response.data.user as AuthUser;
   } catch {
     return null;
   }
@@ -76,8 +88,6 @@ export async function getCurrentUser() {
 // PLACEHOLDER: GET TODAY USAGE (frontend-safe)
 // ------------------------------------------------------
 export async function getTodayUsage() {
-  // Frontend cannot calculate usage — backend must do it.
-  // This placeholder prevents build errors.
   return {
     video: 0,
     images: 0,
@@ -88,7 +98,6 @@ export async function getTodayUsage() {
 // ------------------------------------------------------
 // PLACEHOLDER: CAN GENERATE VIDEO (frontend-safe)
 // ------------------------------------------------------
-export function canGenerateVideo(user: any, usage: any) {
-  // Always allow for now — backend enforces real limits.
+export function canGenerateVideo(user: AuthUser | null, usage: any) {
   return true;
 }

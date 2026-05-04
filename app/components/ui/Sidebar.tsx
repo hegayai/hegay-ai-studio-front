@@ -1,42 +1,39 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  FiHome,
-  FiGrid,
-  FiGlobe,
-  FiLayers,
-  FiSettings,
-} from "react-icons/fi";
-export default function Sidebar() {
+
+interface NavItem {
+  label: string;
+  href: string;
+  icon?: React.ComponentType<{ className?: string }>;
+}
+
+interface SidebarProps {
+  nav: NavItem[];
+}
+
+export default function Sidebar({ nav }: SidebarProps) {
   const pathname = usePathname();
-  const nav = [
-    { label: "Dashboard", href: "/dashboard", icon: FiHome },
-    { label: "Studio", href: "/studio", icon: FiGrid },
-    { label: "Universe", href: "/universe", icon: FiGlobe },
-    { label: "Realms", href: "/realms", icon: FiLayers },
-    { label: "Settings", href: "/settings", icon: FiSettings },
-  ];
+
   return (
-    <aside className="sticky top-0 h-screen w-56 border-r border-white/10 bg-black/40 backdrop-blur-xl p-4 flex flex-col gap-4">
-      <h1 className="text-sm font-semibold text-slate-200 tracking-wide px-2">
-        Hegay OS
-      </h1>
+    <aside className="w-64 p-6 border-r border-white/10 bg-white/5">
       <nav className="flex flex-col gap-1">
         {nav.map(({ label, href, icon: Icon }) => {
-          const active = pathname.startsWith(href);
+          const active = pathname?.startsWith(href) ?? false;
+
           return (
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${
+              className={`flex items-center gap-3 px-4 py-2 rounded-lg transition ${
                 active
-                  ? "bg-purple-500/20 text-purple-100 border border-purple-400/40"
-                  : "text-slate-300 hover:bg-white/5 border border-transparent"
+                  ? "bg-white/10 text-white"
+                  : "text-white/70 hover:bg-white/5"
               }`}
             >
-              <Icon className="h-4 w-4" />
-              {label}
+              {Icon && <Icon className="w-5 h-5" />}
+              <span>{label}</span>
             </Link>
           );
         })}

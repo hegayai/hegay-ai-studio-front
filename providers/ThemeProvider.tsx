@@ -1,7 +1,13 @@
-// providers/ThemeProvider.tsx
+"use client";
+
+import { ReactNode } from "react";
 import { Brand } from "@/brand/brand.config";
 
-export default function ThemeProvider({ children }) {
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+export default function ThemeProvider({ children }: ThemeProviderProps) {
   return (
     <div
       style={{
@@ -25,7 +31,7 @@ export default function ThemeProvider({ children }) {
         background: Brand.colors.black,
         color: Brand.colors.white,
         minHeight: "100vh",
-      }}
+      } as React.CSSProperties}
     >
       {children}
     </div>

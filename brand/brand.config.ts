@@ -11,11 +11,17 @@ export const Brand = {
     red: "#EF4444",
     white: "#F5F5F5",
     gray: "#374151",
+
+    // Added for BrandButton
+    textOnPrimary: "#FFFFFF",
   },
 
   typography: {
     display: "Space Grotesk, sans-serif",
     body: "Inter, system-ui, sans-serif",
+
+    // ⭐ Added missing key required by BrandButton
+    button: "Inter, system-ui, sans-serif",
   },
 
   motion: {

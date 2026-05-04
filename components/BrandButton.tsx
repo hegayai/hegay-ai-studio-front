@@ -1,18 +1,22 @@
-// components/BrandButton.tsx
-import { Brand } from "@/brand/brand.config";
+"use client";
 
-export default function BrandButton({ children, onClick }) {
+import { Brand } from "@/brand/brand.config";
+import { ReactNode } from "react";
+
+interface BrandButtonProps {
+  children: ReactNode;
+  onClick?: () => void;
+}
+
+export default function BrandButton({ children, onClick }: BrandButtonProps) {
   return (
     <button
       onClick={onClick}
+      className="px-4 py-2 rounded-lg font-medium transition"
       style={{
-        padding: "0.75rem 1.5rem",
         background: Brand.colors.primary,
-        color: Brand.colors.black,
-        fontWeight: 700,
-        border: "none",
-        borderRadius: Brand.ui.radius,
-        cursor: "pointer",
+        color: Brand.colors.textOnPrimary,
+        fontFamily: Brand.typography.button,
         boxShadow: Brand.ui.windowGlow,
       }}
     >

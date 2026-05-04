@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 
 export default function UniverseTopBar() {
   const pathname = usePathname();
+  const safePath = pathname ?? ""; // ⭐ FIX
 
   const [credits, setCredits] = useState(0);
   const [energy, setEnergy] = useState(100);
@@ -48,7 +49,7 @@ export default function UniverseTopBar() {
         <select
           className="bg-black/40 border border-white/10 text-white text-xs px-3 py-2 rounded-xl
             focus:ring-2 focus:ring-cosmic-gold/70"
-          value={pathname}
+          value={safePath} // ⭐ FIX
           onChange={(e) => (window.location.href = e.target.value)}
         >
           <option value="/studio">Dashboard</option>

@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
@@ -6,26 +7,32 @@ import { FiBell, FiSearch, FiUser } from "react-icons/fi";
 import GlobalSearch from "@/app/components/ui/GlobalSearch";
 import NotificationCenter from "@/app/components/ui/NotificationCenter";
 import ProfileMenu from "@/app/components/ui/ProfileMenu";
+
 export default function Topbar() {
   const pathname = usePathname();
+  const safePath = pathname ?? "/";
+
   const [searchOpen, setSearchOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+
   const titles: Record<string, string> = {
     "/dashboard": "Dashboard",
     "/studio": "Studio",
     "/realms": "Realms",
     "/settings": "Settings",
   };
+
   const title =
-    titles[pathname] ||
-    pathname
+    titles[safePath] ||
+    safePath
       .split("/")
       .filter(Boolean)
       .pop()
       ?.replace(/-/g, " ")
       .replace(/\b\w/g, (c) => c.toUpperCase()) ||
     "Hegay OS";
+
   return (
     <>
       <motion.header
@@ -43,6 +50,7 @@ export default function Topbar() {
             Creative OS
           </p>
         </div>
+
         {/* Right: System Cluster */}
         <div className="flex items-center gap-4">
           {/* Search */}
@@ -55,6 +63,7 @@ export default function Topbar() {
               Search
             </span>
           </button>
+
           {/* Notifications */}
           <button
             onClick={() => setNotifOpen(true)}
@@ -62,6 +71,7 @@ export default function Topbar() {
           >
             <FiBell className="h-5 w-5" />
           </button>
+
           {/* Profile */}
           <button
             onClick={() => setProfileOpen(true)}
@@ -71,6 +81,7 @@ export default function Topbar() {
           </button>
         </div>
       </motion.header>
+
       {/* OS Layers */}
       <GlobalSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
       <NotificationCenter open={notifOpen} onClose={() => setNotifOpen(false)} />

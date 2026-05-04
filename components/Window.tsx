@@ -1,9 +1,16 @@
 // components/Window.tsx
-import { useState } from "react";
+"use client";
+
+import { useState, ReactNode } from "react";
 import Draggable from "react-draggable";
 import { Brand } from "@/brand/brand.config";
 
-export default function Window({ title, children }) {
+interface WindowProps {
+  title: string;
+  children: ReactNode;
+}
+
+export default function Window({ title, children }: WindowProps) {
   const [isOpen, setIsOpen] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
 
