@@ -1,9 +1,53 @@
 /* ---------------------------------------------------------
-   HEGAY OS SUPREME v4.0 — GLOBAL COSMIC NEUTRAL PREMIUM CSS
+   HEGAY OS SUPREME v4.2 — GLOBAL COSMIC NEUTRAL PREMIUM CSS
    --------------------------------------------------------- */
+
+/* Google Fonts — must be first */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* Optional hero styles */
 @import "../src/styles/hero.css";
 
-/* ROOT PALETTE — Cosmic Neutral Premium */
+/* ---------------------------------------------------------
+   FONT IMPORTS — Premium, Apple‑grade, Brand‑safe
+   --------------------------------------------------------- */
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ClashDisplay";
+  src: url("/fonts/ClashDisplay-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------
+   ROOT PALETTE — Cosmic Neutral Premium
+   --------------------------------------------------------- */
+
 :root {
   --obsidian: #000000;
   --deep-space: #0A0A0F;
@@ -19,6 +63,10 @@
   --glow-blue: rgba(74,107,255,0.25);
   --glow-purple: rgba(107,74,255,0.25);
   --glow-gold: rgba(244,196,94,0.25);
+
+  --font-ui: "Inter", system-ui, sans-serif;
+  --font-display: "Satoshi", sans-serif;
+  --font-accent: "ClashDisplay", sans-serif;
 }
 
 /* ---------------------------------------------------------
@@ -44,12 +92,62 @@ html, body {
       var(--deep-space),
       var(--obsidian)
     );
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Smooth scroll unless minimal motion is active */
 html:not(.minimal-motion) {
   scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------
+   TYPOGRAPHY SCALE — Apple‑grade
+   --------------------------------------------------------- */
+
+.h1 {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.h4 {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.ui-text {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.caption {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.brand-title {
+  font-family: var(--font-accent);
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 /* ---------------------------------------------------------
@@ -131,7 +229,7 @@ html.minimal-motion .blur {
 }
 
 /* ---------------------------------------------------------
-   COSMIC CURSOR (Optimized)
+   COSMIC CURSOR
    --------------------------------------------------------- */
 
 .cosmic-cursor {
@@ -220,15 +318,9 @@ html.minimal-motion .blur {
 }
 
 @keyframes cosmic-grid-drift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(-40px, -30px, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-40px, -30px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 .animate-cosmic-grid-drift {
@@ -252,7 +344,6 @@ html.minimal-motion .blur {
   opacity: 1;
 }
 
-/* Flash burst */
 .cosmic-warp-flash {
   position: absolute;
   inset: 0;
@@ -266,7 +357,6 @@ html.minimal-motion .blur {
   animation: warpFlash 0.45s ease forwards;
 }
 
-/* Expanding ring */
 .cosmic-warp-ring {
   position: absolute;
   inset: 0;
@@ -277,7 +367,6 @@ html.minimal-motion .blur {
   animation: warpRing 0.45s ease forwards;
 }
 
-/* Distortion layer */
 .cosmic-warp-distortion {
   position: absolute;
   inset: 0;
@@ -314,7 +403,6 @@ html.minimal-motion .blur {
     0 0 6px rgba(255,255,255,0.25);
 }
 
-/* Top + bottom cosmic edges */
 .cosmic-panel-edge {
   position: absolute;
   left: 0;
@@ -339,5 +427,5 @@ html.minimal-motion .blur {
 }
 
 /* ---------------------------------------------------------
-   END OF HEGAY OS SUPREME v4.0 GLOBAL CSS
+   END OF HEGAY OS SUPREME v4.2 GLOBAL CSS
    --------------------------------------------------------- */

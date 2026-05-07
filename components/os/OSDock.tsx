@@ -1,37 +1,41 @@
-// src/components/os/OSDock.tsx
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const realms = [
-  { label: "Image", href: "/studio/image-generator", emoji: "🖼️" },
-  { label: "Video", href: "/studio/video-generator", emoji: "🎬" },
-  { label: "Audio", href: "/studio/audio-lab", emoji: "🎧" },
-  { label: "Model Lab", href: "/studio/model-lab", emoji: "🧬" },
-  { label: "Pantheon", href: "/studio/pantheon", emoji: "🏛️" },
-  { label: "Origin", href: "/studio/origin", emoji: "🌌" },
-  { label: "Marketplace", href: "/studio/marketplace", emoji: "🛒" },
-  { label: "Economy", href: "/studio/economy", emoji: "💱" },
-  { label: "Analytics", href: "/studio/analytics", emoji: "📊" },
+const apps = [
+  { name: "Dashboard", path: "/dashboard" },
+  { name: "Studio", path: "/creative/studio" },
+  { name: "Canvas", path: "/creative/canvas" },
+  { name: "Video Lab", path: "/creative/video-lab" },
+  { name: "Audio Lab", path: "/creative/audio-lab" },
+  { name: "Reels", path: "/creative/reels" },
+  { name: "Image Forge", path: "/creative/image-forge" },
+  { name: "Motion", path: "/creative/motion" },
 ];
 
 export default function OSDock() {
+  const pathname = usePathname();
+
   return (
-    <div className="w-full flex justify-center pb-6">
-      <div className="px-4 py-2 rounded-3xl bg-black/60 border border-white/10 backdrop-blur-2xl flex gap-3">
-        {realms.map((realm) => (
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 glass-panel px-4 py-3 rounded-2xl flex gap-4 shadow-[0_30px_90px_rgba(0,0,0,0.9)] z-[999]">
+      {apps.map((app) => {
+        const active = pathname.startsWith(app.path);
+
+        return (
           <Link
-            key={realm.href}
-            href={realm.href}
-            className="flex flex-col items-center gap-1 text-[10px] text-white/60 hover:text-white transition"
+            key={app.path}
+            href={app.path}
+            className={`w-10 h-10 rounded-xl flex items-center justify-center transition ${
+              active
+                ? "bg-white/20 text-white"
+                : "bg-white/5 text-white/70 hover:bg-white/10"
+            }`}
           >
-            <div className="w-9 h-9 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-lg">
-              {realm.emoji}
-            </div>
-            <span>{realm.label}</span>
+            <span className="text-[11px] font-medium">{app.name}</span>
           </Link>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }
