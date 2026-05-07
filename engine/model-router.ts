@@ -8,7 +8,7 @@ import { falGenerateReel } from "../integrations/fal-reels";
 import { falScriptToVideo } from "../integrations/fal-script-video";
 
 // --------------------------------------------------
-// UPDATED ENGINE LIST (ALL ENGINES + BRANDING)
+// UPDATED ENGINE LIST (ALL ENGINES + ADVANCED CLEANUP)
 // --------------------------------------------------
 export type EngineType =
   | "chat"
@@ -22,7 +22,8 @@ export type EngineType =
   | "admin_image"
   | "admin_video"
   | "motion_advanced"
-  | "branding";   // <-- NEW FIX
+  | "branding"
+  | "cleanup_advanced";   // <-- NEW FIX
 
 export async function modelRouter(engine: EngineType, payload: any) {
   switch (engine) {
@@ -60,8 +61,11 @@ export async function modelRouter(engine: EngineType, payload: any) {
       return falGenerateMotion(payload);
 
     case "branding":
-      // Branding engine → currently uses DeepSeek Reasoning for structured brand output
       return deepseekReason(payload.prompt, payload.system);
+
+    case "cleanup_advanced":
+      // Advanced cleanup → same engine for now
+      return falCleanupImage(payload);
 
     default:
       throw new Error("Unknown engine type");
