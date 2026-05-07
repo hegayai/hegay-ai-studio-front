@@ -8,7 +8,7 @@ import { falGenerateReel } from "../integrations/fal-reels";
 import { falScriptToVideo } from "../integrations/fal-script-video";
 
 // --------------------------------------------------
-// UPDATED ENGINE LIST (FINAL)
+// UPDATED ENGINE LIST (ALL ADMIN + ADVANCED ENGINES)
 // --------------------------------------------------
 export type EngineType =
   | "chat"
@@ -20,7 +20,8 @@ export type EngineType =
   | "reels"
   | "script_video"
   | "admin_image"
-  | "admin_video";   // <-- NEW FIX
+  | "admin_video"
+  | "motion_advanced";  // <-- NEW FIX
 
 export async function modelRouter(engine: EngineType, payload: any) {
   switch (engine) {
@@ -49,12 +50,13 @@ export async function modelRouter(engine: EngineType, payload: any) {
       return falScriptToVideo(payload);
 
     case "admin_image":
-      // Admin image engine → uses same FAL image generator for now
       return falGenerateImage(payload);
 
     case "admin_video":
-      // Admin video engine → uses same FAL video generator for now
       return falGenerateVideo(payload);
+
+    case "motion_advanced":
+      return falGenerateMotion(payload);
 
     default:
       throw new Error("Unknown engine type");
