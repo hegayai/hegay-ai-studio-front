@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma"; // adjust if using another DB
+import { prisma } from "@/src/core/db/client";
 
 // ---------------------------------------------
 // GET USER CREDITS
