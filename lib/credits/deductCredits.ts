@@ -1,39 +1,44 @@
-import { CATEGORY_B_TOOLS } from "@/lib/categoryBTools";
-import { getUserCredits, updateUserCredits } from "./creditStore";
+import { PrismaClient } from "@prisma/client";
+import { CATEGORY_B_TOOLS } from "./toolConfig";
 
-// ---------------------------------------------
-// DEDUCT CREDITS FOR CATEGORY B TOOL
-// ---------------------------------------------
+const prisma = new PrismaClient();
+
 export async function deductCredits(
   userId: string,
   toolId: string,
   units: number
 ) {
-  const tool = CATEGORY_B_TOOLS[toolId];
+  const tool = CATEGORY_B_TOOLS[toolId as keyof typeof CATEGORY_B_TOOLS];
+
   if (!tool) {
     return {
       success: false,
-      error: "INVALID_TOOL",
+      message: "Invalid tool ID",
     };
   }
 
   const cost = tool.credits_per_unit * units;
-  const currentCredits = await getUserCredits(userId);
 
-  if (currentCredits < cost) {
+  const wallet = await prisma.creditWallet.findUnique({
+    where: { userId },
+    select: { balance: true },
+  });
+
+  if (!wallet || wallet.balance < cost) {
     return {
       success: false,
-      error: "NOT_ENOUGH_CREDITS",
-      required: cost,
-      available: currentCredits,
+      message: "Insufficient credits",
     };
   }
 
-  await updateUserCredits(userId, currentCredits - cost);
+  await prisma.creditWallet.update({
+    where: { userId },
+    data: { balance: { decrement: cost } },
+  });
 
   return {
     success: true,
     deducted: cost,
-    remaining: currentCredits - cost,
+    remaining: wallet.balance - cost,
   };
 }

@@ -2,8 +2,19 @@
 
 import { useState, useRef } from "react";
 
-export function useWindowResize(initialWidth = 480, initialHeight = 320) {
-  const [size, setSize] = useState({ width: initialWidth, height: initialHeight });
+export function useWindowResize(
+  initialWidth = 480,
+  initialHeight = 320,
+  initialLeft = 100,
+  initialTop = 100
+) {
+  const [size, setSize] = useState({
+    width: initialWidth,
+    height: initialHeight,
+    left: initialLeft,
+    top: initialTop,
+  });
+
   const resizing = useRef(false);
   const direction = useRef<null | string>(null);
 
@@ -25,10 +36,11 @@ export function useWindowResize(initialWidth = 480, initialHeight = 320) {
       let width = prev.width;
       let height = prev.height;
 
-      if (direction.current.includes("right")) {
+      if (direction.current?.includes("right")) {
         width = Math.max(300, e.clientX - prev.left);
       }
-      if (direction.current.includes("bottom")) {
+
+      if (direction.current?.includes("bottom")) {
         height = Math.max(200, e.clientY - prev.top);
       }
 

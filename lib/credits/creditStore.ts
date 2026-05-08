@@ -1,23 +1,22 @@
-import { prisma } from "@/src/core/db/client";
+import { PrismaClient } from "@prisma/client";
 
-// ---------------------------------------------
-// GET USER CREDITS
-// ---------------------------------------------
-export async function getUserCredits(userId: string): Promise<number> {
-  const user = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { credits: true },
+const prisma = new PrismaClient();
+
+export async function getUserCredits(userId: string) {
+  const wallet = await prisma.creditWallet.findUnique({
+    where: { userId },
+    select: { balance: true },
   });
 
-  return user?.credits ?? 0;
+  return wallet?.balance ?? 0;
 }
 
-// ---------------------------------------------
-// UPDATE USER CREDITS
-// ---------------------------------------------
-export async function updateUserCredits(userId: string, newBalance: number) {
-  await prisma.user.update({
-    where: { id: userId },
-    data: { credits: newBalance },
+export async function updateUserCredits(userId: string, amount: number) {
+  const wallet = await prisma.creditWallet.upsert({
+    where: { userId },
+    update: { balance: { increment: amount } },
+    create: { userId, balance: amount },
   });
+
+  return wallet.balance;
 }

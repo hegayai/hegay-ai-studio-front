@@ -1,5 +1,5 @@
 import { stripe } from "./stripe";
-import { buffer } from "micro";
+import { NextResponse } from "next/server";
 
 export const config = {
   api: {
@@ -7,32 +7,21 @@ export const config = {
   },
 };
 
-export default async function handler(req: any, res: any) {
-  const sig = req.headers["stripe-signature"]!;
-  const buf = await buffer(req);
+export async function POST(req: Request) {
+  const body = await req.text();
+  const signature = req.headers.get("stripe-signature")!;
 
   let event;
 
   try {
     event = stripe.webhooks.constructEvent(
-      buf,
-      sig,
+      body,
+      signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (err: any) {
-    return res.status(400).send(`Webhook Error: ${err.message}`);
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  switch (event.type) {
-    case "customer.subscription.created":
-    case "customer.subscription.updated":
-      // Update user subscription in DB
-      break;
-
-    case "customer.subscription.deleted":
-      // Mark subscription as canceled
-      break;
-  }
-
-  res.json({ received: true });
+  return NextResponse.json({ received: true });
 }

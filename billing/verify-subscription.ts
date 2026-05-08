@@ -1,20 +1,13 @@
 import { stripe } from "./stripe";
 
-export async function verifySubscription(customerId: string) {
-  const subscriptions = await stripe.subscriptions.list({
-    customer: customerId,
-    status: "active",
-  });
+export async function verifySubscription(subscriptionId: string) {
+  const sub = await stripe.subscriptions.retrieve(subscriptionId);
 
-  if (subscriptions.data.length === 0) {
-    return { active: false };
-  }
-
-  const sub = subscriptions.data[0];
+  const planId = sub.items.data[0].price.id;
 
   return {
     active: true,
-    planId: sub.items.data[0].price.id,
-    renewsAt: sub.current_period_end,
+    planId,
+    renewsAt: (sub as any).current_period_end, // Stripe removed this from TS types
   };
 }

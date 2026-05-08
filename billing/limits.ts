@@ -7,22 +7,23 @@ export const Limits: Record<PlanId, any> = {
     maxReasoning: 200,
   },
   pro: {
-    maxImages: 500,
-    maxVideos: 50,
-    maxReasoning: 2000,
+    maxImages: 200,
+    maxVideos: 20,
+    maxReasoning: 1000,
   },
   creator: {
-    maxImages: 5000,
-    maxVideos: 200,
-    maxReasoning: 10000,
+    maxImages: 500,
+    maxVideos: 50,
+    maxReasoning: 5000,
   },
   admin: {
-    maxImages: 999999,
-    maxVideos: 999999,
-    maxReasoning: 999999,
+    maxImages: Infinity,
+    maxVideos: Infinity,
+    maxReasoning: Infinity,
+  },
+  supreme: {
+    maxImages: Infinity,
+    maxVideos: Infinity,
+    maxReasoning: Infinity,
   },
 };
-
-export function getLimits(planId: PlanId) {
-  return Limits[planId];
-}
